@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eventra</title>
+</head>
+<body>
+  <h1>Welcome to Eventra</h1>
+  <% if (user) { %>
+    <p>Logged in as <%= user.email %></p>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <form method="POST" action="/login">
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  <% } %>
+</body>
+</html>
