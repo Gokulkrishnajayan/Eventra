@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Dashboard</title>
+  <link href="https://unpkg.com/lucide@latest" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: #f3f4f6;
+      min-height: 100vh;
+    }
+
+    .shadow {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+
+    .rounded-md {
+      border-radius: 0.375rem;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .bg-white {
+      background-color: #fff;
+    }
+
+    .bg-gray-100 {
+      background-color: #f3f4f6;
+    }
+
+    .bg-gray-50 {
+      background-color: #f9fafb;
+    }
+
+    .bg-gray-200 {
+      background-color: #e5e7eb;
+    }
+
+    .bg-gray-300 {
+      background-color: #d1d5db;
+    }
+
+    .bg-gray-400 {
+      background-color: #9ca3af;
+    }
+
+    .bg-gray-600 {
+      background-color: #4b5563;
+    }
+
+    .bg-blue-50 {
+      background-color: #eff6ff;
+    }
+
+    .bg-blue-100 {
+      background-color: #dbeafe;
+    }
+
+    .bg-blue-500 {
+      background-color: #3b82f6;
+    }
+
+    .bg-blue-600 {
+      background-color: #2563eb;
+    }
+
+    .bg-blue-700 {
+      background-color: #1d4ed8;
+    }
+
+    .bg-green-50 {
+      background-color: #ecfdf5;
+    }
+
+    .bg-green-100 {
+      background-color: #d1fae5;
+    }
+
+    .bg-green-500 {
+      background-color: #10b981;
+    }
+
+    .bg-green-600 {
+      background-color: #059669;
+    }
+
+    .bg-green-700 {
+      background-color: #047857;
+    }
+
+    .bg-yellow-100 {
+      background-color: #fef3c7;
+    }
+
+    .bg-yellow-500 {
+      background-color: #f59e0b;
+    }
+
+    .bg-yellow-600 {
+      background-color: #d97706;
+    }
+
+    .bg-orange-50 {
+      background-color: #fff7ed;
+    }
+
+    .bg-orange-100 {
+      background-color: #ffedd5;
+    }
+
+    .bg-orange-500 {
+      background-color: #f97316;
+    }
+
+    .bg-orange-600 {
+      background-color: #ea580c;
+    }
+
+    .bg-red-100 {
+      background-color: #fee2e2;
+    }
+
+    .bg-red-600 {
+      background-color: #dc2626;
+    }
+
+    .bg-black {
+      background-color: #000;
+    }
+
+    .bg-opacity-50 {
+      opacity: 0.5;
+    }
+
+    .text-white {
+      color: #fff;
+    }
+
+    .text-gray-600 {
+      color: #4b5563;
+    }
+
+    .text-gray-700 {
+      color: #374151;
+    }
+
+    .text-gray-800 {
+      color: #1f2937;
+    }
+
+    .text-gray-900 {
+      color: #111827;
+    }
+
+    .text-blue-500 {
+      color: #3b82f6;
+    }
+
+    .text-blue-600 {
+      color: #2563eb;
+    }
+
+    .text-blue-700 {
+      color: #1d4ed8;
+    }
+
+    .text-blue-800 {
+      color: #1e40af;
+    }
+
+    .text-green-500 {
+      color: #10b981;
+    }
+
+    .text-green-600 {
+      color: #059669;
+    }
+
+    .text-green-700 {
+      color: #047857;
+    }
+
+    .text-green-800 {
+      color: #065f46;
+    }
+
+    .text-yellow-500 {
+      color: #f59e0b;
+    }
+
+    .text-yellow-600 {
+      color: #d97706;
+    }
+
+    .text-yellow-800 {
+      color: #92400e;
+    }
+
+    .text-orange-500 {
+      color: #f97316;
+    }
+
+    .text-orange-600 {
+      color: #ea580c;
+    }
+
+    .text-orange-700 {
+      color: #c2410c;
+    }
+
+    .text-red-600 {
+      color: #dc2626;
+    }
+
+    .text-red-800 {
+      color: #991b1b;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .py-6 {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .p-2 {
+      padding: 0.5rem;
+    }
+
+    .p-3 {
+      padding: 0.75rem;
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .p-6 {
+      padding: 1.5rem;
+    }
+
+    .mb-1 {
+      margin-bottom: 0.25rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .ml-3 {
+      margin-left: 0.75rem;
+    }
+
+    .gap-2 {
+      gap: 0.5rem;
+    }
+
+    .gap-3 {
+      gap: 0.75rem;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .gap-6 {
+      gap: 1.5rem;
+    }
+
+    .space-y-2 > * + * {
+      margin-top: 0.5rem;
+    }
+
+    .space-y-3 > * + * {
+      margin-top: 0.75rem;
+    }
+
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .w-8 {
+      width: 2rem;
+    }
+
+    .w-10 {
+      width: 2.5rem;
+    }
+
+    .w-64 {
+      width: 16rem;
+    }
+
+    .h-8 {
+      height: 2rem;
+    }
+
+    .h-10 {
+      height: 2.5rem;
+    }
+
+    .h-20 {
+      height: 5rem;
+    }
+
+    .h-32 {
+      height: 8rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-1 {
+      flex: 1 1 0%;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .block {
+      display: block;
+    }
+
+    .border {
+      border-width: 1px;
+      border-color: #e5e7eb;
+    }
+
+    .border-b {
+      border-bottom-width: 1px;
+      border-color: #e5e7eb;
+    }
+
+    .divide-y > :not([hidden]) ~ :not([hidden]) {
+      border-top-width: 1px;
+      border-color: #e5e7eb;
+    }
+
+    .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
+      border-top-width: 2px;
+      border-color: #e5e7eb;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .overflow-x-auto {
+      overflow-x: auto;
+    }
+
+    .whitespace-nowrap {
+      white-space: nowrap;
+    }
+
+    .hover\:bg-gray-100:hover {
+      background-color: #f3f4f6;
+    }
+
+    .hover\:bg-blue-100:hover {
+      background-color: #dbeafe;
+    }
+
+    .hover\:bg-green-100:hover {
+      background-color: #d1fae5;
+    }
+
+    .hover\:bg-orange-100:hover {
+      background-color: #ffedd5;
+    }
+
+    .hover\:bg-gray-400:hover {
+      background-color: #9ca3af;
+    }
+
+    .hover\:bg-blue-700:hover {
+      background-color: #1d4ed8;
+    }
+
+    .hover\:text-gray-800:hover {
+      color: #1f2937;
+    }
+
+    .hover\:text-blue-800:hover {
+      color: #1e40af;
+    }
+
+    .hover\:text-green-800:hover {
+      color: #065f46;
+    }
+
+    .hover\:text-red-800:hover {
+      color: #991b1b;
+    }
+
+    .cursor-pointer {
+      cursor: pointer;
+    }
+
+    .max-w-md {
+      max-width: 28rem;
+    }
+
+    .max-w-7xl {
+      max-width: 80rem;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fixed {
+      position: fixed;
+    }
+
+    .inset-0 {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .z-50 {
+      z-index: 50;
+    }
+
+    .fill-current {
+      fill: currentColor;
+    }
+
+    /* Custom styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .main-content {
+        flex-direction: row;
+      }
+    }
+
+    .sidebar {
+      flex-shrink: 0;
+      height: fit-content;
+    }
+
+    .content-area {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <i data-lucide="package" class="w-6 h-6 text-white"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold">Vendor Dashboard</h1>
+              <p class="text-sm text-gray-600">Event Management System</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i data-lucide="bell" class="w-6 h-6 text-gray-600 cursor-pointer"></i>
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <i data-lucide="user" class="w-5 h-5 text-gray-600"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="flex gap-6">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white rounded-lg shadow p-4 sidebar">
+          <nav class="space-y-2">
+            <button
+              onclick="setActiveTab('dashboard')"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left bg-blue-100 text-blue-700"
+            >
+              <i data-lucide="home" class="w-5 h-5"></i>
+              Dashboard
+            </button>
+            <button
+              onclick="setActiveTab('services')"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100"
+            >
+              <i data-lucide="package" class="w-5 h-5"></i>
+              My Services
+            </button>
+            <button
+              onclick="setActiveTab('bookings')"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100"
+            >
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+              Bookings
+            </button>
+            <button
+              onclick="setActiveTab('analytics')"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100"
+            >
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+              Analytics
+            </button>
+            <button
+              onclick="setActiveTab('settings')"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100"
+            >
+              <i data-lucide="settings" class="w-5 h-5"></i>
+              Settings
+            </button>
+          </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 content-area">
+          <div id="dashboard-view">
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-gray-600">Total Services</p>
+                      <p class="text-2xl font-bold">3</p>
+                    </div>
+                    <i data-lucide="package" class="w-8 h-8 text-blue-500"></i>
+                  </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-gray-600">Pending Bookings</p>
+                      <p class="text-2xl font-bold">1</p>
+                    </div>
+                    <i data-lucide="clock" class="w-8 h-8 text-orange-500"></i>
+                  </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-gray-600">Monthly Revenue</p>
+                      <p class="text-2xl font-bold">$8,200</p>
+                    </div>
+                    <i data-lucide="dollar-sign" class="w-8 h-8 text-green-500"></i>
+                  </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-gray-600">Avg Rating</p>
+                      <p class="text-2xl font-bold">4.8</p>
+                    </div>
+                    <i data-lucide="star" class="w-8 h-8 text-yellow-500"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h3 class="text-lg font-semibold mb-4">Recent Bookings</h3>
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                      <div>
+                        <p class="font-medium">John Smith</p>
+                        <p class="text-sm text-gray-600">Premium Stage Decoration</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium">$1500</p>
+                        <p class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800">
+                          Pending
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                      <div>
+                        <p class="font-medium">Sarah Johnson</p>
+                        <p class="text-sm text-gray-600">Wedding Catering Package</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium">$2500</p>
+                        <p class="text-xs px-2 py-1 rounded bg-green-100 text-green-800">
+                          Confirmed
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                      <div>
+                        <p class="font-medium">Mike Davis</p>
+                        <p class="text-sm text-gray-600">Corporate Event Setup</p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-medium">$1200</p>
+                        <p class="text-xs px-2 py-1 rounded bg-blue-100 text-blue-800">
+                          Completed
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                  <div class="space-y-3">
+                    <button 
+                      onclick="showServiceForm()"
+                      class="w-full flex items-center gap-3 p-3 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100"
+                    >
+                      <i data-lucide="plus" class="w-5 h-5"></i>
+                      Add New Service
+                    </button>
+                    <button 
+                      onclick="setActiveTab('bookings')"
+                      class="w-full flex items-center gap-3 p-3 bg-orange-50 text-orange-700 rounded-md hover:bg-orange-100"
+                    >
+                      <i data-lucide="bell" class="w-5 h-5"></i>
+                      View Pending Requests
+                    </button>
+                    <button 
+                      onclick="setActiveTab('analytics')"
+                      class="w-full flex items-center gap-3 p-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100"
+                    >
+                      <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                      View Analytics
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="services-view" class="hidden">
+            <div class="space-y-6">
+              <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-bold">My Services</h2>
+                <button
+                  onclick="showServiceForm()"
+                  class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  Add Service
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-lg">Premium Stage Decoration</h3>
+                      <p class="text-sm text-gray-600">Decoration</p>
+                    </div>
+                    <div class="flex gap-2">
+                      <button
+                        onclick="editService(1)"
+                        class="text-blue-600 hover:text-blue-800"
+                      >
+                        <i data-lucide="edit" class="w-4 h-4"></i>
+                      </button>
+                      <button class="text-gray-600 hover:text-gray-800">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Price:</span>
+                      <span class="font-medium">$1500</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Bookings:</span>
+                      <span class="font-medium">12</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Status:</span>
+                      <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                        Active
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-lg">Wedding Catering Package</h3>
+                      <p class="text-sm text-gray-600">Catering</p>
+                    </div>
+                    <div class="flex gap-2">
+                      <button
+                        onclick="editService(2)"
+                        class="text-blue-600 hover:text-blue-800"
+                      >
+                        <i data-lucide="edit" class="w-4 h-4"></i>
+                      </button>
+                      <button class="text-gray-600 hover:text-gray-800">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Price:</span>
+                      <span class="font-medium">$2500</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Bookings:</span>
+                      <span class="font-medium">8</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Status:</span>
+                      <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                        Active
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 class="font-semibold text-lg">Corporate Event Setup</h3>
+                      <p class="text-sm text-gray-600">Setup</p>
+                    </div>
+                    <div class="flex gap-2">
+                      <button
+                        onclick="editService(3)"
+                        class="text-blue-600 hover:text-blue-800"
+                      >
+                        <i data-lucide="edit" class="w-4 h-4"></i>
+                      </button>
+                      <button class="text-gray-600 hover:text-gray-800">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Price:</span>
+                      <span class="font-medium">$1200</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Bookings:</span>
+                      <span class="font-medium">3</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-600">Status:</span>
+                      <span class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800">
+                        Inactive
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="bookings-view" class="hidden">
+            <div class="space-y-6">
+              <h2 class="text-2xl font-bold">Booking Requests</h2>
+              
+              <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                  <table class="w-full">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Service</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                              <i data-lucide="user" class="w-4 h-4 text-gray-600"></i>
+                            </div>
+                            <div class="ml-3">
+                              <p class="text-sm font-medium">John Smith</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          Premium Stage Decoration
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          2025-07-20
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          $1500
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800">
+                            Pending
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <div class="flex gap-2">
+                            <button
+                              onclick="handleBookingAction(1, 'accept')"
+                              class="text-green-600 hover:text-green-800"
+                            >
+                              <i data-lucide="check" class="w-4 h-4"></i>
+                            </button>
+                            <button
+                              onclick="handleBookingAction(1, 'reject')"
+                              class="text-red-600 hover:text-red-800"
+                            >
+                              <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                              <i data-lucide="user" class="w-4 h-4 text-gray-600"></i>
+                            </div>
+                            <div class="ml-3">
+                              <p class="text-sm font-medium">Sarah Johnson</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          Wedding Catering Package
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          2025-07-25
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          $2500
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                            Confirmed
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <button class="text-blue-600 hover:text-blue-800">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                              <i data-lucide="user" class="w-4 h-4 text-gray-600"></i>
+                            </div>
+                            <div class="ml-3">
+                              <p class="text-sm font-medium">Mike Davis</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          Corporate Event Setup
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          2025-07-30
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          $1200
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+                            Completed
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                          <button class="text-blue-600 hover:text-blue-800">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="analytics-view" class="hidden">
+            <div class="space-y-6">
+              <h2 class="text-2xl font-bold">Analytics & Reports</h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h3 class="text-lg font-semibold mb-4">Monthly Revenue</h3>
+                  <div class="h-32 bg-gray-100 rounded-md flex items-center justify-center">
+                    <p class="text-gray-500">Revenue Chart Placeholder</p>
+                  </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow">
+                  <h3 class="text-lg font-semibold mb-4">Service Performance</h3>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Premium Stage Decoration</span>
+                      <span class="text-sm font-medium">12 bookings</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Wedding Catering Package</span>
+                      <span class="text-sm font-medium">8 bookings</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm">Corporate Event Setup</span>
+                      <span class="text-sm font-medium">3 bookings</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-4">Customer Feedback</h3>
+                <div class="space-y-4">
+                  <div class="p-4 bg-gray-50 rounded-md">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                      </div>
+                      <span class="text-sm text-gray-600">by Sarah Johnson</span>
+                    </div>
+                    <p class="text-sm">"Excellent service! The decoration was exactly what we wanted."</p>
+                  </div>
+                  <div class="p-4 bg-gray-50 rounded-md">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="flex">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-gray-300"></i>
+                      </div>
+                      <span class="text-sm text-gray-600">by Mike Davis</span>
+                    </div>
+                    <p class="text-sm">"Great setup for our corporate event. Professional and timely."</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="settings-view" class="hidden">
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h2 class="text-2xl font-bold mb-4">Settings</h2>
+              <p class="text-gray-600">Profile and account settings coming soon...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Form Modal -->
+    <div id="service-form-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+      <div class="bg-white rounded-lg max-w-md w-full p-6">
+        <h3 class="text-lg font-semibold mb-4" id="service-form-title">Add New Service</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Service Name</label>
+            <input
+              type="text"
+              id="service-name"
+              class="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Service Type</label>
+            <select
+              id="service-type"
+              class="w-full p-2 border rounded-md"
+            >
+              <option value="Decoration">Decoration</option>
+              <option value="Catering">Catering</option>
+              <option value="Photography">Photography</option>
+              <option value="Setup">Setup</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Price ($)</label>
+            <input
+              type="number"
+              id="service-price"
+              class="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Description</label>
+            <textarea
+              id="service-description"
+              class="w-full p-2 border rounded-md h-20"
+              placeholder="Describe your service..."
+            ></textarea>
+          </div>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              onclick="saveService()"
+              class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+            >
+              Save Service
+            </button>
+            <button
+              type="button"
+              onclick="hideServiceForm()"
+              class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // State management
+    let currentEditingServiceId = null;
+    const services = [
+      { id: 1, name: 'Premium Stage Decoration', type: 'Decoration', price: 1500, status: 'Active', bookings: 12 },
+      { id: 2, name: 'Wedding Catering Package', type: 'Catering', price: 2500, status: 'Active', bookings: 8 },
+      { id: 3, name: 'Corporate Event Setup', type: 'Setup', price: 1200, status: 'Inactive', bookings: 3 }
+    ];
+    
+    const bookings = [
+      { id: 1, customer: 'John Smith', service: 'Premium Stage Decoration', date: '2025-07-20', status: 'Pending', amount: 1500 },
+      { id: 2, customer: 'Sarah Johnson', service: 'Wedding Catering Package', date: '2025-07-25', status: 'Confirmed', amount: 2500 },
+      { id: 3, customer: 'Mike Davis', service: 'Corporate Event Setup', date: '2025-07-30', status: 'Completed', amount: 1200 }
+    ];
+
+    // Tab navigation
+    function setActiveTab(tabName) {
+      // Hide all views
+      document.getElementById('dashboard-view').classList.add('hidden');
+      document.getElementById('services-view').classList.add('hidden');
+      document.getElementById('bookings-view').classList.add('hidden');
+      document.getElementById('analytics-view').classList.add('hidden');
+      document.getElementById('settings-view').classList.add('hidden');
+      
+      // Show selected view
+      document.getElementById(`${tabName}-view`).classList.remove('hidden');
+      
+      // Update sidebar active state
+      const sidebarButtons = document.querySelectorAll('.sidebar button');
+      sidebarButtons.forEach(button => {
+        button.classList.remove('bg-blue-100', 'text-blue-700');
+        button.classList.add('hover:bg-gray-100');
+      });
+      
+      const activeButton = document.querySelector(`.sidebar button[onclick="setActiveTab('${tabName}')"]`);
+      if (activeButton) {
+        activeButton.classList.add('bg-blue-100', 'text-blue-700');
+        activeButton.classList.remove('hover:bg-gray-100');
+      }
+    }
+
+    // Service form handling
+    function showServiceForm() {
+      document.getElementById('service-form-modal').classList.remove('hidden');
+      document.getElementById('service-form-title').textContent = 'Add New Service';
+      document.getElementById('service-name').value = '';
+      document.getElementById('service-type').value = 'Decoration';
+      document.getElementById('service-price').value = '';
+      document.getElementById('service-description').value = '';
+      currentEditingServiceId = null;
+    }
+
+    function editService(serviceId) {
+      const service = services.find(s => s.id === serviceId);
+      if (service) {
+        document.getElementById('service-form-modal').classList.remove('hidden');
+        document.getElementById('service-form-title').textContent = 'Edit Service';
+        document.getElementById('service-name').value = service.name;
+        document.getElementById('service-type').value = service.type;
+        document.getElementById('service-price').value = service.price;
+        document.getElementById('service-description').value = service.description || '';
+        currentEditingServiceId = serviceId;
+      }
+    }
+
+    function hideServiceForm() {
+      document.getElementById('service-form-modal').classList.add('hidden');
+    }
+
+    function saveService() {
+      const name = document.getElementById('service-name').value;
+      const type = document.getElementById('service-type').value;
+      const price = document.getElementById('service-price').value;
+      const description = document.getElementById('service-description').value;
+      
+      if (!name || !price) {
+        alert('Please fill in all required fields');
+        return;
+      }
+      
+      if (currentEditingServiceId) {
+        // Update existing service
+        const serviceIndex = services.findIndex(s => s.id === currentEditingServiceId);
+        if (serviceIndex !== -1) {
+          services[serviceIndex] = {
+            ...services[serviceIndex],
+            name,
+            type,
+            price: Number(price),
+            description
+          };
+        }
+      } else {
+        // Add new service
+        const newService = {
+          id: Date.now(),
+          name,
+          type,
+          price: Number(price),
+          description,
+          status: 'Active',
+          bookings: 0
+        };
+        services.push(newService);
+      }
+      
+      hideServiceForm();
+      // In a real app, you would update the UI here to reflect the changes
+      alert('Service saved successfully!');
+      // For demo purposes, we'll just refresh the services view
+      setActiveTab('services');
+    }
+
+    // Booking actions
+    function handleBookingAction(bookingId, action) {
+      const bookingIndex = bookings.findIndex(b => b.id === bookingId);
+      if (bookingIndex !== -1) {
+        bookings[bookingIndex].status = action === 'accept' ? 'Confirmed' : 'Rejected';
+        // In a real app, you would update the UI here to reflect the changes
+        alert(`Booking ${action === 'accept' ? 'confirmed' : 'rejected'}!`);
+        // For demo purposes, we'll just refresh the bookings view
+        setActiveTab('bookings');
+      }
+    }
+
+    // Initialize the dashboard view
+    setActiveTab('dashboard');
+  </script>
+</body>
+</html>

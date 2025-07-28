@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Services | Vendor Dashboard</title>
+  <link href="https://unpkg.com/lucide@latest" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <i data-lucide="package" class="w-6 h-6 text-white"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold">Vendor Dashboard</h1>
+              <p class="text-sm text-gray-600">Event Management System</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i data-lucide="bell" class="w-6 h-6 text-gray-600 cursor-pointer"></i>
+            <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <i data-lucide="user" class="w-5 h-5 text-gray-600"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="flex gap-6">
+        <!-- Sidebar -->
+        <div class="sidebar bg-white rounded-lg shadow p-4 w-64">
+          <button class="collapse-btn absolute right-0 top-0 m-2 text-gray-600 hover:text-gray-800 hidden md:block">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <nav class="space-y-2">
+            <a href="index.html" class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100">
+              <i data-lucide="home" class="w-5 h-5"></i>
+              <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="services.html" class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left bg-blue-100 text-blue-700">
+              <i data-lucide="package" class="w-5 h-5"></i>
+              <span class="nav-text">My Services</span>
+            </a>
+            <a href="bookings.html" class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+              <span class="nav-text">Bookings</span>
+            </a>
+            <a href="analytics.html" class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100">
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+              <span class="nav-text">Analytics</span>
+            </a>
+            <a href="settings.html" class="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left hover:bg-gray-100">
+              <i data-lucide="settings" class="w-5 h-5"></i>
+              <span class="nav-text">Settings</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Mobile sidebar toggle -->
+        <button class="sidebar-toggle md:hidden">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Main Content -->
+        <div class="content-area flex-1">
+          <div class="space-y-6">
+            <div class="flex justify-between items-center">
+              <h2 class="text-2xl font-bold">My Services</h2>
+              <button
+                onclick="showServiceForm()"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"
+              >
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>Add Service</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="font-semibold text-lg">Premium Stage Decoration</h3>
+                    <p class="text-sm text-gray-600">Decoration</p>
+                  </div>
+                  <div class="flex gap-2">
+                    <button
+                      onclick="showServiceForm({
+                        id: 1,
+                        name: 'Premium Stage Decoration',
+                        type: 'Decoration',
+                        price: 1500,
+                        description: 'Beautiful stage decoration for events'
+                      })"
+                      class="text-blue-600 hover:text-blue-800"
+                    >
+                      <i data-lucide="edit" class="w-4 h-4"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-gray-800">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Price:</span>
+                    <span class="font-medium">$1500</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Bookings:</span>
+                    <span class="font-medium">12</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Status:</span>
+                    <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="font-semibold text-lg">Wedding Catering Package</h3>
+                    <p class="text-sm text-gray-600">Catering</p>
+                  </div>
+                  <div class="flex gap-2">
+                    <button
+                      onclick="showServiceForm({
+                        id: 2,
+                        name: 'Wedding Catering Package',
+                        type: 'Catering',
+                        price: 2500,
+                        description: 'Delicious catering for weddings'
+                      })"
+                      class="text-blue-600 hover:text-blue-800"
+                    >
+                      <i data-lucide="edit" class="w-4 h-4"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-gray-800">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Price:</span>
+                    <span class="font-medium">$2500</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Bookings:</span>
+                    <span class="font-medium">8</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Status:</span>
+                    <span class="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="font-semibold text-lg">Corporate Event Setup</h3>
+                    <p class="text-sm text-gray-600">Setup</p>
+                  </div>
+                  <div class="flex gap-2">
+                    <button
+                      onclick="showServiceForm({
+                        id: 3,
+                        name: 'Corporate Event Setup',
+                        type: 'Setup',
+                        price: 1200,
+                        description: 'Professional setup for corporate events'
+                      })"
+                      class="text-blue-600 hover:text-blue-800"
+                    >
+                      <i data-lucide="edit" class="w-4 h-4"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-gray-800">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Price:</span>
+                    <span class="font-medium">$1200</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Bookings:</span>
+                    <span class="font-medium">3</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm text-gray-600">Status:</span>
+                    <span class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800">
+                      Inactive
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Form Modal -->
+    <div id="service-form-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+      <div class="bg-white rounded-lg max-w-md w-full p-6">
+        <h3 class="text-lg font-semibold mb-4" id="service-form-title">Add New Service</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Service Name</label>
+            <input
+              type="text"
+              id="service-name"
+              class="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Service Type</label>
+            <select
+              id="service-type"
+              class="w-full p-2 border rounded-md"
+            >
+              <option value="Decoration">Decoration</option>
+              <option value="Catering">Catering</option>
+              <option value="Photography">Photography</option>
+              <option value="Setup">Setup</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Price ($)</label>
+            <input
+              type="number"
+              id="service-price"
+              class="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Description</label>
+            <textarea
+              id="service-description"
+              class="w-full p-2 border rounded-md h-20"
+              placeholder="Describe your service..."
+            ></textarea>
+          </div>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              onclick="saveService()"
+              class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+            >
+              Save Service
+            </button>
+            <button
+              type="button"
+              onclick="hideServiceForm()"
+              class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

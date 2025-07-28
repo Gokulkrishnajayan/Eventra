@@ -7,25 +7,28 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Session setup
+// Middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'eventra-secret',
   resave: false,
   saveUninitialized: true,
 }));
 
-// Middlewares
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// EJS setup
+// EJS config
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routes
-app.use('/', require('./routes/auth')); // example route
-// More routes...
+const vendorRoutes = require('./routes/vendor');
+app.use('/vendor', vendorRoutes);
 
+app.get('/', (req, res) => {
+  res.redirect('/vendor');
+});
+
+// Start Server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
