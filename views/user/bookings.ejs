@@ -1,0 +1,609 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Bookings Content -->
+        <div class="content-section active" id="bookings">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-check"></i>
+                    My Bookings
+                </h2>
+            </div>
+
+            <table class="booking-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#BK001</td>
+                        <td>Grand Ballroom</td>
+                        <td>Dec 25, 2024</td>
+                        <td><span class="status confirmed">Confirmed</span></td>
+                        <td>$3,150</td>
+                        <td class="table-actions">
+                            <button class="btn btn-info btn-sm view-booking">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-info btn-sm chat-booking">
+                                <i class="fas fa-comments"></i> Chat
+                            </button>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#BK002</td>
+                        <td>Garden Pavilion</td>
+                        <td>Jan 15, 2025</td>
+                        <td><span class="status payment">Payment Due</span></td>
+                        <td>$1,800</td>
+                        <td class="table-actions">
+                            <button class="btn btn-info btn-sm view-booking">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-success btn-sm pay-btn">
+                                <i class="fas fa-credit-card"></i> Pay
+                            </button>
+                            <button class="btn btn-info btn-sm chat-booking">
+                                <i class="fas fa-comments"></i> Chat
+                            </button>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#BK003</td>
+                        <td>Modern Loft Space</td>
+                        <td>Nov 10, 2024</td>
+                        <td><span class="status completed">Completed</span></td>
+                        <td>$1,200</td>
+                        <td class="table-actions">
+                            <button class="btn btn-info btn-sm view-booking">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-primary btn-sm review-btn">
+                                <i class="fas fa-star "></i> Review
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Booking View Content -->
+        <div class="content-section" id="booking-view">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-check"></i>
+                    Booking Details
+                </h2>
+                <button class="btn btn-secondary" id="backToBookings">
+                    <i class="fas fa-arrow-left"></i> Back to Bookings
+                </button>
+            </div>
+
+            <div class="booking-detail-view">
+                <div class="booking-header">
+                    <div>
+                        <h1 class="booking-title">Grand Ballroom</h1>
+                        <div class="booking-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Booking ID</span>
+                                <span class="meta-value">#BK001</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Event Date</span>
+                                <span class="meta-value">Dec 25, 2024</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Status</span>
+                                <span class="status confirmed">Confirmed</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Total Price</span>
+                                <span class="meta-value">$3,150.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="btn btn-info" id="chatWithVendor">
+                            <i class="fas fa-comments"></i> Chat with Vendor
+                        </button>
+                    </div>
+                </div>
+
+                <div class="vendor-info">
+                    <div class="vendor-avatar-lg">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="vendor-details">
+                        <div class="vendor-name">Elegant Designs Co.</div>
+                        <p>Premium event decoration services with over 10 years of experience</p>
+                        <div class="vendor-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 987-6543</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>contact@elegantdesigns.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-globe"></i>
+                                <span>www.elegantdesigns.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">Service Type:</span>
+                    <span class="info-value">Venue</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Location:</span>
+                    <span class="info-value">123 Event Street, New York, NY 10001</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Capacity:</span>
+                    <span class="info-value">200 guests</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Event Duration:</span>
+                    <span class="info-value">6:00 PM - 11:00 PM (5 hours)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Special Requests:</span>
+                    <span class="info-value">Additional lighting setup for stage</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Payment Status:</span>
+                    <span class="status completed">Paid</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Booked On:</span>
+                    <span class="info-value">Nov 15, 2024</span>
+                </div>
+                
+                <h3 class="section-subtitle">Additional Services</h3>
+                <div class="info-row">
+                    <span class="info-label">Premium Parking:</span>
+                    <span class="info-value">$150.00</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Special Lighting:</span>
+                    <span class="info-value">$300.00</span>
+                </div>
+                
+                <h3 class="section-subtitle">Event Schedule</h3>
+                <div class="info-row">
+                    <span class="info-label">Setup Time:</span>
+                    <span class="info-value">3:00 PM - 5:30 PM</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Guest Arrival:</span>
+                    <span class="info-value">5:30 PM - 6:00 PM</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Main Event:</span>
+                    <span class="info-value">6:00 PM - 10:00 PM</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Cleanup:</span>
+                    <span class="info-value">10:00 PM - 11:00 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review Content -->
+        <div class="content-section" id="review">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Write a Review
+                </h2>
+                <button class="btn btn-secondary" id="backToCompleted">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>
+
+            <div class="review-form">
+                <div class="booking-info" style="margin-bottom: 2rem;">
+                    <h3>Modern Loft Space</h3>
+                    <p>Event Date: Nov 10, 2024</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-stars">
+                        <i class="fas fa-star rating-star" data-value="1"></i>
+                        <i class="fas fa-star rating-star" data-value="2"></i>
+                        <i class="fas fa-star rating-star" data-value="3"></i>
+                        <i class="fas fa-star rating-star" data-value="4"></i>
+                        <i class="fas fa-star rating-star" data-value="5"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewTitle">Review Title</label>
+                    <input type="text" id="reviewTitle" placeholder="Summarize your experience">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewContent">Your Review</label>
+                    <textarea id="reviewContent" placeholder="Share details of your experience..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="cancelReview">Cancel</button>
+                    <button class="btn btn-primary" id="submitReview">Submit Review</button>
+                </div>
+            </div>
+        </div>
+       
+
+        <!-- Payment Page -->
+        <div class="content-section" id="payment-page">
+            <div class="payment-container">
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <i class="fas fa-credit-card"></i>
+                        <h2>Complete Payment</h2>
+                        <p>Booking ID: #BK001</p>
+                    </div>
+                    
+                    <div class="payment-details">
+                        <div class="payment-row">
+                            <span>Service:</span>
+                            <span>Grand Ballroom</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Event Date:</span>
+                            <span>Dec 25, 2024</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Base Price:</span>
+                            <span>$2,500.00</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Additional Options:</span>
+                            <span>$650.00</span>
+                        </div>
+                        <div class="payment-row" style="font-weight: 600;">
+                            <span>Total Amount:</span>
+                            <span>$3,150.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="loyalty-option">
+                        <input type="checkbox" id="redeemPoints">
+                        <label for="redeemPoints">Redeem 500 loyalty points for $50 discount</label>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-method selected">
+                            <i class="fab fa-cc-visa"></i>
+                            <div>
+                                <h4>Credit/Debit Card</h4>
+                                <p>Pay with Visa, Mastercard, or other cards</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-paypal"></i>
+                            <div>
+                                <h4>PayPal</h4>
+                                <p>Pay with your PayPal account</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-university"></i>
+                            <div>
+                                <h4>Bank Transfer</h4>
+                                <p>Direct bank transfer</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="backToBooking">Back</button>
+                        <button class="btn btn-primary" id="confirmPayment">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Success Page -->
+        <div class="content-section" id="payment-success">
+            <div class="payment-container">
+                <div class="payment-card">
+                    <div class="payment-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h2>Payment Successful!</h2>
+                        <p>Your booking is now confirmed</p>
+                    </div>
+                    
+                    <div class="payment-details">
+                        <div class="payment-row">
+                            <span>Booking ID:</span>
+                            <span>#BK001</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Service:</span>
+                            <span>Grand Ballroom</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Event Date:</span>
+                            <span>Dec 25, 2024</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Total Paid:</span>
+                            <span>$3,150.00</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Payment Method:</span>
+                            <span>Credit Card (Visa)</span>
+                        </div>
+                        <div class="payment-row">
+                            <span>Transaction ID:</span>
+                            <span>TX1234567890</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions" style="justify-content: center;">
+                        <button class="btn btn-primary" id="viewBooking">View Booking Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       <!-- Chat Modal -->
+        <div class="modal" id="chatModal">
+            <div class="chat-container" style="width: 500px; max-width: 90%; height: 80vh; margin: 5vh auto;">
+                <div class="chat-header">
+                    <div class="vendor-avatar">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <h3>Elegant Designs Co.</h3>
+                        <p>Online now</p>
+                    </div>
+                    <span class="close-modal" style="position: absolute; right: 15px; top: 15px; font-size: 24px;">&times;</span>
+                </div>
+                <div class="chat-messages">
+                    <div class="message received">
+                        Hi John, thanks for your interest in our decoration services! How can I help you?
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                    <div class="message sent">
+                        Hi there! I'm interested in the premium package for my wedding on Dec 25th. Can you tell me more about what's included?
+                        <div class="message-time">10:32 AM</div>
+                    </div>
+                    <div class="message received">
+                        Absolutely! The premium package includes full stage decoration, floral arrangements for the entrance, and customized lighting effects.
+                        <div class="message-time">10:35 AM</div>
+                    </div>
+                    <div class="message received">
+                        We also offer a complimentary consultation to discuss your specific theme and color preferences.
+                        <div class="message-time">10:36 AM</div>
+                    </div>
+                    <div class="message sent">
+                        That sounds perfect! How soon can we schedule the consultation?
+                        <div class="message-time">10:38 AM</div>
+                    </div>
+                    <div class="message received">
+                        I have availability tomorrow afternoon or Thursday morning. Which works better for you?
+                        <div class="message-time">10:40 AM</div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type your message...">
+                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Bookings page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile dropdown toggle
+            document.getElementById('profileToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Notification dropdown toggle
+            document.getElementById('notificationToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('notificationDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-profile')) {
+                    document.getElementById('profileDropdown').style.display = 'none';
+                }
+                if (!e.target.closest('.notification-icon')) {
+                    document.getElementById('notificationDropdown').style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('You have been logged out successfully.');
+            });
+
+            // View booking details
+            document.querySelectorAll('.view-booking').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.getElementById('bookings').classList.remove('active');
+                    document.getElementById('booking-view').classList.add('active');
+                });
+            });
+
+            // Chat button in bookings table
+            document.querySelectorAll('.chat-booking').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.getElementById('chatModal').style.display = "block";
+                });
+            });
+
+            // Chat with vendor button in booking view
+            document.getElementById('chatWithVendor').addEventListener('click', function() {
+                document.getElementById('chatModal').style.display = "block";
+            });
+
+            // Pay button functionality
+            document.querySelectorAll('.pay-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.getElementById('bookings').classList.remove('active');
+                    document.getElementById('payment-page').classList.add('active');
+                });
+            });
+
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove selected class from all methods
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                    // Add selected class to clicked method
+                    this.classList.add('selected');
+                });
+            });
+
+            // Back to booking from payment page
+            document.getElementById('backToBooking').addEventListener('click', function() {
+                document.getElementById('payment-page').classList.remove('active');
+                document.getElementById('bookings').classList.add('active');
+            });
+
+            // Confirm payment
+            document.getElementById('confirmPayment').addEventListener('click', function() {
+                document.getElementById('payment-page').classList.remove('active');
+                document.getElementById('payment-success').classList.add('active');
+            });
+
+            // View booking from success page
+            document.getElementById('viewBooking').addEventListener('click', function() {
+                document.getElementById('payment-success').classList.remove('active');
+                document.getElementById('bookings').classList.add('active');
+            });
+
+            // Review button functionality
+            document.querySelectorAll('.review-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.getElementById('bookings').classList.remove('active');
+                    document.getElementById('review').classList.add('active');
+                });
+            });
+
+            // Back to bookings button
+            document.getElementById('backToBookings').addEventListener('click', function() {
+                document.getElementById('bookings').classList.add('active');
+                document.getElementById('booking-view').classList.remove('active');
+            });
+
+            // Back to bookings from review
+            document.getElementById('backToCompleted').addEventListener('click', function() {
+                document.getElementById('review').classList.remove('active');
+                document.getElementById('bookings').classList.add('active');
+            });
+
+            // Cancel review button
+            document.getElementById('cancelReview').addEventListener('click', function() {
+                document.getElementById('review').classList.remove('active');
+                document.getElementById('bookings').classList.add('active');
+            });
+
+            // Rating stars functionality
+            const ratingStars = document.querySelectorAll('.rating-star');
+            let selectedRating = 0;
+
+            ratingStars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = parseInt(this.getAttribute('data-value'));
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    highlightStars(selectedRating);
+                });
+
+                star.addEventListener('click', function() {
+                    selectedRating = parseInt(this.getAttribute('data-value'));
+                    highlightStars(selectedRating);
+                });
+            });
+
+            function highlightStars(rating) {
+                ratingStars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.style.color = '#ffc107';
+                    } else {
+                        star.style.color = '#e4e5e9';
+                    }
+                });
+            }
+
+            // Submit review functionality
+            document.getElementById('submitReview').addEventListener('click', function() {
+                const reviewTitle = document.getElementById('reviewTitle').value;
+                const reviewContent = document.getElementById('reviewContent').value;
+                
+                if (selectedRating === 0) {
+                    alert('Please select a rating');
+                    return;
+                }
+                
+                if (!reviewTitle.trim()) {
+                    alert('Please enter a review title');
+                    return;
+                }
+                
+                if (!reviewContent.trim()) {
+                    alert('Please enter your review');
+                    return;
+                }
+                
+                alert('Review submitted successfully!');
+                
+                // Clear form
+                document.getElementById('reviewTitle').value = '';
+                document.getElementById('reviewContent').value = '';
+                selectedRating = 0;
+                highlightStars(0);
+                
+                // Go back to bookings
+                document.getElementById('review').classList.remove('active');
+                document.getElementById('bookings').classList.add('active');
+            });
+
+            // Close chat modal
+            document.querySelector('#chatModal .close-modal').addEventListener('click', function() {
+                document.getElementById('chatModal').style.display = "none";
+            });
+
+            // Close chat modal when clicking outside
+            document.getElementById('chatModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = "none";
+                }
+            });
+        });
+    </script>

@@ -1,0 +1,128 @@
+
+    <!-- Main Profile Content -->
+    <main class="main-content">
+        
+        <!-- Profile Content -->
+        <div class="content-section active" id="profile">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-user-cog"></i>
+                    Profile Settings
+                </h2>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <div class="avatar-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <button class="btn btn-secondary btn-sm">Change Photo</button>
+                    </div>
+                    <div class="profile-info">
+                        <h3>John Doe</h3>
+                        <p>Member since: January 2024</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Bookings</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1,250</div>
+                                <div class="stat-label">Loyalty Points</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-form">
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" value="John Doe" id="fullName">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="john.doe@example.com" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" value="+1 (555) 123-4567" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="address">123 Main St, New York, NY 10001</textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelChanges">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="profile-security">
+                    <h4>Security</h4>
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h5>Password</h5>
+                            <p>Last changed 3 months ago</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" id="changePassword">Change Password</button>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h5>Two-Factor Authentication</h5>
+                            <p>Disabled</p>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" id="enable2FA">Enable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Profile page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // (Same dropdown and logout functionality as previous pages)
+            
+            // Profile form handling
+            const profileForm = document.getElementById('profileForm');
+            const originalValues = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value
+            };
+
+            document.getElementById('cancelChanges').addEventListener('click', function() {
+                document.getElementById('fullName').value = originalValues.fullName;
+                document.getElementById('email').value = originalValues.email;
+                document.getElementById('phone').value = originalValues.phone;
+                document.getElementById('address').value = originalValues.address;
+                alert('Changes discarded');
+            });
+
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real app, would save to server
+                alert('Profile updated successfully');
+            });
+
+            // Change password
+            document.getElementById('changePassword').addEventListener('click', function() {
+                const newPassword = prompt('Enter new password:');
+                if (newPassword) {
+                    alert('Password changed successfully');
+                }
+            });
+
+            // Enable 2FA
+            document.getElementById('enable2FA').addEventListener('click', function() {
+                if (confirm('Enable two-factor authentication?')) {
+                    this.textContent = 'Disable';
+                    alert('Two-factor authentication enabled');
+                }
+            });
+        });
+    </script>

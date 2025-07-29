@@ -1,0 +1,203 @@
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section-content">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">Dashboard Overview</h5>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Last 30 Days
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Today</a></li>
+            <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+            <li><a class="dropdown-item" href="#">This Month</a></li>
+            <li><a class="dropdown-item" href="#">This Year</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Stats Grid -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-muted">Total Services</small>
+                <h4 class="fw-bold mt-1">8</h4>
+                <small class="text-success"><i data-lucide="trending-up" class="lucide" style="width: 14px; height: 14px;"></i> 12% from last month</small>
+              </div>
+              <div class="bg-primary bg-opacity-10 text-primary rounded p-2">
+                <i data-lucide="package" class="lucide"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-muted">Pending Bookings</small>
+                <h4 class="fw-bold mt-1">5</h4>
+                <small class="text-danger"><i data-lucide="trending-down" class="lucide" style="width: 14px; height: 14px;"></i> 8% from last month</small>
+              </div>
+              <div class="bg-warning bg-opacity-10 text-warning rounded p-2">
+                <i data-lucide="clock" class="lucide"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-muted">Monthly Revenue</small>
+                <h4 class="fw-bold mt-1">$12,450</h4>
+                <small class="text-success"><i data-lucide="trending-up" class="lucide" style="width: 14px; height: 14px;"></i> 22% from last month</small>
+              </div>
+              <div class="bg-success bg-opacity-10 text-success rounded p-2">
+                <i data-lucide="dollar-sign" class="lucide"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <small class="text-muted">Avg Rating</small>
+                <h4 class="fw-bold mt-1">4.8</h4>
+                <small class="text-success"><i data-lucide="star" class="lucide" style="width: 14px; height: 14px;"></i> 86 reviews</small>
+              </div>
+              <div class="bg-warning bg-opacity-10 text-warning rounded p-2">
+                <i data-lucide="star" class="lucide"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Bookings & Quick Actions -->
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold mb-0">Recent Bookings</h5>
+              <a href="/vendor/bookings" class="btn btn-sm btn-link">View All</a>
+            </div>
+            
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                          <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <div class="fw-medium">John Smith</div>
+                      </div>
+                    </td>
+                    <td>Premium Stage Decoration</td>
+                    <td>2025-08-12</td>
+                    <td>$1500</td>
+                    <td><span class="badge badge-pending">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                          <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <div class="fw-medium">Sarah Johnson</div>
+                      </div>
+                    </td>
+                    <td>Wedding Catering Package</td>
+                    <td>2025-08-18</td>
+                    <td>$2500</td>
+                    <td><span class="badge badge-confirmed">Confirmed</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                          <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <div class="fw-medium">Mike Davis</div>
+                      </div>
+                    </td>
+                    <td>Corporate Event Setup</td>
+                    <td>2025-08-22</td>
+                    <td>$1200</td>
+                    <td><span class="badge badge-completed">Completed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card p-4 h-100">
+            <h5 class="fw-bold mb-3">Quick Actions</h5>
+            <div class="d-grid gap-3">
+              <a href="/vendor/services" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2">
+                <i data-lucide="plus" class="lucide"></i>
+                Add New Service
+              </a>
+              <a href="/vendor/bookings" class="btn btn-outline-warning d-flex align-items-center justify-content-center gap-2">
+                <i data-lucide="bell" class="lucide"></i>
+                View Pending Requests
+              </a>
+              <a href="/vendor/availability" class="btn btn-outline-info d-flex align-items-center justify-content-center gap-2">
+                <i data-lucide="calendar-clock" class="lucide"></i>
+                Update Availability
+              </a>
+              <a href="/vendor/promotions" class="btn btn-outline-success d-flex align-items-center justify-content-center gap-2">
+                <i data-lucide="tag" class="lucide"></i>
+                Create Promotion
+              </a>
+            </div>
+            
+            <hr class="my-4">
+            
+            <h5 class="fw-bold mb-3">Recent Reviews</h5>
+            <div class="feedback-card">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="text-warning">
+                  ★★★★★
+                </div>
+                <span class="text-muted small">by Sarah Johnson</span>
+              </div>
+              <p class="mb-0 small">"Excellent service! The decoration was exactly what we wanted for our wedding."</p>
+            </div>
+            
+            <div class="feedback-card">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="text-warning">
+                  ★★★★☆
+                </div>
+                <span class="text-muted small">by Mike Davis</span>
+              </div>
+              <p class="mb-0 small">"Great setup for our corporate event. Professional and timely service."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>

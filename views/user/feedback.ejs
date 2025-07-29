@@ -1,0 +1,146 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Feedback Content -->
+        <div class="content-section active" id="feedback">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    My Reviews
+                </h2>
+            </div>
+
+            <div class="card">
+                <div class="review-list">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <h4>Grand Ballroom</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <div class="review-date">Reviewed on Dec 26, 2024</div>
+                        <div class="review-content">
+                            <p>The venue was perfect for our corporate event. Excellent service and amenities.</p>
+                        </div>
+                        <div class="review-actions">
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <h4>Elegant Designs Co. (Decoration)</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div class="review-date">Reviewed on Dec 26, 2024</div>
+                        <div class="review-content">
+                            <p>Absolutely stunning decorations! They perfectly captured our vision.</p>
+                        </div>
+                        <div class="review-actions">
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2 class="section-title">
+                    <i class="fas fa-edit"></i>
+                    Pending Reviews
+                </h2>
+            </div>
+
+            <div class="card">
+                <div class="pending-reviews">
+                    <div class="pending-item">
+                        <div class="pending-header">
+                            <h4>Taste Masters (Catering)</h4>
+                            <div class="pending-date">Event on Dec 25, 2024</div>
+                        </div>
+                        <div class="pending-actions">
+                            <button class="btn btn-primary btn-sm">Write Review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Review page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile dropdown toggle
+            document.getElementById('profileToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Notification dropdown toggle
+            document.getElementById('notificationToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('notificationDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-profile')) {
+                    document.getElementById('profileDropdown').style.display = 'none';
+                }
+                if (!e.target.closest('.notification-icon')) {
+                    document.getElementById('notificationDropdown').style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('You have been logged out successfully.');
+            });
+
+            // Write review button functionality
+            document.querySelector('.pending-actions button').addEventListener('click', function() {
+                alert('Redirecting to review form for Taste Masters catering service');
+                // In a real app, this would open a review form for the specific service
+            });
+
+            // Edit review button functionality
+            document.querySelectorAll('.review-actions .btn-secondary').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reviewItem = this.closest('.review-item');
+                    const reviewTitle = reviewItem.querySelector('h4').textContent;
+                    alert(`Editing review for ${reviewTitle}`);
+                });
+            });
+
+            // Delete review button functionality
+            document.querySelectorAll('.review-actions .btn-danger').forEach(button => {
+                button.addEventListener('click', function() {
+                    const reviewItem = this.closest('.review-item');
+                    const reviewTitle = reviewItem.querySelector('h4').textContent;
+                    if (confirm(`Are you sure you want to delete your review for ${reviewTitle}?`)) {
+                        reviewItem.remove();
+                        alert('Review deleted successfully');
+                    }
+                });
+            });
+        });
+    </script>

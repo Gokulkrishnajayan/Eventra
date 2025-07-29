@@ -1,0 +1,970 @@
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Services Content -->
+        <div class="content-section active" id="services">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-concierge-bell"></i>
+                    Services & Venues
+                </h2>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Location</label>
+                    <select>
+                        <option>All Locations</option>
+                        <option>New York</option>
+                        <option>Los Angeles</option>
+                        <option>Chicago</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Event Date</label>
+                    <input type="date">
+                </div>
+                <div class="filter-group">
+                    <label>Capacity</label>
+                    <select>
+                        <option>Any Size</option>
+                        <option>50-100 guests</option>
+                        <option>100-300 guests</option>
+                        <option>300+ guests</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Budget Range</label>
+                    <select>
+                        <option>Any Budget</option>
+                        <option>$500-1000</option>
+                        <option>$1000-5000</option>
+                        <option>$5000+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Service Type</label>
+                    <select>
+                        <option>All Types</option>
+                        <option>Venues</option>
+                        <option>Decoration</option>
+                        <option>Catering</option>
+                        <option>Photography</option>
+                        <option>Entertainment</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="service-grid">
+                <!-- Venue Card -->
+                <div class="service-card" data-id="venue1" data-type="venue">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Grand Ballroom">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-name">Grand Ballroom</div>
+                        <div class="service-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Downtown Manhattan, NY
+                        </div>
+                        <div class="service-description">
+                            Elegant venue perfect for weddings, corporate events, and galas. Features state-of-the-art lighting and sound systems.
+                        </div>
+                        <div class="service-details">
+                            <span class="service-capacity">200 guests</span>
+                            <span class="service-price">$2,500/day</span>
+                        </div>
+                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Photography Service -->
+                <div class="service-card" data-id="service1" data-type="service">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Photography">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-name">Professional Photography</div>
+                        <div class="service-location">
+                            <i class="fas fa-user-tie"></i>
+                            Capture Moments
+                        </div>
+                        <div class="service-description">
+                            Premium photography services for all events. Custom packages available to suit your needs.
+                        </div>
+                        <div class="service-details">
+                            <span class="service-capacity">Packages: Basic, Premium</span>
+                            <span class="service-price">$500/event</span>
+                        </div>
+                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Catering Service -->
+                <div class="service-card" data-id="service2" data-type="service">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1556911220-ef412a21d17c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Catering">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-name">Gourmet Catering</div>
+                        <div class="service-location">
+                            <i class="fas fa-user-tie"></i>
+                            Taste Masters
+                        </div>
+                        <div class="service-description">
+                            Exquisite catering services with a variety of menu options to suit any event and dietary needs.
+                        </div>
+                        <div class="service-details">
+                            <span class="service-capacity">Cuisine: Italian, Asian</span>
+                            <span class="service-price">$35/person</span>
+                        </div>
+                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Decoration Service -->
+                <div class="service-card" data-id="service3" data-type="service">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Decoration">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-name">Premium Stage Decoration</div>
+                        <div class="service-location">
+                            <i class="fas fa-user-tie"></i>
+                            Elegant Designs Co.
+                        </div>
+                        <div class="service-description">
+                            Transform your venue with our creative decoration services. Themes available: Modern, Classic, Rustic.
+                        </div>
+                        <div class="service-details">
+                            <span class="service-capacity">Themes: Modern, Classic</span>
+                            <span class="service-price">$800/event</span>
+                        </div>
+                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Detail Content -->
+        <div class="content-section" id="service-detail">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Service Details
+                </h2>
+                <button class="btn btn-secondary" id="backToServices">
+                    <i class="fas fa-arrow-left"></i> Back to Services
+                </button>
+            </div>
+
+            <div class="service-detail">
+                <div class="service-gallery">
+                    <div class="main-image-container">
+                        <img id="mainServiceImage" class="main-image" src="" alt="Main image">
+                        <div class="gallery-nav">
+                            <div class="gallery-nav-btn" id="prevImage">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="gallery-nav-btn" id="nextImage">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thumbnail-grid" id="thumbnailGrid">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="service-info-sidebar">
+                    <h1 class="service-title" id="serviceTitle">Grand Ballroom</h1>
+                    
+                    <div class="rating-section">
+                        <div class="rating-stars" id="ratingStars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <span class="rating-text" id="ratingText">4.8</span>
+                        <span class="review-count" id="reviewCount">(127 reviews)</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Type:</span>
+                        <span class="info-value" id="serviceType">Venue</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location:</span>
+                        <span class="info-value" id="serviceLocation">Downtown Manhattan, NY</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Capacity:</span>
+                        <span class="info-value" id="serviceCapacity">200 guests</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Base Price:</span>
+                        <span class="info-value" id="servicePrice">$2,500/day</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Contact:</span>
+                        <span class="info-value">+1 (555) 123-4567</span>
+                    </div>
+                    
+                    <div class="amenities-section">
+                        <h4>Amenities</h4>
+                        <div class="amenities-grid" id="amenitiesList">
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Parking</span>
+                            </div>
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Air Conditioning</span>
+                            </div>
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Stage</span>
+                            </div>
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Lighting System</span>
+                            </div>
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>Sound System</span>
+                            </div>
+                            <div class="amenity-item">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                <span>In-house Catering</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="description-section">
+                        <h4>Description</h4>
+                        <p class="description-text" id="serviceDescription">
+                            Elegant venue perfect for weddings, corporate events, and galas. Features state-of-the-art lighting and sound systems.
+                        </p>
+                    </div>
+                    
+                    <button class="btn btn-primary" id="bookServiceBtn" style="width: 100%; margin-top: 1.5rem;">
+                        <i class="fas fa-calendar-plus"></i>
+                        Book This Service
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <div class="reviews-header">
+                    <h3 class="reviews-title">Customer Reviews</h3>
+                    <div class="rating-summary">
+                        <div class="rating-stars">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                        <span class="rating-text">4.8 out of 5</span>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">JD</div>
+                            <div>
+                                <div class="reviewer-name">John Doe</div>
+                                <div class="review-date">December 15, 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        Absolutely stunning venue! The Grand Ballroom exceeded all our expectations for our wedding. The staff was professional, the lighting was perfect, and our guests were amazed by the elegance of the space. Highly recommended!
+                    </p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">SM</div>
+                            <div>
+                                <div class="reviewer-name">Sarah Miller</div>
+                                <div class="review-date">November 28, 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        Perfect venue for our corporate gala. The sound system was crystal clear, and the layout allowed for great networking. The parking facility was very convenient for our 180 guests. Will definitely book again!
+                    </p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">MJ</div>
+                            <div>
+                                <div class="reviewer-name">Michael Johnson</div>
+                                <div class="review-date">October 10, 2024</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="far fa-star star empty"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        Great venue with excellent facilities. The only minor issue was the air conditioning could have been a bit cooler during our summer event, but overall everything was fantastic. The staff went above and beyond to accommodate our needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Content -->
+        <div class="content-section" id="booking-form">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-plus"></i>
+                    Book Service
+                </h2>
+                <button class="btn btn-secondary" id="backToDetail">
+                    <i class="fas fa-arrow-left"></i> Back to Details
+                </button>
+            </div>
+
+            <div class="booking-form">
+                <h3 class="form-title">Booking Details</h3>
+                
+                <div class="form-group">
+                    <label for="bookingDate">Event Date *</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+                
+                <div class="time-group">
+                    <div class="form-group">
+                        <label for="startTime">Start Time *</label>
+                        <div class="time-select-group">
+                            <select id="startHour" required>
+                                <option value="">Hour</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select id="startMinute" required>
+                                <option value="">Min</option>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <select id="startAmPm" required>
+                                <option value="">AM/PM</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endTime">End Time *</label>
+                        <div class="time-select-group">
+                            <select id="endHour" required>
+                                <option value="">Hour</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select id="endMinute" required>
+                                <option value="">Min</option>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <select id="endAmPm" required>
+                                <option value="">AM/PM</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Services</label>
+                    <div class="simple-addons">
+                        <label class="addon-item">
+                            <input type="checkbox" id="acOption" data-price="200">
+                            <span class="addon-text">Premium Air Conditioning</span>
+                            <span class="addon-price">+$200</span>
+                        </label>
+                        
+                        <label class="addon-item">
+                            <input type="checkbox" id="parkingOption" data-price="150">
+                            <span class="addon-text">VIP Parking Service</span>
+                            <span class="addon-price">+$150</span>
+                        </label>
+                        
+                        <label class="addon-item">
+                            <input type="checkbox" id="lightingOption" data-price="300">
+                            <span class="addon-text">Professional Lighting</span>
+                            <span class="addon-price">+$300</span>
+                        </label>
+                        
+                        <label class="addon-item">
+                            <input type="checkbox" id="soundOption" data-price="250">
+                            <span class="addon-text">Premium Sound System</span>
+                            <span class="addon-price">+$250</span>
+                        </label>
+                        
+                        <label class="addon-item">
+                            <input type="checkbox" id="carpetOption" data-price="100">
+                            <span class="addon-text">Red Carpet Service</span>
+                            <span class="addon-price">+$100</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialRequests">Special Requirements</label>
+                    <textarea id="specialRequests" placeholder="Please describe any special requirements, dietary restrictions, accessibility needs, or other customizations for your event..."></textarea>
+                </div>
+                
+                <div class="price-summary">
+                    <h4>Price Summary</h4>
+                    <div class="price-row">
+                        <span>Base Price:</span>
+                        <span id="basePrice">$2,500.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Additional Services:</span>
+                        <span id="addonsPrice">$0.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Taxes & Fees:</span>
+                        <span id="taxesPrice">$0.00</span>
+                    </div>
+                    <div class="price-row price-total">
+                        <span>Total Amount:</span>
+                        <span id="totalPrice">$2,500.00</span>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBooking">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="requestBooking">
+                        <i class="fas fa-paper-plane"></i>
+                        Request Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-nav">
+            <div class="modal-nav-btn" id="modalPrev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="modal-nav-btn" id="modalNext">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Booking Animation -->
+    <div class="booking-animation" id="bookingAnimation">
+        <div class="animation-content">
+            <div class="animation-icon">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <div class="animation-text">Sending Your Request</div>
+            <div class="animation-subtext">Please wait while we process your booking request...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentImageIndex = 0;
+        let currentImages = [];
+        let currentServiceData = {};
+
+        // Sample service data
+        const servicesData = {
+            venue1: {
+                id: 'venue1',
+                type: 'Venue',
+                name: 'Grand Ballroom',
+                location: 'Downtown Manhattan, NY',
+                capacity: '200 guests',
+                price: '$2,500/day',
+                basePrice: 2500,
+                rating: 4.8,
+                reviewCount: 127,
+                description: 'Elegant venue perfect for weddings, corporate events, and galas. Features state-of-the-art lighting and sound systems with premium amenities and professional service.',
+                amenities: ['Parking', 'Air Conditioning', 'Stage', 'Lighting System', 'Sound System', 'In-house Catering'],
+                images: [
+                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80',
+                    'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80',
+                    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80'
+                ]
+            },
+            service1: {
+                id: 'service1',
+                type: 'Service',
+                name: 'Professional Photography',
+                location: 'Capture Moments Studio',
+                capacity: 'All Event Types',
+                price: '$500/event',
+                basePrice: 500,
+                rating: 4.9,
+                reviewCount: 89,
+                description: 'Premium photography services for all events. Custom packages available with professional editing and same-day delivery options.',
+                amenities: ['Professional Staff', 'High-Quality Equipment', 'Editing Service', 'Same-day Delivery'],
+                images: [
+                    'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80'
+                ]
+            },
+            service2: {
+                id: 'service2',
+                type: 'Service',
+                name: 'Gourmet Catering',
+                location: 'Taste Masters Kitchen',
+                capacity: '50-500 guests',
+                price: '$35/person',
+                basePrice: 35,
+                rating: 4.7,
+                reviewCount: 156,
+                description: 'Exquisite catering services with a variety of menu options including Italian, Asian, and Mediterranean cuisines to suit any event and dietary needs.',
+                amenities: ['Multiple Cuisines', 'Dietary Options', 'Professional Service', 'Custom Menus'],
+                images: [
+                    'https://images.unsplash.com/photo-1556911220-ef412a21d17c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                ]
+            },
+            service3: {
+                id: 'service3',
+                type: 'Service',
+                name: 'Premium Stage Decoration',
+                location: 'Elegant Designs Co.',
+                capacity: 'All Venue Sizes',
+                price: '$800/event',
+                basePrice: 800,
+                rating: 4.6,
+                reviewCount: 73,
+                description: 'Transform your venue with our creative decoration services. Themes available include Modern, Classic, Rustic, and custom designs tailored to your vision.',
+                amenities: ['Multiple Themes', 'Custom Designs', 'Professional Setup', 'Quality Materials'],
+                images: [
+                    'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80',
+                    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80'
+                ]
+            }
+        };
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            initializeDropdowns();
+        });
+
+        function initializeEventListeners() {
+            // Profile and notification dropdowns
+            document.getElementById('profileToggle').addEventListener('click', toggleProfileDropdown);
+            document.getElementById('notificationToggle').addEventListener('click', toggleNotificationDropdown);
+            document.addEventListener('click', closeDropdowns);
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+
+            // Service card booking buttons
+            document.querySelectorAll('.book-btn').forEach(button => {
+                button.addEventListener('click', handleServiceCardClick);
+            });
+
+            // Navigation buttons
+            document.getElementById('backToServices').addEventListener('click', () => showSection('services'));
+            document.getElementById('backToDetail').addEventListener('click', () => showSection('service-detail'));
+            document.getElementById('bookServiceBtn').addEventListener('click', () => showSection('booking-form'));
+
+            // Gallery navigation
+            document.getElementById('prevImage').addEventListener('click', () => navigateImage(-1));
+            document.getElementById('nextImage').addEventListener('click', () => navigateImage(1));
+            document.getElementById('mainServiceImage').addEventListener('click', openImageModal);
+
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', closeImageModal);
+            document.getElementById('modalPrev').addEventListener('click', () => navigateModalImage(-1));
+            document.getElementById('modalNext').addEventListener('click', () => navigateModalImage(1));
+            document.getElementById('imageModal').addEventListener('click', handleModalClick);
+
+            // Booking form functionality
+            document.getElementById('cancelBooking').addEventListener('click', () => showSection('service-detail'));
+            document.getElementById('requestBooking').addEventListener('click', handleBookingRequest);
+
+            // Price calculation
+            document.querySelectorAll('input[type="checkbox"][data-price]').forEach(checkbox => {
+                checkbox.addEventListener('change', calculatePrice);
+            });
+        }
+
+        function initializeDropdowns() {
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-profile')) {
+                    document.getElementById('profileDropdown').style.display = 'none';
+                }
+                if (!e.target.closest('.notification-icon')) {
+                    document.getElementById('notificationDropdown').style.display = 'none';
+                }
+            });
+        }
+
+        function toggleProfileDropdown(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleNotificationDropdown(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('notificationDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function closeDropdowns(e) {
+            if (!e.target.closest('.user-profile')) {
+                document.getElementById('profileDropdown').style.display = 'none';
+            }
+            if (!e.target.closest('.notification-icon')) {
+                document.getElementById('notificationDropdown').style.display = 'none';
+            }
+        }
+
+        function handleLogout(e) {
+            e.preventDefault();
+            alert('You have been logged out successfully.');
+            // In a real application, redirect to login page
+        }
+
+        function handleServiceCardClick(e) {
+            const card = e.target.closest('.service-card');
+            const serviceId = card.getAttribute('data-id');
+            const serviceData = servicesData[serviceId];
+            
+            if (serviceData) {
+                currentServiceData = serviceData;
+                populateServiceDetails(serviceData);
+                showSection('service-detail');
+            }
+        }
+
+        function populateServiceDetails(serviceData) {
+            // Update service info
+            document.getElementById('serviceTitle').textContent = serviceData.name;
+            document.getElementById('serviceType').textContent = serviceData.type;
+            document.getElementById('serviceLocation').textContent = serviceData.location;
+            document.getElementById('serviceCapacity').textContent = serviceData.capacity;
+            document.getElementById('servicePrice').textContent = serviceData.price;
+            document.getElementById('serviceDescription').textContent = serviceData.description;
+
+            // Update rating
+            updateRating(serviceData.rating, serviceData.reviewCount);
+
+            // Update amenities
+            updateAmenities(serviceData.amenities);
+
+            // Update images
+            currentImages = serviceData.images;
+            currentImageIndex = 0;
+            updateGallery();
+
+            // Update booking form base price
+            document.getElementById('basePrice').textContent = `${serviceData.basePrice.toFixed(2)}`;
+            calculatePrice();
+        }
+
+        function updateRating(rating, reviewCount) {
+            const ratingStars = document.getElementById('ratingStars');
+            const ratingText = document.getElementById('ratingText');
+            const reviewCountEl = document.getElementById('reviewCount');
+
+            ratingStars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('i');
+                star.className = i <= Math.floor(rating) ? 'fas fa-star star' : 'far fa-star star empty';
+                ratingStars.appendChild(star);
+            }
+
+            ratingText.textContent = rating.toString();
+            reviewCountEl.textContent = `(${reviewCount} reviews)`;
+        }
+
+        function updateAmenities(amenities) {
+            const amenitiesList = document.getElementById('amenitiesList');
+            amenitiesList.innerHTML = '';
+
+            amenities.forEach(amenity => {
+                const amenityItem = document.createElement('div');
+                amenityItem.className = 'amenity-item';
+                amenityItem.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <span>${amenity}</span>
+                `;
+                amenitiesList.appendChild(amenityItem);
+            });
+        }
+
+        function updateGallery() {
+            // Update main image
+            const mainImage = document.getElementById('mainServiceImage');
+            mainImage.src = currentImages[currentImageIndex];
+
+            // Update thumbnails
+            const thumbnailGrid = document.getElementById('thumbnailGrid');
+            thumbnailGrid.innerHTML = '';
+
+            currentImages.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === currentImageIndex ? 'active' : ''}`;
+                thumbnail.innerHTML = `<img src="${image}" alt="Thumbnail ${index + 1}">`;
+                thumbnail.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    updateGallery();
+                });
+                thumbnailGrid.appendChild(thumbnail);
+            });
+        }
+
+        function navigateImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+            updateGallery();
+        }
+
+        function openImageModal() {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImages[currentImageIndex];
+            modal.style.display = 'block';
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function navigateModalImage(direction) {
+            currentImageIndex = (currentImageIndex + direction + currentImages.length) % currentImages.length;
+            document.getElementById('modalImage').src = currentImages[currentImageIndex];
+        }
+
+        function handleModalClick(e) {
+            if (e.target === e.currentTarget) {
+                closeImageModal();
+            }
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function calculatePrice() {
+            const basePrice = currentServiceData.basePrice || 0;
+            let addonsTotal = 0;
+
+            // Calculate addon prices
+            document.querySelectorAll('input[type="checkbox"][data-price]:checked').forEach(checkbox => {
+                addonsTotal += parseFloat(checkbox.getAttribute('data-price'));
+            });
+
+            // Calculate taxes (10% of subtotal)
+            const subtotal = basePrice + addonsTotal;
+            const taxes = subtotal * 0.1;
+            const total = subtotal + taxes;
+
+            // Update price display
+            document.getElementById('basePrice').textContent = `${basePrice.toFixed(2)}`;
+            document.getElementById('addonsPrice').textContent = `${addonsTotal.toFixed(2)}`;
+            document.getElementById('taxesPrice').textContent = `${taxes.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `${total.toFixed(2)}`;
+        }
+
+        function handleBookingRequest() {
+            // Validate form
+            const requiredFields = ['bookingDate', 'startHour', 'startMinute', 'startAmPm', 'endHour', 'endMinute', 'endAmPm'];
+            let isValid = true;
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value) {
+                    field.style.borderColor = 'var(--danger)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--border)';
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show booking animation
+            showBookingAnimation();
+        }
+
+        function showBookingAnimation() {
+            const animation = document.getElementById('bookingAnimation');
+            animation.style.display = 'flex';
+
+            // Simulate booking process
+            setTimeout(() => {
+                // Update animation content
+                const animationContent = animation.querySelector('.animation-content');
+                animationContent.innerHTML = `
+                    <div class="animation-icon">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    </div>
+                    <div class="animation-text">Request Sent Successfully!</div>
+                    <div class="animation-subtext">Your booking request has been sent to the vendor. You will receive a confirmation shortly.</div>
+                `;
+
+                // Hide animation and redirect after 2 seconds
+                setTimeout(() => {
+                    animation.style.display = 'none';
+                    // alert('Booking request submitted successfully! Redirecting to bookings page...');
+                    // In a real application, redirect to bookings page
+                    window.location.href = '/user/bookings';
+                    showSection('services');
+                }, 2000);
+            }, 3000);
+        }
+
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateModalImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateModalImage(1);
+                }
+            }
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const serviceCards = document.querySelectorAll('.service-card');
+
+            serviceCards.forEach(card => {
+                const serviceName = card.querySelector('.service-name').textContent.toLowerCase();
+                const serviceDescription = card.querySelector('.service-description').textContent.toLowerCase();
+                const serviceLocation = card.querySelector('.service-location').textContent.toLowerCase();
+
+                if (serviceName.includes(searchTerm) || 
+                    serviceDescription.includes(searchTerm) || 
+                    serviceLocation.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filters select').forEach(select => {
+            select.addEventListener('change', applyFilters);
+        });
+
+        function applyFilters() {
+            const locationFilter = document.querySelector('.filters select:nth-of-type(1)').value;
+            const capacityFilter = document.querySelector('.filters select:nth-of-type(3)').value;
+            const budgetFilter = document.querySelector('.filters select:nth-of-type(4)').value;
+            const typeFilter = document.querySelector('.filters select:nth-of-type(5)').value;
+            
+            const serviceCards = document.querySelectorAll('.service-card');
+
+            serviceCards.forEach(card => {
+                let showCard = true;
+
+                // Apply location filter
+                if (locationFilter && locationFilter !== 'All Locations') {
+                    const cardLocation = card.querySelector('.service-location').textContent;
+                    if (!cardLocation.includes(locationFilter)) {
+                        showCard = false;
+                    }
+                }
+
+                // Apply type filter
+                if (typeFilter && typeFilter !== 'All Types') {
+                    const cardType = card.getAttribute('data-type');
+                    if (typeFilter === 'Venues' && cardType !== 'venue') {
+                        showCard = false;
+                    } else if (typeFilter !== 'Venues' && cardType === 'venue') {
+                        showCard = false;
+                    }
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+            });
+        }
+    </script>

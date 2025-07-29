@@ -2,43 +2,57 @@
 const express = require('express');
 const router = express.Router();
 
-const Service = require('../../models/serviceSchema');
 const Booking = require('../../models/bookingSchema');
+const Service = require('../../models/serviceSchema');
+const Payment = require('../../models/paymentSchema');
 const Feedback = require('../../models/feedbackSchema');
-const Message = require('../../models/messageSchema');
+// const Notification = require('../../models/notificationSchema'); // optional
+// const Loyalty = require('../../models/loyaltySchema'); // optional
+const User = require('../../models/userSchema');
 
-// User Home
-router.get('/home', (req, res) => {
-  res.render('user/home');
+// Dashboard
+router.get('/dashboard', (req, res) => {
+  res.render('user/dashboard');
 });
 
-// View All Services
+// Services
 router.get('/services', async (req, res) => {
-  const services = await Service.find().populate('vendorId', 'name phone');
+  const services = await Service.find();
   res.render('user/services', { services });
 });
 
-// View Bookings
+// My Bookings
 router.get('/bookings', async (req, res) => {
-  const bookings = await Booking.find({ userId: req.user?._id })
-    .populate('serviceId', 'title')
-    .populate('vendorId', 'name')
-    .populate('venueId', 'name');
+  const bookings = await Booking.find().populate('vendorId serviceId venueId');
   res.render('user/bookings', { bookings });
 });
 
-// Feedback Page
-router.get('/feedbacks', async (req, res) => {
-  const feedbacks = await Feedback.find({ userId: req.user?._id })
-    .populate('serviceId', 'title');
-  res.render('user/feedbacks', { feedbacks });
+// Payments
+router.get('/payments', async (req, res) => {
+  const payments = await Payment.find().populate('bookingId');
+  res.render('user/payments', { payments });
 });
 
-// Chat Messages
-router.get('/messages', async (req, res) => {
-  const messages = await Message.find({ senderId: req.user?._id })
-    .populate('receiverId', 'name');
-  res.render('user/messages', { messages });
+// Reviews (Feedback)
+router.get('/feedback', async (req, res) => {
+  const feedbacks = await Feedback.find().populate('serviceId');
+  res.render('user/feedback', { feedbacks });
+});
+
+// Loyalty
+router.get('/loyalty', (req, res) => {
+  res.render('user/loyalty'); // static or future dynamic
+});
+
+// Notifications
+router.get('/notifications', (req, res) => {
+  res.render('user/notifications');
+});
+
+// Profile
+router.get('/profile', async (req, res) => {
+  const user = await User.findOne(); // adjust for actual session-based user
+  res.render('user/profile', { user });
 });
 
 module.exports = router;

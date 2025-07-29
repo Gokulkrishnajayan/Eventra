@@ -1,0 +1,121 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Dashboard Content -->
+        <div class="content-section active" id="dashboard">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-home"></i>
+                    Dashboard Overview
+                </h2>
+            </div>
+
+            <!-- Loyalty Program Banner -->
+            <div class="loyalty-card">
+                <div class="loyalty-content">
+                    <div class="loyalty-text">
+                        <h3>Your Loyalty Points</h3>
+                        <p>Earn points with every booking and redeem for discounts!</p>
+                    </div>
+                    <div class="loyalty-points">1,250</div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="card" data-page="services">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Find Venues</div>
+                            <div class="card-text">Browse available venues</div>
+                        </div>
+                        <div class="card-icon search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-page="bookings">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Active Bookings</div>
+                            <div class="card-text">3 upcoming events</div>
+                        </div>
+                        <div class="card-icon booking">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-page="payments">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Payment History</div>
+                            <div class="card-text">Track transactions</div>
+                        </div>
+                        <div class="card-icon payment">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-page="feedback">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Reviews</div>
+                            <div class="card-text">Rate experiences</div>
+                        </div>
+                        <div class="card-icon feedback">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Dashboard-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile dropdown toggle
+            document.getElementById('profileToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Notification dropdown toggle
+            document.getElementById('notificationToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('notificationDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-profile')) {
+                    document.getElementById('profileDropdown').style.display = 'none';
+                }
+                if (!e.target.closest('.notification-icon')) {
+                    document.getElementById('notificationDropdown').style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('You have been logged out successfully.');
+                // In a real app, you would redirect to login page
+            });
+
+            // Dashboard card navigation
+            document.querySelectorAll('.stats-grid .card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const page = this.getAttribute('data-page');
+                    window.location.href = `/user/${page}`;
+                });
+            });
+        });
+    </script>

@@ -1,0 +1,91 @@
+
+
+    <!-- Main Notifications Content -->
+    <main class="main-content">
+        
+        <!-- Notifications Content -->
+        <div class="content-section active" id="notifications">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </h2>
+                <button class="btn btn-secondary" id="markAllRead">
+                    <i class="fas fa-check"></i> Mark All as Read
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="notification-list">
+                    <div class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Booking Confirmed</h4>
+                            <p>Your booking for Grand Ballroom on Dec 25, 2024 has been confirmed.</p>
+                            <div class="notification-time">2 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Payment Received</h4>
+                            <p>Payment of $2,500.00 for booking #BK001 has been processed successfully.</p>
+                            <div class="notification-time">1 day ago</div>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Review Reminder</h4>
+                            <p>Don't forget to rate your experience with Elegant Designs Co.</p>
+                            <div class="notification-time">3 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>New Reward Available</h4>
+                            <p>You've unlocked a new reward in your loyalty program!</p>
+                            <div class="notification-time">1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Notifications page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // (Same dropdown and logout functionality as previous pages)
+            
+            // Mark all as read functionality
+            document.getElementById('markAllRead').addEventListener('click', function() {
+                document.querySelectorAll('.notification-item.unread').forEach(item => {
+                    item.classList.remove('unread');
+                });
+                document.querySelector('.notification-badge').style.display = 'none';
+                alert('All notifications marked as read');
+            });
+
+            // Notification item click
+            document.querySelectorAll('.notification-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.remove('unread');
+                    // In a real app, would navigate to relevant page
+                    alert('Opening notification details');
+                });
+            });
+        });
+    </script>

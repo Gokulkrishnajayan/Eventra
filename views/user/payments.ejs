@@ -1,0 +1,146 @@
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Payments Content -->
+        <div class="content-section active" id="payments">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Payment History
+                </h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-download"></i> Export Records
+                </button>
+            </div>
+
+            <div class="card">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Booking Reference</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PAY001</td>
+                            <td>#BK001 (Grand Ballroom)</td>
+                            <td>Dec 10, 2024</td>
+                            <td>$2,500.00</td>
+                            <td><span class="status completed">Completed</span></td>
+                            <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                        </tr>
+                        <tr>
+                            <td>#PAY002</td>
+                            <td>#BK002 (Garden Pavilion)</td>
+                            <td>Jan 5, 2025</td>
+                            <td>$1,800.00</td>
+                            <td><span class="status pending">Processing</span></td>
+                            <td><button class="btn btn-secondary btn-sm" disabled>Pending</button></td>
+                        </tr>
+                        <tr>
+                            <td>#PAY003</td>
+                            <td>#BK003 (Modern Loft)</td>
+                            <td>Nov 1, 2024</td>
+                            <td>$1,200.00</td>
+                            <td><span class="status completed">Completed</span></td>
+                            <td><button class="btn btn-secondary btn-sm">Download</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Payment Methods
+                </h2>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <div class="method-details">
+                            <i class="fab fa-cc-visa"></i>
+                            <div>
+                                <h4>Visa ending in 4242</h4>
+                                <p>Expires 05/2025</p>
+                            </div>
+                        </div>
+                        <div class="method-actions">
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Remove</button>
+                        </div>
+                    </div>
+                    <div class="payment-method">
+                        <div class="method-details">
+                            <i class="fab fa-paypal"></i>
+                            <div>
+                                <h4>PayPal</h4>
+                                <p>john.doe@example.com</p>
+                            </div>
+                        </div>
+                        <div class="method-actions">
+                            <button class="btn btn-secondary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Payment page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Profile dropdown toggle
+            document.getElementById('profileToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Notification dropdown toggle
+            document.getElementById('notificationToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('notificationDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.user-profile')) {
+                    document.getElementById('profileDropdown').style.display = 'none';
+                }
+                if (!e.target.closest('.notification-icon')) {
+                    document.getElementById('notificationDropdown').style.display = 'none';
+                }
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('You have been logged out successfully.');
+            });
+
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove selected class from all methods
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                    // Add selected class to clicked method
+                    this.classList.add('selected');
+                });
+            });
+        });
+    </script>

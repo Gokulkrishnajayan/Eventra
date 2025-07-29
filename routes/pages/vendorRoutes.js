@@ -1,4 +1,3 @@
-// 📁 routes/pages/vendorRoutes.js
 const express = require('express');
 const router = express.Router();
 
@@ -7,38 +6,53 @@ const Booking = require('../../models/bookingSchema');
 const Feedback = require('../../models/feedbackSchema');
 const Message = require('../../models/messageSchema');
 
-// Vendor Dashboard
+// Dashboard
 router.get('/dashboard', (req, res) => {
   res.render('vendor/dashboard');
 });
 
-// View Own Services
+// My Services
 router.get('/services', async (req, res) => {
-  const services = await Service.find({ vendorId: req.user?._id });
+  const services = await Service.find(); // Filter by vendorId if needed
   res.render('vendor/services', { services });
 });
 
-// View Bookings Received
+// Bookings
 router.get('/bookings', async (req, res) => {
-  const bookings = await Booking.find({ vendorId: req.user?._id })
-    .populate('userId', 'name email')
-    .populate('serviceId', 'title');
+  const bookings = await Booking.find(); // Filter by vendorId if needed
   res.render('vendor/bookings', { bookings });
 });
 
-// Feedback Received
-router.get('/feedbacks', async (req, res) => {
-  const feedbacks = await Feedback.find({ vendorId: req.user?._id })
-    .populate('userId', 'name')
-    .populate('serviceId', 'title');
-  res.render('vendor/feedbacks', { feedbacks });
+// Availability
+router.get('/availability', (req, res) => {
+  res.render('vendor/availability');
 });
 
-// Chat with Users
+// Reviews
+router.get('/reviews', async (req, res) => {
+  const reviews = await Feedback.find(); // Filter by vendorId or serviceId
+  res.render('vendor/reviews', { reviews });
+});
+
+// Messages
 router.get('/messages', async (req, res) => {
-  const messages = await Message.find({ receiverId: req.user?._id })
-    .populate('senderId', 'name');
+  const messages = await Message.find(); // Filter by vendorId
   res.render('vendor/messages', { messages });
+});
+
+// Promotions
+router.get('/promotions', (req, res) => {
+  res.render('vendor/promotions');
+});
+
+// Loyalty Program
+router.get('/loyalty', (req, res) => {
+  res.render('vendor/loyalty');
+});
+
+// Settings
+router.get('/settings', (req, res) => {
+  res.render('vendor/settings');
 });
 
 module.exports = router;

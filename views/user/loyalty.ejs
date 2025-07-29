@@ -1,0 +1,119 @@
+
+
+    <!-- Main Loyalty Content -->
+    <main class="main-content">
+        
+        <!-- Loyalty Content -->
+        <div class="content-section active" id="loyalty">
+            <div class="loyalty-card">
+                <div class="loyalty-content">
+                    <div class="loyalty-text">
+                        <h3>Your Loyalty Points</h3>
+                        <p>Earn points with every booking and redeem for discounts!</p>
+                    </div>
+                    <div class="loyalty-points">1,250</div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-gift"></i>
+                    Rewards
+                </h2>
+            </div>
+
+            <div class="rewards-grid">
+                <div class="card reward-card">
+                    <div class="reward-image" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="reward-info">
+                        <h4>10% Off Next Booking</h4>
+                        <p>Redeem 500 points for 10% discount on your next venue booking</p>
+                        <div class="reward-points">500 points</div>
+                        <button class="btn btn-primary">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="card reward-card">
+                    <div class="reward-image" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <div class="reward-info">
+                        <h4>Free Decor Upgrade</h4>
+                        <p>Redeem 800 points for a free decoration package upgrade</p>
+                        <div class="reward-points">800 points</div>
+                        <button class="btn btn-primary">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="card reward-card">
+                    <div class="reward-image" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="reward-info">
+                        <h4>Free Photography Session</h4>
+                        <p>Redeem 1200 points for a free 1-hour photography session</p>
+                        <div class="reward-points">1200 points</div>
+                        <button class="btn btn-primary">Redeem Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2 class="section-title">
+                    <i class="fas fa-history"></i>
+                    Points History
+                </h2>
+            </div>
+
+            <div class="card">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dec 25, 2024</td>
+                            <td>Grand Ballroom Booking</td>
+                            <td>+250</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 25, 2024</td>
+                            <td>Decoration Service Booking</td>
+                            <td>+150</td>
+                        </tr>
+                        <tr>
+                            <td>Dec 26, 2024</td>
+                            <td>Completed Review</td>
+                            <td>+50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Loyalty page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // (Same dropdown and logout functionality as previous pages)
+            
+            // Redeem button functionality
+            document.querySelectorAll('.reward-card .btn-primary').forEach(button => {
+                button.addEventListener('click', function() {
+                    const rewardCard = this.closest('.reward-card');
+                    const rewardName = rewardCard.querySelector('h4').textContent;
+                    const pointsNeeded = rewardCard.querySelector('.reward-points').textContent;
+                    
+                    if (confirm(`Redeem ${pointsNeeded} for ${rewardName}?`)) {
+                        alert(`Success! You've redeemed ${rewardName}`);
+                    }
+                });
+            });
+        });
+    </script>

@@ -1,0 +1,263 @@
+
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Reviews Section -->
+    <section id="reviews" class="section-content">
+      <div class="card p-4 mb-4">
+        <h5 class="fw-semibold mb-3">Customer Reviews</h5>
+        
+        <!-- Review 1 -->
+        <div class="feedback-card" data-review-id="1">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i data-lucide="user" class="lucide text-white" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <h6 class="mb-0">Sarah Johnson</h6>
+                <small class="text-muted">Wedding Photography - Aug 12, 2025</small>
+              </div>
+            </div>
+            <div class="text-warning">
+              ★★★★★
+            </div>
+          </div>
+          <p class="mb-2">"Excellent service! The photographer captured every special moment of our wedding beautifully. Highly recommended!"</p>
+          
+          <div class="review-reply" id="reply-1">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="mb-0">Your Reply</h6>
+              <small class="text-muted">Aug 13, 2025</small>
+            </div>
+            <p class="mb-0 reply-text">Thank you Sarah for your kind words! It was a pleasure working with you on your special day.</p>
+          </div>
+          
+          <!-- Edit Reply Form (hidden by default) -->
+          <div class="edit-reply-form d-none" id="edit-form-1">
+            <div class="mb-2">
+              <label class="form-label fw-semibold">Edit Your Reply</label>
+              <textarea class="form-control" rows="3" id="edit-textarea-1">Thank you Sarah for your kind words! It was a pleasure working with you on your special day.</textarea>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-primary" onclick="saveReply(1)">
+                <i data-lucide="check" class="lucide me-1"></i> Save
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" onclick="cancelEdit(1)">
+                <i data-lucide="x" class="lucide me-1"></i> Cancel
+              </button>
+            </div>
+          </div>
+          
+          <div class="mt-3 reply-actions" id="actions-1">
+            <button class="btn btn-sm btn-outline-primary" onclick="editReply(1)">
+              <i data-lucide="edit" class="lucide me-1"></i> Edit Reply
+            </button>
+          </div>
+        </div>
+        
+        <!-- Review 2 -->
+        <div class="feedback-card" data-review-id="2">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i data-lucide="user" class="lucide text-white" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <h6 class="mb-0">Mike Davis</h6>
+                <small class="text-muted">Corporate Event - Aug 22, 2025</small>
+              </div>
+            </div>
+            <div class="text-warning">
+              ★★★★☆
+            </div>
+          </div>
+          <p class="mb-2">"Professional service and great setup for our corporate event. The only reason I'm not giving 5 stars is because the delivery was slightly delayed."</p>
+          
+          <!-- Add Reply Form (hidden by default) -->
+          <div class="add-reply-form d-none" id="add-form-2">
+            <div class="mb-2">
+              <label class="form-label fw-semibold">Add Your Reply</label>
+              <textarea class="form-control" rows="3" id="add-textarea-2" placeholder="Write your response to Mike..."></textarea>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-primary" onclick="addReply(2)">
+                <i data-lucide="send" class="lucide me-1"></i> Send Reply
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" onclick="cancelAdd(2)">
+                <i data-lucide="x" class="lucide me-1"></i> Cancel
+              </button>
+            </div>
+          </div>
+          
+          <!-- Reply will appear here after adding -->
+          <div class="review-reply d-none" id="reply-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="mb-0">Your Reply</h6>
+              <small class="text-muted" id="reply-date-2"></small>
+            </div>
+            <p class="mb-0 reply-text" id="reply-text-2"></p>
+          </div>
+          
+          <div class="mt-3 reply-actions" id="actions-2">
+            <button class="btn btn-sm btn-primary" onclick="showAddForm(2)">
+              <i data-lucide="message-square" class="lucide me-1"></i> Add Reply
+            </button>
+          </div>
+        </div>
+
+        <!-- Review 3 - Additional example -->
+        <div class="feedback-card" data-review-id="3">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i data-lucide="user" class="lucide text-white" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <h6 class="mb-0">Emma Wilson</h6>
+                <small class="text-muted">Birthday Party - Aug 18, 2025</small>
+              </div>
+            </div>
+            <div class="text-warning">
+              ★★★★★
+            </div>
+          </div>
+          <p class="mb-2">"Amazing decorations and setup for my daughter's birthday party! The kids loved it and everything was perfect. Thank you!"</p>
+          
+          <div class="add-reply-form d-none" id="add-form-3">
+            <div class="mb-2">
+              <label class="form-label fw-semibold">Add Your Reply</label>
+              <textarea class="form-control" rows="3" id="add-textarea-3" placeholder="Write your response to Emma..."></textarea>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-primary" onclick="addReply(3)">
+                <i data-lucide="send" class="lucide me-1"></i> Send Reply
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" onclick="cancelAdd(3)">
+                <i data-lucide="x" class="lucide me-1"></i> Cancel
+              </button>
+            </div>
+          </div>
+          
+          <div class="review-reply d-none" id="reply-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="mb-0">Your Reply</h6>
+              <small class="text-muted" id="reply-date-3"></small>
+            </div>
+            <p class="mb-0 reply-text" id="reply-text-3"></p>
+          </div>
+          
+          <div class="mt-3 reply-actions" id="actions-3">
+            <button class="btn btn-sm btn-primary" onclick="showAddForm(3)">
+              <i data-lucide="message-square" class="lucide me-1"></i> Add Reply
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-semibold mb-0">Booking Trends</h5>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Monthly
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Weekly</a></li>
+                  <li><a class="dropdown-item" href="#">Monthly</a></li>
+                  <li><a class="dropdown-item" href="#">Quarterly</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="bg-light d-flex align-items-center justify-content-center rounded p-4" style="height: 300px;">
+              <p class="text-muted mb-0">Booking Trends Chart Placeholder</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-semibold mb-0">Customer Ratings</h5>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  All Services
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">All Services</a></li>
+                  <li><a class="dropdown-item" href="#">Wedding Photography</a></li>
+                  <li><a class="dropdown-item" href="#">Grand Ballroom</a></li>
+                  <li><a class="dropdown-item" href="#">Stage Decoration</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <div class="text-center me-4">
+                <h1 class="fw-bold mb-0">4.8</h1>
+                <div class="text-warning mb-1">
+                  ★★★★★
+                </div>
+                <small class="text-muted">86 reviews</small>
+              </div>
+              
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center mb-1">
+                  <small class="me-2" style="width: 20px;">5★</small>
+                  <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" style="width: 75%"></div>
+                  </div>
+                  <small class="ms-2">65</small>
+                </div>
+                
+                <div class="d-flex align-items-center mb-1">
+                  <small class="me-2" style="width: 20px;">4★</small>
+                  <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" style="width: 15%"></div>
+                  </div>
+                  <small class="ms-2">13</small>
+                </div>
+                
+                <div class="d-flex align-items-center mb-1">
+                  <small class="me-2" style="width: 20px;">3★</small>
+                  <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" style="width: 5%"></div>
+                  </div>
+                  <small class="ms-2">4</small>
+                </div>
+                
+                <div class="d-flex align-items-center mb-1">
+                  <small class="me-2" style="width: 20px;">2★</small>
+                  <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" style="width: 3%"></div>
+                  </div>
+                  <small class="ms-2">3</small>
+                </div>
+                
+                <div class="d-flex align-items-center">
+                  <small class="me-2" style="width: 20px;">1★</small>
+                  <div class="progress flex-grow-1" style="height: 8px;">
+                    <div class="progress-bar bg-warning" style="width: 2%"></div>
+                  </div>
+                  <small class="ms-2">1</small>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-3">
+              <button class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center gap-2" onclick="exportReport()">
+                <i data-lucide="download" class="lucide"></i> Export Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>

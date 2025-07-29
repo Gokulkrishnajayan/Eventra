@@ -1,0 +1,184 @@
+
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Settings Section -->
+    <section id="settings" class="section-content">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">Account Settings</h5>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card p-4 h-100">
+            <div class="text-center mb-4">
+              <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 100px; height: 100px;">
+                <i data-lucide="user" class="lucide text-white" style="width: 40px; height: 40px;"></i>
+              </div>
+              <h5 class="fw-bold mb-1">Vendor Name</h5>
+              <small class="text-muted">Premium Vendor</small>
+              
+              <button class="btn btn-sm btn-outline-primary mt-3">
+                <i data-lucide="camera" class="lucide me-1" style="width: 14px; height: 14px;"></i> Change Photo
+              </button>
+            </div>
+            
+            <div class="d-grid">
+              <button class="btn btn-outline-danger">
+                <i data-lucide="log-out" class="lucide me-1" style="width: 14px; height: 14px;"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-8">
+          <div class="card p-4">
+            <ul class="nav nav-tabs mb-4" id="settingsTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab">Profile</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="business-tab" data-bs-toggle="tab" data-bs-target="#business" type="button" role="tab">Business</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab">Notifications</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab">Security</button>
+              </li>
+            </ul>
+            
+            <div class="tab-content" id="settingsTabContent">
+              <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                <form>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label class="form-label">First Name</label>
+                      <input type="text" class="form-control" value="John">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Last Name</label>
+                      <input type="text" class="form-control" value="Doe">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" value="john.doe@example.com">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Phone</label>
+                      <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                    </div>
+                  </div>
+                  
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="tab-pane fade" id="business" role="tabpanel">
+                <form>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label class="form-label">Business Name</label>
+                      <input type="text" class="form-control" value="Dream Events Co.">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Business Type</label>
+                      <select class="form-select">
+                        <option>Photography</option>
+                        <option selected>Catering</option>
+                        <option>Venue</option>
+                        <option>Decoration</option>
+                        <option>Entertainment</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Business Description</label>
+                      <textarea class="form-control" rows="3">We provide premium catering services for weddings and corporate events with a focus on quality and presentation.</textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Tax ID</label>
+                      <input type="text" class="form-control" value="12-3456789">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Business Since</label>
+                      <input type="text" class="form-control" value="2015">
+                    </div>
+                  </div>
+                  
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="tab-pane fade" id="notifications" role="tabpanel">
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="bookingNotifications" checked>
+                  <label class="form-check-label" for="bookingNotifications">New Booking Notifications</label>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="messageNotifications" checked>
+                  <label class="form-check-label" for="messageNotifications">Message Notifications</label>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="reviewNotifications" checked>
+                  <label class="form-check-label" for="reviewNotifications">New Review Notifications</label>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="promotionNotifications">
+                  <label class="form-check-label" for="promotionNotifications">Promotion Notifications</label>
+                </div>
+                
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="newsletterNotifications" checked>
+                  <label class="form-check-label" for="newsletterNotifications">Newsletter</label>
+                </div>
+                
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </div>
+              
+              <div class="tab-pane fade" id="security" role="tabpanel">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  
+                  <div class="mb-4">
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="twoFactorAuth">
+                      <label class="form-check-label" for="twoFactorAuth">Enable Two-Factor Authentication</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
