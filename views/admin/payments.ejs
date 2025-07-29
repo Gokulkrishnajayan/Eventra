@@ -1,0 +1,339 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Payment Management Section -->
+        <section id="payments" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Payment Management</h1>
+                <p class="page-subtitle">Track transactions and resolve disputes</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="changePaymentTab('all')">All Transactions</div>
+                <div class="tab" onclick="changePaymentTab('pending')">Pending</div>
+                <div class="tab" onclick="changePaymentTab('completed')">Completed</div>
+                <div class="tab" onclick="changePaymentTab('refunds')">Refunds</div>
+                <div class="tab" onclick="changePaymentTab('disputes')">Disputes</div>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search payments...">
+                </div>
+                <div class="filter-group">
+                    <select>
+                        <option>All Methods</option>
+                        <option>Credit Card</option>
+                        <option>Bank Transfer</option>
+                        <option>PayPal</option>
+                        <option>Other</option>
+                    </select>
+                    <input type="date" style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    <input type="number" placeholder="Min Amount" style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                    <input type="number" placeholder="Max Amount" style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Payment Transactions</h3>
+                    <button class="btn btn-primary" onclick="showModal('paymentModal')">
+                        <i class="fas fa-plus"></i>Record Payment
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PAY001</td>
+                            <td>#BK001</td>
+                            <td>John Smith</td>
+                            <td>$2,500</td>
+                            <td>Credit Card</td>
+                            <td>2025-07-10</td>
+                            <td><span class="status-badge status-payment-completed">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-info">Receipt</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PAY002</td>
+                            <td>#BK002</td>
+                            <td>Sarah Johnson</td>
+                            <td>$1,800</td>
+                            <td>Bank Transfer</td>
+                            <td>2025-07-15</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Confirm</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PAY003</td>
+                            <td>#BK003</td>
+                            <td>Mike Davis</td>
+                            <td>$3,200</td>
+                            <td>Credit Card</td>
+                            <td>2025-07-18</td>
+                            <td><span class="status-badge status-payment-completed">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-info">Receipt</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PAY004</td>
+                            <td>#BK004</td>
+                            <td>Emily Wilson</td>
+                            <td>$2,100</td>
+                            <td>PayPal</td>
+                            <td>2025-07-20</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Remind</button>
+                                <button class="btn btn-sm btn-danger">Cancel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PAY005</td>
+                            <td>#BK005</td>
+                            <td>David Brown</td>
+                            <td>$1,950</td>
+                            <td>Bank Transfer</td>
+                            <td>2025-07-22</td>
+                            <td><span class="status-badge status-payment-completed">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-info">Receipt</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-placeholder">
+                    <i class="fas fa-chart-line" style="margin-right: 10px;"></i>
+                    Payment Trends and Revenue Analysis
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Refund Requests</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#REF001</td>
+                            <td>#BK006</td>
+                            <td>Robert Taylor</td>
+                            <td>$1,200</td>
+                            <td>Event cancelled</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REF002</td>
+                            <td>#BK008</td>
+                            <td>Jennifer Lee</td>
+                            <td>$850</td>
+                            <td>Double payment</td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Process</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REF003</td>
+                            <td>#BK010</td>
+                            <td>Michael Clark</td>
+                            <td>$1,500</td>
+                            <td>Venue unavailable</td>
+                            <td><span class="status-badge status-rejected">Rejected</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Record Payment</h3>
+                <button class="close-modal" onclick="hideModal('paymentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Booking ID</label>
+                        <select>
+                            <option>Select booking...</option>
+                            <option>#BK001 - John Smith</option>
+                            <option>#BK002 - Sarah Johnson</option>
+                            <option>#BK003 - Mike Davis</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" step="0.01" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select>
+                            <option>Credit Card</option>
+                            <option>Bank Transfer</option>
+                            <option>PayPal</option>
+                            <option>Cash</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Date</label>
+                        <input type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Transaction Reference</label>
+                    <input type="text" placeholder="Enter reference number">
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea rows="2" placeholder="Enter any notes"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('paymentModal')">Cancel</button>
+                <button class="btn btn-primary">Record Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Tab switching
+        function changePaymentTab(tabName) {
+            const tabs = document.querySelectorAll('#payments .tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            // In a real app, you would filter the payment list here
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

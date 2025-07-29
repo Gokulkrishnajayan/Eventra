@@ -1,0 +1,254 @@
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Overview of your event management system</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card users">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Users</span>
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number">1,234</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +12% this month
+                    </div>
+                </div>
+
+                <div class="stat-card venues">
+                    <div class="stat-header">
+                        <span class="stat-title">Active Venues</span>
+                        <div class="stat-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number">89</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +5% this month
+                    </div>
+                </div>
+
+                <div class="stat-card bookings">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Bookings</span>
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number">567</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +18% this month
+                    </div>
+                </div>
+
+                <div class="stat-card revenue">
+                    <div class="stat-header">
+                        <span class="stat-title">Revenue</span>
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                    <div class="stat-number">$45,678</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +25% this month
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-placeholder">
+                    <i class="fas fa-chart-line" style="margin-right: 10px;"></i>
+                    Revenue and Bookings Trend Chart
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Recent Bookings</h3>
+                    <a href="/admin/bookings" class="btn btn-primary">View All</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Venue</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#BK001</td>
+                            <td>John Smith</td>
+                            <td>Grand Palace Hall</td>
+                            <td>2025-08-15</td>
+                            <td><span class="status-badge status-active">Confirmed</span></td>
+                            <td>$2,500</td>
+                        </tr>
+                        <tr>
+                            <td>#BK002</td>
+                            <td>Sarah Johnson</td>
+                            <td>Riverside Gardens</td>
+                            <td>2025-08-20</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$1,800</td>
+                        </tr>
+                        <tr>
+                            <td>#BK003</td>
+                            <td>Mike Davis</td>
+                            <td>City Convention Center</td>
+                            <td>2025-08-25</td>
+                            <td><span class="status-badge status-active">Confirmed</span></td>
+                            <td>$3,200</td>
+                        </tr>
+                        <tr>
+                            <td>#BK004</td>
+                            <td>Emily Wilson</td>
+                            <td>Beachside Resort</td>
+                            <td>2025-09-05</td>
+                            <td><span class="status-badge status-payment-pending">Payment Pending</span></td>
+                            <td>$2,100</td>
+                        </tr>
+                        <tr>
+                            <td>#BK005</td>
+                            <td>David Brown</td>
+                            <td>Mountain View Lodge</td>
+                            <td>2025-09-12</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$1,950</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-circle" style="margin-right: 8px; color: #ff4757;"></i>
+                        Urgent Actions Required
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-calendar-times" style="margin-right: 8px; color: #ff4757;"></i>
+                                2 Bookings pending approval
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-comment-alt" style="margin-right: 8px; color: #ff4757;"></i>
+                                5 Unread feedback messages
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <i class="fas fa-credit-card" style="margin-right: 8px; color: #ff4757;"></i>
+                                3 Payment disputes to resolve
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View All</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-bell" style="margin-right: 8px; color: #ffa502;"></i>
+                        Recent Notifications
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-user-plus" style="margin-right: 8px; color: #2ed573;"></i>
+                                New vendor registration: Catering Express
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-calendar-plus" style="margin-right: 8px; color: #2ed573;"></i>
+                                New booking request for Grand Palace Hall
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <i class="fas fa-star" style="margin-right: 8px; color: #ffa502;"></i>
+                                New 5-star review for Riverside Gardens
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View All</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt" style="margin-right: 8px; color: #667eea;"></i>
+                        Upcoming Events
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Wedding</strong> - Aug 15<br>
+                                <small>Grand Palace Hall</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Corporate Conference</strong> - Aug 20<br>
+                                <small>City Convention Center</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Birthday Party</strong> - Aug 25<br>
+                                <small>Riverside Gardens</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View Calendar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>

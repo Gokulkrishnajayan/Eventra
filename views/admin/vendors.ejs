@@ -1,0 +1,694 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Vendor Management Section -->
+        <section id="vendors" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Vendor Management</h1>
+                <p class="page-subtitle">Approve and manage vendor registrations</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="changeVendorTab('all')">All Vendors</div>
+                <div class="tab" onclick="changeVendorTab('pending')">Pending Approval</div>
+                <div class="tab" onclick="changeVendorTab('approved')">Approved</div>
+                <div class="tab" onclick="changeVendorTab('rejected')">Rejected</div>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="vendorSearch" placeholder="Search vendors..." oninput="filterVendors()">
+                </div>
+                <div class="filter-group">
+                    <select id="categoryFilter" onchange="filterVendors()">
+                        <option value="all">All Categories</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Decorations">Decorations</option>
+                        <option value="Transportation">Transportation</option>
+                    </select>
+                    <select id="sortFilter" onchange="sortVendors()">
+                        <option value="name">Sort by Name</option>
+                        <option value="rating">Sort by Rating</option>
+                        <option value="date">Sort by Registration Date</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Vendor Applications</h3>
+                    <button class="btn btn-primary" onclick="showModal('vendorModal')">
+                        <i class="fas fa-plus"></i>Add Vendor
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vendor ID</th>
+                            <th>Business Name</th>
+                            <th>Category</th>
+                            <th>Contact</th>
+                            <th>Registration Date</th>
+                            <th>Status</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vendorTableBody">
+                        <!-- Vendor rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-star" style="margin-right: 8px; color: #ffa502;"></i>
+                        Top Rated Vendors
+                    </div>
+                    <div class="card-body">
+                        <ul id="topVendorsList" style="list-style-type: none;">
+                            <!-- Top vendors will be populated here -->
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View All Ratings</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #ff4757;"></i>
+                        Vendor Complaints
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Late delivery</strong> - Party Supplies Co.<br>
+                                <small>2 complaints this month</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Poor service</strong> - Quick Clean Crew<br>
+                                <small>1 complaint this month</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Damaged goods</strong> - Decor Galore<br>
+                                <small>1 complaint this month</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">Resolve Issues</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line" style="margin-right: 8px; color: #667eea;"></i>
+                        Vendor Performance
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-placeholder" style="height: 200px;">
+                            <canvas id="vendorChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View Analytics</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="vendorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Vendor</h3>
+                <button class="close-modal" onclick="hideModal('vendorModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Business Name</label>
+                        <input type="text" id="businessName" placeholder="Enter business name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="vendorCategory" required>
+                            <option value="">Select Category</option>
+                            <option>Catering</option>
+                            <option>Photography</option>
+                            <option>Entertainment</option>
+                            <option>Decorations</option>
+                            <option>Transportation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person</label>
+                        <input type="text" id="contactPerson" placeholder="Enter contact person" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="vendorEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="vendorPhone" placeholder="Enter phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="vendorStatus" required>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="3" id="vendorDescription" placeholder="Enter vendor description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Documents</label>
+                    <input type="file" id="vendorDocuments" multiple>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('vendorModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addNewVendor()">Save Vendor</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vendor data structure
+        let vendors = [
+            {
+                id: 'VD001',
+                businessName: 'Gourmet Catering',
+                category: 'Catering',
+                contact: {
+                    name: 'John Smith',
+                    email: 'john@gourmet.com'
+                },
+                registrationDate: '2025-06-15',
+                status: 'approved',
+                rating: 4.8,
+                reviews: 95,
+                description: 'Premium catering services for all events'
+            },
+            {
+                id: 'VD002',
+                businessName: 'Perfect Moments Photography',
+                category: 'Photography',
+                contact: {
+                    name: 'Sarah Johnson',
+                    email: 'sarah@perfectmoments.com'
+                },
+                registrationDate: '2025-07-01',
+                status: 'approved',
+                rating: 4.9,
+                reviews: 128,
+                description: 'Professional photography for weddings and events'
+            },
+            {
+                id: 'VD003',
+                businessName: 'Elite Entertainment',
+                category: 'Entertainment',
+                contact: {
+                    name: 'Mike Davis',
+                    email: 'mike@eliteent.com'
+                },
+                registrationDate: '2025-07-10',
+                status: 'approved',
+                rating: 4.7,
+                reviews: 76,
+                description: 'DJs, bands, and performers for events'
+            },
+            {
+                id: 'VD004',
+                businessName: 'Floral Designs',
+                category: 'Decorations',
+                contact: {
+                    name: 'Emily Wilson',
+                    email: 'emily@floraldesigns.com'
+                },
+                registrationDate: '2025-07-18',
+                status: 'pending',
+                rating: null,
+                reviews: 0,
+                description: 'Floral arrangements and event decorations'
+            },
+            {
+                id: 'VD005',
+                businessName: 'Luxury Limousines',
+                category: 'Transportation',
+                contact: {
+                    name: 'David Brown',
+                    email: 'david@luxurylimo.com'
+                },
+                registrationDate: '2025-07-20',
+                status: 'pending',
+                rating: null,
+                reviews: 0,
+                description: 'Luxury transportation for weddings and events'
+            },
+            {
+                id: 'VD006',
+                businessName: 'Sweet Treats Bakery',
+                category: 'Catering',
+                contact: {
+                    name: 'Jessica Miller',
+                    email: 'jessica@sweettreats.com'
+                },
+                registrationDate: '2025-07-25',
+                status: 'approved',
+                rating: 4.6,
+                reviews: 54,
+                description: 'Custom cakes and desserts for all occasions'
+            },
+            {
+                id: 'VD007',
+                businessName: 'Sound Solutions',
+                category: 'Entertainment',
+                contact: {
+                    name: 'Robert Taylor',
+                    email: 'robert@soundsolutions.com'
+                },
+                registrationDate: '2025-07-22',
+                status: 'rejected',
+                rating: null,
+                reviews: 0,
+                description: 'Audio equipment rental and setup'
+            }
+        ];
+
+        // Current state
+        let currentTab = 'all';
+        let currentSort = 'name';
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderVendorTable();
+            renderTopVendors();
+            renderVendorChart();
+        });
+
+        // Render vendor table
+        function renderVendorTable() {
+            const tableBody = document.getElementById('vendorTableBody');
+            tableBody.innerHTML = '';
+            
+            // Filter vendors based on current state
+            let filteredVendors = vendors.filter(vendor => {
+                // Filter by tab
+                if (currentTab !== 'all' && vendor.status !== currentTab) {
+                    return false;
+                }
+                
+                // Filter by category
+                if (currentCategory !== 'all' && vendor.category !== currentCategory) {
+                    return false;
+                }
+                
+                // Filter by search query
+                if (searchQuery && 
+                    !vendor.businessName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    !vendor.contact.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    !vendor.contact.email.toLowerCase().includes(searchQuery.toLowerCase())) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Sort vendors
+            filteredVendors.sort((a, b) => {
+                switch(currentSort) {
+                    case 'rating':
+                        return (b.rating || 0) - (a.rating || 0);
+                    case 'date':
+                        return new Date(b.registrationDate) - new Date(a.registrationDate);
+                    default: // name
+                        return a.businessName.localeCompare(b.businessName);
+                }
+            });
+            
+            // Render each vendor
+            filteredVendors.forEach(vendor => {
+                const row = document.createElement('tr');
+                
+                // Determine status badge
+                let statusBadge;
+                switch(vendor.status) {
+                    case 'approved':
+                        statusBadge = '<span class="status-badge status-approved">Approved</span>';
+                        break;
+                    case 'pending':
+                        statusBadge = '<span class="status-badge status-pending">Pending</span>';
+                        break;
+                    case 'rejected':
+                        statusBadge = '<span class="status-badge status-rejected">Rejected</span>';
+                        break;
+                }
+                
+                // Determine rating display
+                const ratingDisplay = vendor.rating ? `${vendor.rating} ★` : '-';
+                
+                // Determine action buttons
+                let actionButtons;
+                if (vendor.status === 'pending') {
+                    actionButtons = `
+                        <button class="btn btn-sm btn-success" onclick="updateVendorStatus('${vendor.id}', 'approved')">Approve</button>
+                        <button class="btn btn-sm btn-danger" onclick="updateVendorStatus('${vendor.id}', 'rejected')">Reject</button>
+                    `;
+                } else {
+                    actionButtons = `
+                        <button class="btn btn-sm btn-primary" onclick="editVendor('${vendor.id}')">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="updateVendorStatus('${vendor.id}', 'pending')">Revoke</button>
+                    `;
+                }
+                
+                row.innerHTML = `
+                    <td>#${vendor.id}</td>
+                    <td>${vendor.businessName}</td>
+                    <td>${vendor.category}</td>
+                    <td>${vendor.contact.name}<br>${vendor.contact.email}</td>
+                    <td>${vendor.registrationDate}</td>
+                    <td>${statusBadge}</td>
+                    <td>${ratingDisplay}</td>
+                    <td>
+                        ${actionButtons}
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Render top vendors list
+        function renderTopVendors() {
+            const topVendorsList = document.getElementById('topVendorsList');
+            topVendorsList.innerHTML = '';
+            
+            // Get top 3 vendors by rating
+            const topVendors = [...vendors]
+                .filter(v => v.rating !== null)
+                .sort((a, b) => b.rating - a.rating)
+                .slice(0, 3);
+            
+            topVendors.forEach(vendor => {
+                const listItem = document.createElement('li');
+                listItem.style.padding = '0.5rem 0';
+                listItem.style.borderBottom = '1px solid #eee';
+                
+                listItem.innerHTML = `
+                    <strong>${vendor.businessName}</strong><br>
+                    <small>${vendor.rating} ★ (${vendor.reviews} reviews)</small>
+                `;
+                
+                topVendorsList.appendChild(listItem);
+            });
+        }
+
+        // Render vendor chart
+        function renderVendorChart() {
+            const ctx = document.getElementById('vendorChart').getContext('2d');
+            
+            // Prepare data
+            const categories = [...new Set(vendors.map(v => v.category))];
+            const data = categories.map(category => {
+                const categoryVendors = vendors.filter(v => v.category === category && v.status === 'approved');
+                const avgRating = categoryVendors.reduce((sum, v) => sum + (v.rating || 0), 0) / categoryVendors.length || 0;
+                return parseFloat(avgRating.toFixed(1));
+            });
+            
+            // Create chart
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Average Rating',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(67, 97, 238, 0.7)',
+                            'rgba(114, 9, 183, 0.7)',
+                            'rgba(6, 214, 160, 0.7)',
+                            'rgba(239, 71, 111, 0.7)',
+                            'rgba(255, 209, 102, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(67, 97, 238, 1)',
+                            'rgba(114, 9, 183, 1)',
+                            'rgba(6, 214, 160, 1)',
+                            'rgba(239, 71, 111, 1)',
+                            'rgba(255, 209, 102, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // Tab switching
+        function changeVendorTab(tabName) {
+            currentTab = tabName;
+            
+            // Update active tab
+            document.querySelectorAll('#vendors .tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderVendorTable();
+        }
+
+        // Filter vendors
+        function filterVendors() {
+            currentCategory = document.getElementById('categoryFilter').value;
+            searchQuery = document.getElementById('vendorSearch').value;
+            renderVendorTable();
+        }
+
+        // Sort vendors
+        function sortVendors() {
+            currentSort = document.getElementById('sortFilter').value;
+            renderVendorTable();
+        }
+
+        // Update vendor status
+        function updateVendorStatus(vendorId, newStatus) {
+            const vendorIndex = vendors.findIndex(v => v.id === vendorId);
+            if (vendorIndex !== -1) {
+                vendors[vendorIndex].status = newStatus;
+                
+                // If approving a vendor without a rating, give a default rating
+                if (newStatus === 'approved' && !vendors[vendorIndex].rating) {
+                    vendors[vendorIndex].rating = parseFloat((4.0 + Math.random() * 0.9).toFixed(1));
+                    vendors[vendorIndex].reviews = Math.floor(Math.random() * 50) + 1;
+                }
+                
+                renderVendorTable();
+                renderTopVendors();
+                renderVendorChart();
+            }
+        }
+
+        // Edit vendor
+        function editVendor(vendorId) {
+            const vendor = vendors.find(v => v.id === vendorId);
+            if (vendor) {
+                // Populate the modal with vendor data
+                document.getElementById('businessName').value = vendor.businessName;
+                document.getElementById('vendorCategory').value = vendor.category;
+                document.getElementById('contactPerson').value = vendor.contact.name;
+                document.getElementById('vendorEmail').value = vendor.contact.email;
+                document.getElementById('vendorPhone').value = vendor.phone || '';
+                document.getElementById('vendorStatus').value = vendor.status;
+                document.getElementById('vendorDescription').value = vendor.description || '';
+                
+                // Show the modal
+                showModal('vendorModal');
+                
+                // Change save button to update
+                const saveBtn = document.querySelector('#vendorModal .btn-primary');
+                saveBtn.textContent = 'Update Vendor';
+                saveBtn.onclick = function() { updateVendor(vendorId); };
+            }
+        }
+
+        // Add new vendor
+        function addNewVendor() {
+            const businessName = document.getElementById('businessName').value;
+            const category = document.getElementById('vendorCategory').value;
+            const contactPerson = document.getElementById('contactPerson').value;
+            const email = document.getElementById('vendorEmail').value;
+            const phone = document.getElementById('vendorPhone').value;
+            const status = document.getElementById('vendorStatus').value;
+            const description = document.getElementById('vendorDescription').value;
+            
+            // Generate new vendor ID
+            const newId = 'VD' + (100 + vendors.length + 1).toString().substring(1);
+            
+            // Create new vendor
+            const newVendor = {
+                id: newId,
+                businessName,
+                category,
+                contact: {
+                    name: contactPerson,
+                    email
+                },
+                phone: phone || null,
+                registrationDate: new Date().toISOString().split('T')[0],
+                status,
+                rating: status === 'approved' ? parseFloat((4.0 + Math.random() * 0.9).toFixed(1)) : null,
+                reviews: status === 'approved' ? Math.floor(Math.random() * 50) + 1 : 0,
+                description: description || ''
+            };
+            
+            // Add to vendors array
+            vendors.push(newVendor);
+            
+            // Refresh UI
+            hideModal('vendorModal');
+            renderVendorTable();
+            renderTopVendors();
+            renderVendorChart();
+            
+            // Reset form
+            document.getElementById('vendorForm').reset();
+            
+            // Show success notification
+            alert(`Vendor ${businessName} added successfully!`);
+        }
+
+        // Update existing vendor
+        function updateVendor(vendorId) {
+            const vendorIndex = vendors.findIndex(v => v.id === vendorId);
+            if (vendorIndex !== -1) {
+                const businessName = document.getElementById('businessName').value;
+                const category = document.getElementById('vendorCategory').value;
+                const contactPerson = document.getElementById('contactPerson').value;
+                const email = document.getElementById('vendorEmail').value;
+                const phone = document.getElementById('vendorPhone').value;
+                const status = document.getElementById('vendorStatus').value;
+                const description = document.getElementById('vendorDescription').value;
+                
+                // Update vendor
+                vendors[vendorIndex].businessName = businessName;
+                vendors[vendorIndex].category = category;
+                vendors[vendorIndex].contact.name = contactPerson;
+                vendors[vendorIndex].contact.email = email;
+                vendors[vendorIndex].phone = phone || null;
+                vendors[vendorIndex].status = status;
+                vendors[vendorIndex].description = description || '';
+                
+                // Refresh UI
+                hideModal('vendorModal');
+                renderVendorTable();
+                renderTopVendors();
+                renderVendorChart();
+                
+                // Reset save button
+                const saveBtn = document.querySelector('#vendorModal .btn-primary');
+                saveBtn.textContent = 'Save Vendor';
+                saveBtn.onclick = addNewVendor;
+                
+                // Show success notification
+                alert(`Vendor ${businessName} updated successfully!`);
+            }
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

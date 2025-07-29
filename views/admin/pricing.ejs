@@ -1,0 +1,292 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dynamic Pricing Section -->
+        <section id="pricing" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Dynamic Pricing</h1>
+                <p class="page-subtitle">Adjust venue prices based on demand</p>
+            </div>
+
+            <div class="form-container">
+                <div class="form-header">
+                    <h3>Pricing Rules Configuration</h3>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Base Price Multiplier</label>
+                        <input type="number" value="1.0" step="0.1" min="0.5" max="3.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Weekend Surcharge</label>
+                        <input type="number" value="15" step="5" min="0" max="50"> %
+                    </div>
+                    <div class="form-group">
+                        <label>Holiday Surcharge</label>
+                        <input type="number" value="25" step="5" min="0" max="100"> %
+                    </div>
+                    <div class="form-group">
+                        <label>Last-Minute Discount</label>
+                        <input type="number" value="10" step="5" min="0" max="50"> %
+                    </div>
+                    <div class="form-group">
+                        <label>Peak Season Start</label>
+                        <input type="date" value="2025-12-01">
+                    </div>
+                    <div class="form-group">
+                        <label>Peak Season End</label>
+                        <input type="date" value="2026-01-31">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Peak Season Multiplier</label>
+                    <input type="number" value="1.5" step="0.1" min="1.0" max="3.0">
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-danger">Reset Defaults</button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i>Save Changes
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Venue Pricing Adjustments</h3>
+                    <button class="btn btn-primary" onclick="showModal('pricingModal')">
+                        <i class="fas fa-plus"></i>Add Custom Rule
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Venue</th>
+                            <th>Base Price</th>
+                            <th>Current Price</th>
+                            <th>Multiplier</th>
+                            <th>Demand Level</th>
+                            <th>Next Adjustment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Grand Palace Hall</td>
+                            <td>$2,000</td>
+                            <td>$2,500</td>
+                            <td>1.25x</td>
+                            <td>High</td>
+                            <td>2025-08-01 (+5%)</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Riverside Gardens</td>
+                            <td>$1,500</td>
+                            <td>$1,800</td>
+                            <td>1.2x</td>
+                            <td>Medium</td>
+                            <td>2025-08-01 (+0%)</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City Convention Center</td>
+                            <td>$2,500</td>
+                            <td>$3,200</td>
+                            <td>1.28x</td>
+                            <td>Very High</td>
+                            <td>2025-08-01 (+8%)</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Beachside Resort</td>
+                            <td>$1,800</td>
+                            <td>$2,100</td>
+                            <td>1.17x</td>
+                            <td>Medium</td>
+                            <td>2025-08-01 (+0%)</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mountain View Lodge</td>
+                            <td>$1,600</td>
+                            <td>$1,950</td>
+                            <td>1.22x</td>
+                            <td>High</td>
+                            <td>2025-08-01 (+3%)</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-placeholder">
+                    <i class="fas fa-chart-line" style="margin-right: 10px;"></i>
+                    Pricing Trends and Revenue Impact Analysis
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="pricingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Custom Pricing Rule</h3>
+                <button class="close-modal" onclick="hideModal('pricingModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Venue</label>
+                        <select>
+                            <option>Select venue...</option>
+                            <option>Grand Palace Hall</option>
+                            <option>Riverside Gardens</option>
+                            <option>City Convention Center</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rule Type</label>
+                        <select>
+                            <option>Date Range</option>
+                            <option>Day of Week</option>
+                            <option>Event Type</option>
+                            <option>Guest Count</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Price Adjustment</label>
+                    <div style="display: flex; align-items: center;    flex-direction: row; gap: 0.5rem;">
+                        <select style="flex: 1;">
+                            <option>Fixed Amount</option>
+                            <option>Percentage</option>
+                            <option>Multiplier</option>
+                        </select>
+                        <input type="number" step="0.01" placeholder="Value" style="flex: 1;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="2" placeholder="Enter rule description"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('pricingModal')">Cancel</button>
+                <button class="btn btn-primary">Add Rule</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

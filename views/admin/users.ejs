@@ -1,0 +1,308 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- User Management Section -->
+        <section id="users" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">User Management</h1>
+                <p class="page-subtitle">Manage customer and vendor accounts</p>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users...">
+                </div>
+                <div class="filter-group">
+                    <select>
+                        <option>All Roles</option>
+                        <option>Customer</option>
+                        <option>Vendor</option>
+                        <option>Admin</option>
+                    </select>
+                    <select>
+                        <option>All Statuses</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Pending</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">All Users</h3>
+                    <button class="btn btn-primary" onclick="showModal('userModal')">
+                        <i class="fas fa-plus"></i>Add New User
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#U001</td>
+                            <td>John Smith</td>
+                            <td>john@example.com</td>
+                            <td>(555) 123-4567</td>
+                            <td>Customer</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Deactivate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#U002</td>
+                            <td>Sarah Johnson</td>
+                            <td>sarah@example.com</td>
+                            <td>(555) 234-5678</td>
+                            <td>Vendor</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Deactivate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#U003</td>
+                            <td>Mike Davis</td>
+                            <td>mike@example.com</td>
+                            <td>(555) 345-6789</td>
+                            <td>Admin</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-danger">Deactivate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#U004</td>
+                            <td>Emily Wilson</td>
+                            <td>emily@example.com</td>
+                            <td>(555) 456-7890</td>
+                            <td>Customer</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-success">Activate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#U005</td>
+                            <td>David Brown</td>
+                            <td>david@example.com</td>
+                            <td>(555) 567-8901</td>
+                            <td>Vendor</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">User Activity Log</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User</th>
+                            <th>Activity</th>
+                            <th>IP Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-07-24 09:15:32</td>
+                            <td>John Smith</td>
+                            <td>Logged in</td>
+                            <td>192.168.1.1</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-24 08:45:12</td>
+                            <td>Sarah Johnson</td>
+                            <td>Updated profile</td>
+                            <td>192.168.1.2</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-23 22:30:45</td>
+                            <td>Mike Davis</td>
+                            <td>Created new booking</td>
+                            <td>192.168.1.3</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-23 18:15:20</td>
+                            <td>Emily Wilson</td>
+                            <td>Changed password</td>
+                            <td>192.168.1.4</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-23 14:05:10</td>
+                            <td>David Brown</td>
+                            <td>Logged out</td>
+                            <td>192.168.1.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <button class="close-modal" onclick="hideModal('userModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Enter last name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select>
+                            <option>Customer</option>
+                            <option>Vendor</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                            <option>Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('userModal')">Cancel</button>
+                <button class="btn btn-primary">Save User</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

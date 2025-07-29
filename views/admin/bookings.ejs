@@ -1,0 +1,371 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Booking Management Section -->
+        <section id="bookings" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Booking Management</h1>
+                <p class="page-subtitle">Monitor and manage all bookings</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="changeBookingTab('all')">All Bookings</div>
+                <div class="tab" onclick="changeBookingTab('pending')">Pending</div>
+                <div class="tab" onclick="changeBookingTab('confirmed')">Confirmed</div>
+                <div class="tab" onclick="changeBookingTab('completed')">Completed</div>
+                <div class="tab" onclick="changeBookingTab('cancelled')">Cancelled</div>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search bookings...">
+                </div>
+                <div class="filter-group">
+                    <select>
+                        <option>All Venues</option>
+                        <option>Grand Palace Hall</option>
+                        <option>Riverside Gardens</option>
+                        <option>City Convention Center</option>
+                        <option>Beachside Resort</option>
+                    </select>
+                    <select>
+                        <option>All Event Types</option>
+                        <option>Wedding</option>
+                        <option>Corporate</option>
+                        <option>Birthday</option>
+                        <option>Conference</option>
+                    </select>
+                    <input type="date" style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Booking Requests</h3>
+                    <button class="btn btn-primary" onclick="showModal('bookingModal')">
+                        <i class="fas fa-plus"></i>Create Booking
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Venue</th>
+                            <th>Event Type</th>
+                            <th>Date</th>
+                            <th>Guests</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#BK001</td>
+                            <td>John Smith</td>
+                            <td>Grand Palace Hall</td>
+                            <td>Wedding</td>
+                            <td>2025-08-15</td>
+                            <td>250</td>
+                            <td><span class="status-badge status-active">Confirmed</span></td>
+                            <td>$2,500</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-danger">Cancel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK002</td>
+                            <td>Sarah Johnson</td>
+                            <td>Riverside Gardens</td>
+                            <td>Birthday</td>
+                            <td>2025-08-20</td>
+                            <td>100</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$1,800</td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK003</td>
+                            <td>Mike Davis</td>
+                            <td>City Convention Center</td>
+                            <td>Corporate</td>
+                            <td>2025-08-25</td>
+                            <td>400</td>
+                            <td><span class="status-badge status-active">Confirmed</span></td>
+                            <td>$3,200</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-danger">Cancel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK004</td>
+                            <td>Emily Wilson</td>
+                            <td>Beachside Resort</td>
+                            <td>Wedding</td>
+                            <td>2025-09-05</td>
+                            <td>150</td>
+                            <td><span class="status-badge status-payment-pending">Payment Pending</span></td>
+                            <td>$2,100</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Remind</button>
+                                <button class="btn btn-sm btn-danger">Cancel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#BK005</td>
+                            <td>David Brown</td>
+                            <td>Mountain View Lodge</td>
+                            <td>Conference</td>
+                            <td>2025-09-12</td>
+                            <td>120</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$1,950</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-info">Invoice</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt" style="margin-right: 8px; color: #667eea;"></i>
+                        Upcoming Bookings
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Wedding</strong> - Aug 15<br>
+                                <small>Grand Palace Hall (250 guests)</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Birthday Party</strong> - Aug 20<br>
+                                <small>Riverside Gardens (100 guests)</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Corporate Event</strong> - Aug 25<br>
+                                <small>City Convention Center (400 guests)</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View Calendar</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie" style="margin-right: 8px; color: #2ed573;"></i>
+                        Booking Statistics
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-placeholder" style="height: 200px;">
+                            <i class="fas fa-chart-pie" style="margin-right: 10px;"></i>
+                            Bookings by Event Type
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View Reports</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-circle" style="margin-right: 8px; color: #ff4757;"></i>
+                        Requires Attention
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>#BK002</strong> - Payment overdue<br>
+                                <small>Due: 2025-07-25</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>#BK007</strong> - Vendor confirmation needed<br>
+                                <small>Event: 2025-08-30</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>#BK012</strong> - Special requirements pending<br>
+                                <small>Waiting for client response</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">Resolve Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Booking</h3>
+                <button class="close-modal" onclick="hideModal('bookingModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <select>
+                            <option>Select customer...</option>
+                            <option>John Smith</option>
+                            <option>Sarah Johnson</option>
+                            <option>Mike Davis</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Venue</label>
+                        <select>
+                            <option>Select venue...</option>
+                            <option>Grand Palace Hall</option>
+                            <option>Riverside Gardens</option>
+                            <option>City Convention Center</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Type</label>
+                        <select>
+                            <option>Wedding</option>
+                            <option>Corporate</option>
+                            <option>Birthday</option>
+                            <option>Conference</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time">
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input type="number" min="1" value="50">
+                </div>
+                <div class="form-group">
+                    <label>Special Requirements</label>
+                    <textarea rows="3" placeholder="Enter any special requirements"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('bookingModal')">Cancel</button>
+                <button class="btn btn-primary">Create Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+   <script>
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Tab switching
+        function changeBookingTab(tabName) {
+            const tabs = document.querySelectorAll('#bookings .tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            // In a real app, you would filter the booking list here
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

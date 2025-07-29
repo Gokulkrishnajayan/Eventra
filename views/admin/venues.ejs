@@ -1,0 +1,603 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Venue Management Section -->
+        <section id="venues" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Venue Management</h1>
+                <p class="page-subtitle">Add, update, and manage venue listings</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="changeVenueTab('all')">All Venues</div>
+                <div class="tab" onclick="changeVenueTab('active')">Active</div>
+                <div class="tab" onclick="changeVenueTab('inactive')">Inactive</div>
+                <div class="tab" onclick="changeVenueTab('featured')">Featured</div>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search venues...">
+                </div>
+                <div class="filter-group">
+                    <select>
+                        <option>All Locations</option>
+                        <option>Downtown</option>
+                        <option>Suburbs</option>
+                        <option>Beachside</option>
+                        <option>Mountains</option>
+                    </select>
+                    <select>
+                        <option>Sort by Name</option>
+                        <option>Sort by Price (Low to High)</option>
+                        <option>Sort by Price (High to Low)</option>
+                        <option>Sort by Capacity</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">All Venues</h3>
+                    <button class="btn btn-primary" onclick="showModal('addVenueModal')">
+                        <i class="fas fa-plus"></i>Add Venue
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Venue ID</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Capacity</th>
+                            <th>Current Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="venue-V001">
+                            <td>#V001</td>
+                            <td>Grand Palace Hall</td>
+                            <td>Downtown</td>
+                            <td>500</td>
+                            <td>$2,500</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editVenue('V001', 'Grand Palace Hall', 'Downtown', '500', '2500', 'Banquet Hall', 'Elegant banquet hall perfect for weddings and corporate events', ['Parking', 'Catering', 'Audio/Visual'], 'active')">Edit</button>
+                                <button class="btn btn-sm btn-warning" onclick="showPricing('V001', 'Grand Palace Hall', '2500')">Pricing</button>
+                                <button class="btn btn-sm btn-danger" onclick="removeVenue('V001', 'Grand Palace Hall')">Remove</button>
+                            </td>
+                        </tr>
+                        <tr id="venue-V002">
+                            <td>#V002</td>
+                            <td>Riverside Gardens</td>
+                            <td>Suburbs</td>
+                            <td>300</td>
+                            <td>$1,800</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editVenue('V002', 'Riverside Gardens', 'Suburbs', '300', '1800', 'Outdoor Garden', 'Beautiful outdoor garden venue with scenic river views', ['Parking', 'WiFi'], 'active')">Edit</button>
+                                <button class="btn btn-sm btn-warning" onclick="showPricing('V002', 'Riverside Gardens', '1800')">Pricing</button>
+                                <button class="btn btn-sm btn-danger" onclick="removeVenue('V002', 'Riverside Gardens')">Remove</button>
+                            </td>
+                        </tr>
+                        <tr id="venue-V003">
+                            <td>#V003</td>
+                            <td>City Convention Center</td>
+                            <td>Downtown</td>
+                            <td>1000</td>
+                            <td>$3,200</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editVenue('V003', 'City Convention Center', 'Downtown', '1000', '3200', 'Conference Center', 'Large convention center suitable for conferences and exhibitions', ['Parking', 'Audio/Visual', 'WiFi', 'Stage'], 'active')">Edit</button>
+                                <button class="btn btn-sm btn-warning" onclick="showPricing('V003', 'City Convention Center', '3200')">Pricing</button>
+                                <button class="btn btn-sm btn-danger" onclick="removeVenue('V003', 'City Convention Center')">Remove</button>
+                            </td>
+                        </tr>
+                        <tr id="venue-V004">
+                            <td>#V004</td>
+                            <td>Beachside Resort</td>
+                            <td>Beachside</td>
+                            <td>200</td>
+                            <td>$2,100</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editVenue('V004', 'Beachside Resort', 'Beachside', '200', '2100', 'Hotel Ballroom', 'Luxurious beachside resort with ocean views', ['Parking', 'Catering'], 'inactive')">Edit</button>
+                                <button class="btn btn-sm btn-success" onclick="activateVenue('V004', 'Beachside Resort')">Activate</button>
+                                <button class="btn btn-sm btn-danger" onclick="removeVenue('V004', 'Beachside Resort')">Remove</button>
+                            </td>
+                        </tr>
+                        <tr id="venue-V005">
+                            <td>#V005</td>
+                            <td>Mountain View Lodge</td>
+                            <td>Mountains</td>
+                            <td>150</td>
+                            <td>$1,950</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="editVenue('V005', 'Mountain View Lodge', 'Mountains', '150', '1950', 'Restaurant', 'Cozy mountain lodge with breathtaking views', ['Parking', 'WiFi', 'Stage'], 'active')">Edit</button>
+                                <button class="btn btn-sm btn-warning" onclick="showPricing('V005', 'Mountain View Lodge', '1950')">Pricing</button>
+                                <button class="btn btn-sm btn-danger" onclick="removeVenue('V005', 'Mountain View Lodge')">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="addVenueModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Add New Venue</h3>
+                <button class="close-modal" onclick="hideModal('addVenueModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Venue Name</label>
+                        <input type="text" placeholder="Enter venue name">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" placeholder="Enter location">
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input type="number" placeholder="Enter capacity">
+                    </div>
+                    <div class="form-group">
+                        <label>Base Price</label>
+                        <input type="number" placeholder="Enter base price">
+                    </div>
+                    <div class="form-group">
+                        <label>Venue Type</label>
+                        <select>
+                            <option>Banquet Hall</option>
+                            <option>Conference Center</option>
+                            <option>Outdoor Garden</option>
+                            <option>Hotel Ballroom</option>
+                            <option>Restaurant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amenities</label>
+                        <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; max-height: 120px; overflow-y: auto;">
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Parking" style="margin-right: 8px;"> Parking
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Catering" style="margin-right: 8px;"> Catering
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Audio/Visual" style="margin-right: 8px;"> Audio/Visual
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="WiFi" style="margin-right: 8px;"> WiFi
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Stage" style="margin-right: 8px;"> Stage
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Air Conditioning" style="margin-right: 8px;"> Air Conditioning
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Security" style="margin-right: 8px;"> Security
+                            </label>
+                            <label style="display: block; cursor: pointer;">
+                                <input type="checkbox" value="Dance Floor" style="margin-right: 8px;"> Dance Floor
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="3" placeholder="Enter venue description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Images</label>
+                    <input type="file" multiple>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('addVenueModal')">Cancel</button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-save"></i>Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="editVenueModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>Edit Venue</h3>
+                <button class="close-modal" onclick="hideModal('editVenueModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Venue Name</label>
+                        <input type="text" id="editVenueName" placeholder="Enter venue name">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="editVenueLocation" placeholder="Enter location">
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input type="number" id="editVenueCapacity" placeholder="Enter capacity">
+                    </div>
+                    <div class="form-group">
+                        <label>Base Price</label>
+                        <input type="number" id="editVenuePrice" placeholder="Enter base price">
+                    </div>
+                    <div class="form-group">
+                        <label>Venue Type</label>
+                        <select id="editVenueType">
+                            <option>Banquet Hall</option>
+                            <option>Conference Center</option>
+                            <option>Outdoor Garden</option>
+                            <option>Hotel Ballroom</option>
+                            <option>Restaurant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amenities</label>
+                        <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; max-height: 120px; overflow-y: auto;">
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Parking" class="edit-amenity" style="margin-right: 8px;"> Parking
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Catering" class="edit-amenity" style="margin-right: 8px;"> Catering
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Audio/Visual" class="edit-amenity" style="margin-right: 8px;"> Audio/Visual
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="WiFi" class="edit-amenity" style="margin-right: 8px;"> WiFi
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Stage" class="edit-amenity" style="margin-right: 8px;"> Stage
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Air Conditioning" class="edit-amenity" style="margin-right: 8px;"> Air Conditioning
+                            </label>
+                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                                <input type="checkbox" value="Security" class="edit-amenity" style="margin-right: 8px;"> Security
+                            </label>
+                            <label style="display: block; cursor: pointer;">
+                                <input type="checkbox" value="Dance Floor" class="edit-amenity" style="margin-right: 8px;"> Dance Floor
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <div class="form-check form-switch" style="margin-top: 8px;">
+                            <input class="form-check-input" type="checkbox" id="editVenueStatusToggle">
+                            <label class="form-check-label" for="editVenueStatusToggle">Active</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="3" id="editVenueDescription" placeholder="Enter venue description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Images</label>
+                    <input type="file" multiple>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('editVenueModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="updateVenue()">
+                    <i class="fas fa-save"></i>Update
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="pricingModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3>Pricing Management</h3>
+                <button class="close-modal" onclick="hideModal('pricingModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Venue Name</label>
+                    <input type="text" id="pricingVenueName" readonly style="background-color: #f5f5f5;">
+                </div>
+                <div class="form-group">
+                    <label>Current Base Price</label>
+                    <input type="number" id="pricingBasePrice" placeholder="Enter base price">
+                </div>
+                <div class="form-group">
+                    <label>Discount Percentage (%)</label>
+                    <input type="number" id="discountPercentage" placeholder="Enter discount percentage" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>Discount Start Date</label>
+                    <input type="date" id="discountStartDate">
+                </div>
+                <div class="form-group">
+                    <label>Discount End Date</label>
+                    <input type="date" id="discountEndDate">
+                </div>
+                <div class="form-group">
+                    <label>Final Price</label>
+                    <input type="text" id="finalPrice" readonly style="background-color: #f5f5f5; font-weight: bold;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('pricingModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="updatePricing()">
+                    <i class="fas fa-save"></i>Save Pricing
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="confirmModal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 id="confirmTitle">Confirm Action</h3>
+                <button class="close-modal" onclick="hideModal('confirmModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('confirmModal')">Cancel</button>
+                <button class="btn btn-primary" id="confirmButton" onclick="">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentEditingVenueId = null;
+        let currentPricingVenueId = null;
+
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Tab switching
+        function changeVenueTab(tabName) {
+            const tabs = document.querySelectorAll('#venues .tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            // In a real app, you would filter the venue list here
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Edit Venue Function
+        function editVenue(id, name, location, capacity, price, type, description, amenities) {
+            currentEditingVenueId = id;
+            document.getElementById('editVenueName').value = name;
+            document.getElementById('editVenueLocation').value = location;
+            document.getElementById('editVenueCapacity').value = capacity;
+            document.getElementById('editVenuePrice').value = price;
+            document.getElementById('editVenueType').value = type;
+            document.getElementById('editVenueDescription').value = description;
+            
+            // Clear all amenity checkboxes
+            const amenityCheckboxes = document.querySelectorAll('.edit-amenity');
+            amenityCheckboxes.forEach(checkbox => checkbox.checked = false);
+            
+            // Check the amenities that are selected
+            amenities.forEach(amenity => {
+                const checkbox = document.querySelector(`.edit-amenity[value="${amenity}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+            
+            showModal('editVenueModal');
+        }
+
+        // Update Venue Function
+        function updateVenue() {
+            const name = document.getElementById('editVenueName').value;
+            const location = document.getElementById('editVenueLocation').value;
+            const capacity = document.getElementById('editVenueCapacity').value;
+            const price = document.getElementById('editVenuePrice').value;
+            
+            // Update the table row
+            const row = document.getElementById(`venue-${currentEditingVenueId}`);
+            if (row) {
+                const cells = row.children;
+                cells[1].textContent = name;
+                cells[2].textContent = location;
+                cells[3].textContent = capacity;
+                cells[4].textContent = `${price}`;
+            }
+            
+            hideModal('editVenueModal');
+            alert('Venue updated successfully!');
+        }
+
+        // Pricing Function
+        function showPricing(id, name, price) {
+            currentPricingVenueId = id;
+            document.getElementById('pricingVenueName').value = name;
+            document.getElementById('pricingBasePrice').value = price;
+            document.getElementById('discountPercentage').value = '';
+            document.getElementById('discountStartDate').value = '';
+            document.getElementById('discountEndDate').value = '';
+            document.getElementById('finalPrice').value = `${price}`;
+            showModal('pricingModal');
+        }
+
+        // Calculate Final Price
+        function calculateFinalPrice() {
+            const basePrice = parseFloat(document.getElementById('pricingBasePrice').value) || 0;
+            const discount = parseFloat(document.getElementById('discountPercentage').value) || 0;
+            const finalPrice = basePrice - (basePrice * discount / 100);
+            document.getElementById('finalPrice').value = `${finalPrice.toFixed(2)}`;
+        }
+
+        // Update Pricing Function
+        function updatePricing() {
+            const basePrice = document.getElementById('pricingBasePrice').value;
+            const discount = document.getElementById('discountPercentage').value;
+            const finalPrice = document.getElementById('finalPrice').value;
+            
+            // Update the table row with new price
+            const row = document.getElementById(`venue-${currentPricingVenueId}`);
+            if (row) {
+                const cells = row.children;
+                cells[4].textContent = finalPrice;
+            }
+            
+            hideModal('pricingModal');
+            alert('Pricing updated successfully!');
+        }
+
+        // Activate Venue Function
+        function activateVenue(id, name) {
+            const confirmTitle = document.getElementById('confirmTitle');
+            const confirmMessage = document.getElementById('confirmMessage');
+            const confirmButton = document.getElementById('confirmButton');
+            
+            confirmTitle.textContent = 'Activate Venue';
+            confirmMessage.textContent = `Are you sure you want to activate "${name}"?`;
+            confirmButton.onclick = function() {
+                const row = document.getElementById(`venue-${id}`);
+                if (row) {
+                    const statusCell = row.children[5];
+                    statusCell.innerHTML = '<span class="status-badge status-active">Active</span>';
+                    
+                    // Update action buttons
+                    const actionsCell = row.children[6];
+                    const buttons = actionsCell.children;
+                    buttons[1].textContent = 'Pricing';
+                    buttons[1].className = 'btn btn-sm btn-warning';
+                    buttons[1].onclick = function() { showPricing(id, name, '2100'); };
+                }
+                hideModal('confirmModal');
+                alert('Venue activated successfully!');
+            };
+            
+            showModal('confirmModal');
+        }
+
+        // Remove Venue Function
+        function removeVenue(id, name) {
+            const confirmTitle = document.getElementById('confirmTitle');
+            const confirmMessage = document.getElementById('confirmMessage');
+            const confirmButton = document.getElementById('confirmButton');
+            
+            confirmTitle.textContent = 'Remove Venue';
+            confirmMessage.textContent = `Are you sure you want to remove "${name}"?`;
+            confirmButton.onclick = function() {
+                const row = document.getElementById(`venue-${id}`);
+                if (row) {
+                    row.remove();
+                }
+                hideModal('confirmModal');
+                alert('Venue removed successfully!');
+            };
+            
+            showModal('confirmModal');
+        }
+
+        // Add event listeners for pricing calculations and toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const discountInput = document.getElementById('discountPercentage');
+            const basePriceInput = document.getElementById('pricingBasePrice');
+            const statusToggle = document.getElementById('editVenueStatusToggle');
+            
+            if (discountInput && basePriceInput) {
+                discountInput.addEventListener('input', calculateFinalPrice);
+                basePriceInput.addEventListener('input', calculateFinalPrice);
+            }
+            
+            if (statusToggle) {
+                statusToggle.addEventListener('change', updateToggleAppearance);
+            }
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

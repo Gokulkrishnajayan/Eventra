@@ -1,0 +1,357 @@
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Feedback Management Section -->
+        <section id="feedback" class="content-section active">
+            <div class="page-header">
+                <h1 class="page-title">Feedback Management</h1>
+                <p class="page-subtitle">Moderate user feedback and ratings</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="changeFeedbackTab('all')">All Feedback</div>
+                <div class="tab" onclick="changeFeedbackTab('pending')">Pending Moderation</div>
+                <div class="tab" onclick="changeFeedbackTab('approved')">Approved</div>
+                <div class="tab" onclick="changeFeedbackTab('rejected')">Rejected</div>
+                <div class="tab" onclick="changeFeedbackTab('negative')">Negative</div>
+            </div>
+
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search feedback...">
+                </div>
+                <div class="filter-group">
+                    <select>
+                        <option>All Types</option>
+                        <option>Venue Reviews</option>
+                        <option>Vendor Reviews</option>
+                        <option>Service Feedback</option>
+                    </select>
+                    <select>
+                        <option>All Ratings</option>
+                        <option>5 Stars</option>
+                        <option>4 Stars</option>
+                        <option>3 Stars</option>
+                        <option>2 Stars</option>
+                        <option>1 Star</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3 class="table-title">Customer Feedback</h3>
+                    <button class="btn btn-primary" onclick="showModal('feedbackModal')">
+                        <i class="fas fa-plus"></i>Add Testimonial
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Review ID</th>
+                            <th>Type</th>
+                            <th>User</th>
+                            <th>Rating</th>
+                            <th>Comments</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#REV001</td>
+                            <td>Venue</td>
+                            <td>John Smith</td>
+                            <td>5 ★</td>
+                            <td>Excellent venue, perfect for our wedding!</td>
+                            <td>2025-07-10</td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REV002</td>
+                            <td>Vendor</td>
+                            <td>Sarah Johnson</td>
+                            <td>4 ★</td>
+                            <td>Great service, but slightly late delivery</td>
+                            <td>2025-07-15</td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REV003</td>
+                            <td>Service</td>
+                            <td>Mike Davis</td>
+                            <td>2 ★</td>
+                            <td>Poor communication from support team</td>
+                            <td>2025-07-18</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REV004</td>
+                            <td>Venue</td>
+                            <td>Emily Wilson</td>
+                            <td>5 ★</td>
+                            <td>Beautiful location, highly recommend</td>
+                            <td>2025-07-20</td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#REV005</td>
+                            <td>Vendor</td>
+                            <td>David Brown</td>
+                            <td>1 ★</td>
+                            <td>Food quality was terrible</td>
+                            <td>2025-07-22</td>
+                            <td><span class="status-badge status-rejected">Rejected</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary">View</button>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-star" style="margin-right: 8px; color: #ffa502;"></i>
+                        Top Rated Venues
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Grand Palace Hall</strong><br>
+                                <small>4.9 ★ (128 reviews)</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>Riverside Gardens</strong><br>
+                                <small>4.7 ★ (95 reviews)</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>Mountain View Lodge</strong><br>
+                                <small>4.6 ★ (76 reviews)</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View All</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-thumbs-up" style="margin-right: 8px; color: #2ed573;"></i>
+                        Recent Positive Feedback
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>"Perfect wedding venue!"</strong><br>
+                                <small>John Smith - 5 ★</small>
+                            </li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                <strong>"Excellent service"</strong><br>
+                                <small>Sarah Johnson - 5 ★</small>
+                            </li>
+                            <li style="padding: 0.5rem 0;">
+                                <strong>"Will book again"</strong><br>
+                                <small>Mike Davis - 4 ★</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View All</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar" style="margin-right: 8px; color: #667eea;"></i>
+                        Feedback Analysis
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-placeholder" style="height: 200px;">
+                            <i class="fas fa-chart-pie" style="margin-right: 10px;"></i>
+                            Feedback Distribution
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-primary">View Analytics</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="feedbackModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Testimonial</h3>
+                <button class="close-modal" onclick="hideModal('feedbackModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <select>
+                            <option>Select customer...</option>
+                            <option>John Smith</option>
+                            <option>Sarah Johnson</option>
+                            <option>Mike Davis</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <select>
+                            <option>5 ★</option>
+                            <option>4 ★</option>
+                            <option>3 ★</option>
+                            <option>2 ★</option>
+                            <option>1 ★</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Feedback Type</label>
+                    <select>
+                        <option>Venue Review</option>
+                        <option>Vendor Review</option>
+                        <option>Service Feedback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Related To</label>
+                    <select>
+                        <option>Select item...</option>
+                        <option>Grand Palace Hall</option>
+                        <option>Riverside Gardens</option>
+                        <option>Gourmet Catering</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea rows="4" placeholder="Enter feedback comments"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="hideModal('feedbackModal')">Cancel</button>
+                <button class="btn btn-primary">Add Testimonial</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notifications</h3>
+                <button class="close-modal" onclick="hideModal('notificationsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>New booking request</strong><br>
+                        <small>From: John Smith for Grand Palace Hall on 2025-08-15</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem; border-bottom: 1px solid #eee;">
+                        <strong>Payment received</strong><br>
+                        <small>$2,500 for booking #BK001 (Transaction #PAY001)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">View</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem;">
+                        <strong>New vendor registration</strong><br>
+                        <small>Business: Floral Designs (Category: Decorations)</small>
+                        <div style="margin-top: 0.5rem;">
+                            <button class="btn btn-sm btn-primary">Review</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="hideModal('notificationsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Section switching
+        function showSection(sectionId) {
+            // This function is kept for pages that might have multiple sections
+            console.log(`Showing section: ${sectionId}`);
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !menuBtn.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Tab switching
+        function changeFeedbackTab(tabName) {
+            const tabs = document.querySelectorAll('#feedback .tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            // In a real app, you would filter the feedback list here
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsModal').classList.add('active');
+        }
+
+        function toggleProfileMenu() {
+            // In a real app, this would show a dropdown menu
+            alert('Profile menu would open here');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        });
+    </script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+ <!-- ✅ Navbar -->
+  <%- include('../partials/navbar/adminNavbar') %>
+
+   <!-- ✅ Sidebar -->
+  <%- include('../partials/sidebars/adminSidebar') %>
+
+  <%- body %> <!-- This is where each route's EJS file gets injected -->
+
+<script src="/js/adminScript.js"></script>
+</body>
+</html>
