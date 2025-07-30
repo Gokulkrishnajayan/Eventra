@@ -4,12 +4,30 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const { ensureLoggedIn, allowRoles } = require('./middlewares/auth');
 
 // 🚀 App Initialization
 const app = express();
 dotenv.config();
 
-// 🔗 Database Connection
+// ========================================
+// 🧩 Middleware Setup (IMPORTANT ORDER)
+// ========================================
+app.use(express.urlencoded({ extended: true }));  // Form data parser
+app.use(express.json());                          // JSON parser
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static('public/uploads'));
+
+app.use(session({
+  secret: 'eventra-secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// ========================================
+// 🔗 MongoDB Connection
+// ========================================
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,45 +35,55 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('✅ MongoDB Connected'))
 .catch((err) => console.error('❌ MongoDB Connection Error:', err));
 
-// 🧩 Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
+// ========================================
 // 🎨 View Engine Configuration
+// ========================================
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
-app.set('layout', 'layouts/adminLayout'); // default layout (used only if not overridden)
-
-// 🌐 Root Test Route
-app.get('/', (req, res) => {
-  res.send('🎉 Eventra API is working!');
-});
-
+app.set('layout', 'layouts/adminLayout'); // Default layout
 
 // ========================================
-// ✨ Layout-Specific Routes
+// 🌐 Auth Routes (Login, Logout)
+// ========================================
+app.use('/', require('./routes/authRoutes'));
+
+// ========================================
+// ✨ Layout-Specific Routes (Role Protected)
 // ========================================
 
 // 🛠 Admin Pages
-app.use('/admin', (req, res, next) => {
-  app.set('layout', 'layouts/adminLayout');
-  next();
-}, require('./routes/pages/adminRoutes'));
-
-// 👤 User Pages
-app.use('/user', (req, res, next) => {
-  app.set('layout', 'layouts/userLayout');
-  next();
-}, require('./routes/pages/userRoutes'));
+app.use('/admin',
+  ensureLoggedIn,
+  allowRoles('admin'),
+  (req, res, next) => {
+    app.set('layout', 'layouts/adminLayout');
+    next();
+  },
+  require('./routes/pages/adminRoutes')
+);
 
 // 🏪 Vendor Pages
-app.use('/vendor', (req, res, next) => {
-  app.set('layout', 'layouts/vendorLayout');
-  next();
-}, require('./routes/pages/vendorRoutes'));
+app.use('/vendor',
+  ensureLoggedIn,
+  allowRoles('vendor'),
+  (req, res, next) => {
+    app.set('layout', 'layouts/vendorLayout');
+    next();
+  },
+  require('./routes/pages/vendorRoutes')
+);
 
+// 👤 Customer Pages
+app.use('/user',
+  ensureLoggedIn,
+  allowRoles('user', 'customer'), // you may use just 'user' if your DB has that
+  (req, res, next) => {
+    app.set('layout', 'layouts/userLayout');
+    next();
+  },
+  require('./routes/pages/userRoutes')
+);
 
 // ========================================
 // 🚀 Server Start

@@ -129,87 +129,93 @@
     </main>
 
     <!-- Modals -->
-    <div class="modal" id="addVenueModal">
-        <div class="modal-content" style="max-width: 800px;">
-            <div class="modal-header">
-                <h3>Add New Venue</h3>
-                <button class="close-modal" onclick="hideModal('addVenueModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Venue Name</label>
-                        <input type="text" placeholder="Enter venue name">
-                    </div>
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input type="text" placeholder="Enter location">
-                    </div>
-                    <div class="form-group">
-                        <label>Capacity</label>
-                        <input type="number" placeholder="Enter capacity">
-                    </div>
-                    <div class="form-group">
-                        <label>Base Price</label>
-                        <input type="number" placeholder="Enter base price">
-                    </div>
-                    <div class="form-group">
-                        <label>Venue Type</label>
-                        <select>
-                            <option>Banquet Hall</option>
-                            <option>Conference Center</option>
-                            <option>Outdoor Garden</option>
-                            <option>Hotel Ballroom</option>
-                            <option>Restaurant</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Amenities</label>
-                        <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; max-height: 120px; overflow-y: auto;">
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Parking" style="margin-right: 8px;"> Parking
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Catering" style="margin-right: 8px;"> Catering
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Audio/Visual" style="margin-right: 8px;"> Audio/Visual
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="WiFi" style="margin-right: 8px;"> WiFi
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Stage" style="margin-right: 8px;"> Stage
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Air Conditioning" style="margin-right: 8px;"> Air Conditioning
-                            </label>
-                            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
-                                <input type="checkbox" value="Security" style="margin-right: 8px;"> Security
-                            </label>
-                            <label style="display: block; cursor: pointer;">
-                                <input type="checkbox" value="Dance Floor" style="margin-right: 8px;"> Dance Floor
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea rows="3" placeholder="Enter venue description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Upload Images</label>
-                    <input type="file" multiple>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" onclick="hideModal('addVenueModal')">Cancel</button>
-                <button class="btn btn-primary">
-                    <i class="fas fa-save"></i>Save
-                </button>
-            </div>
-        </div>
+<div class="modal" id="addVenueModal">
+  <div class="modal-content" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>Add New Venue</h3>
+      <button class="close-modal" onclick="hideModal('addVenueModal')">&times;</button>
     </div>
+
+    <!-- 🔥 FORM START -->
+<form action="/admin/venues/add" method="POST" enctype="multipart/form-data">
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Venue Name</label>
+        <input type="text" name="businessName" placeholder="Enter venue name" required>
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" placeholder="Enter location" required>
+      </div>
+      <div class="form-group">
+        <label>Capacity</label>
+        <input type="number" name="capacity" placeholder="Enter capacity" required>
+      </div>
+      <div class="form-group">
+        <label>Base Price</label>
+        <input type="number" name="price" placeholder="Enter base price" required>
+      </div>
+      <div class="form-group">
+        <label>Venue Type</label>
+        <select name="type" required>
+          <option value="">Select type</option>
+          <option>Banquet Hall</option>
+          <option>Conference Center</option>
+          <option>Outdoor Garden</option>
+          <option>Hotel Ballroom</option>
+          <option>Restaurant</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Vendor</label>
+        <select name="vendorId" required>
+          <option value="" disabled selected>Select vendor</option>
+          <% vendors.forEach(vendor => { %>
+            <option value="<%= vendor._id %>"><%= vendor.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select name="status" required>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Amenities</label>
+        <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; max-height: 120px; overflow-y: auto;">
+          <% const amenitiesList = ["Parking", "Catering", "Audio/Visual", "WiFi", "Stage", "Air Conditioning", "Security", "Dance Floor"]; %>
+          <% amenitiesList.forEach(amenity => { %>
+            <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+              <input type="checkbox" name="amenities" value="<%= amenity %>" style="margin-right: 8px;"> <%= amenity %>
+            </label>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea name="description" rows="3" placeholder="Enter venue description"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Upload Images</label>
+      <input type="file" name="images" multiple>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" onclick="hideModal('addVenueModal')">Cancel</button>
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-save"></i>Save
+    </button>
+  </div>
+</form>
+
+    <!-- 🔥 FORM END -->
+  </div>
+</div>
 
     <div class="modal" id="editVenueModal">
         <div class="modal-content" style="max-width: 800px;">
@@ -600,4 +606,28 @@
                 event.target.classList.remove('active');
             }
         });
+
+
+        function populateEditModal(venue) {
+  document.getElementById('editVenueName').value = venue.name;
+  document.getElementById('editVenueLocation').value = venue.location;
+  document.getElementById('editVenueCapacity').value = venue.capacity;
+  document.getElementById('editVenuePrice').value = venue.price;
+  document.getElementById('editVenueDescription').value = venue.description;
+
+  // Set selected vendor
+  document.getElementById('editVenueVendor').value = venue.vendorId;
+
+  // Set status
+  document.getElementById('editVenueStatusToggle').checked = venue.status === 'active';
+
+  // Set amenities
+  const checkboxes = document.querySelectorAll('.edit-amenity');
+  checkboxes.forEach(cb => cb.checked = venue.amenities.includes(cb.value));
+
+  document.getElementById('editVenueForm').action = `/admin/venues/edit/${venue._id}`;
+  showModal('editVenueModal');
+}
+
+
     </script>

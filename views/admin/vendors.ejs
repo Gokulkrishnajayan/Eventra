@@ -124,65 +124,69 @@
     </main>
 
     <!-- Modals -->
-    <div class="modal" id="vendorModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add New Vendor</h3>
-                <button class="close-modal" onclick="hideModal('vendorModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Business Name</label>
-                        <input type="text" id="businessName" placeholder="Enter business name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select id="vendorCategory" required>
-                            <option value="">Select Category</option>
-                            <option>Catering</option>
-                            <option>Photography</option>
-                            <option>Entertainment</option>
-                            <option>Decorations</option>
-                            <option>Transportation</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Person</label>
-                        <input type="text" id="contactPerson" placeholder="Enter contact person" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="vendorEmail" placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="vendorPhone" placeholder="Enter phone number" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select id="vendorStatus" required>
-                            <option value="pending">Pending</option>
-                            <option value="approved">Approved</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea rows="3" id="vendorDescription" placeholder="Enter vendor description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Upload Documents</label>
-                    <input type="file" id="vendorDocuments" multiple>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" onclick="hideModal('vendorModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="addNewVendor()">Save Vendor</button>
-            </div>
+<form action="/admin/vendors/add" method="POST">
+  <div class="modal" id="vendorModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Vendor</h3>
+        <button class="close-modal" onclick="hideModal('vendorModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Business Name</label>
+            <input type="text" name="businessName" placeholder="Enter business name" required>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category" required>
+              <option value="">Select Category</option>
+              <option>Catering</option>
+              <option>Photography</option>
+              <option>Entertainment</option>
+              <option>Decorations</option>
+              <option>Transportation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Contact Person</label>
+            <input type="text" name="contactPerson" placeholder="Enter contact person" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="Enter phone number" required>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select name="status" required>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
         </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea rows="3" name="description" placeholder="Enter vendor description"></textarea>
+        </div>
+        <!-- Document upload not implemented -->
+        <!-- <div class="form-group">
+          <label>Upload Documents</label>
+          <input type="file" name="documents" multiple>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="hideModal('vendorModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Vendor</button>
+      </div>
     </div>
+  </div>
+</form>
+
 
     <div class="modal" id="notificationsModal">
         <div class="modal-content">

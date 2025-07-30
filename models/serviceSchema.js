@@ -4,12 +4,12 @@ const serviceSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
-  },
+  }, // Venue or service title
 
   category: {
     type: String,
     required: true
-  }, // e.g., 'catering', 'photography', 'music'
+  }, // e.g., 'venue', 'catering', 'photography', 'other'
 
   price: {
     type: Number,
@@ -17,6 +17,10 @@ const serviceSchema = new mongoose.Schema({
   },
 
   description: {
+    type: String
+  },
+
+  contactNumber: {
     type: String
   },
 
@@ -31,17 +35,38 @@ const serviceSchema = new mongoose.Schema({
     default: true
   },
 
-  images: [
+  location: {
+    type: String // e.g., "123 Main St, City"
+  },
+
+  mapCoordinates: {
+    type: String // e.g., "40.7128° N, 74.0060° W"
+  },
+
+  capacity: {
+    type: Number // only for venues
+  },
+
+  amenities: [
     {
-      type: String // File paths or image URLs
+      type: String
     }
   ],
 
-  availabilityDates: [
+  images: [
     {
-      type: Date
+      type: String // File names or URLs
     }
   ],
+
+  availability: {
+    start: {
+      type: Date
+    },
+    end: {
+      type: Date
+    }
+  },
 
   createdAt: {
     type: Date,

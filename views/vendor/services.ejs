@@ -164,11 +164,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="/vendor/services/add" method="POST" enctype="multipart/form-data">
             <div class="row g-3 mb-4">
               <div class="col-md-12">
                 <label class="form-label">Service Type</label>
-                <select class="form-select" id="serviceTypeSelect" onchange="updateServiceForm()">
+                <select class="form-select" id="serviceTypeSelect" name="serviceType" onchange="updateServiceForm()">
                   <option value="" disabled selected>Select service type</option>
                   <option value="venue">Venue</option>
                   <option value="catering">Catering</option>
@@ -179,162 +179,162 @@
                 </select>
               </div>
             </div>
-            
-            <!-- Venue Form (initially hidden) -->
+
+            <!-- Venue Form -->
             <div class="dynamic-form-section" id="venueForm">
               <div class="row g-3 mb-4">
                 <div class="col-md-12">
                   <label class="form-label">Venue Name</label>
-                  <input type="text" class="form-control" placeholder="e.g., Grand Ballroom">
+                  <input type="text" class="form-control" name="venueName" placeholder="e.g., Grand Ballroom">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Location</label>
-                  <input type="text" class="form-control" placeholder="e.g., 123 Main St, City">
+                  <input type="text" class="form-control" name="location" placeholder="e.g., 123 Main St, City">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Map Coordinates (Optional)</label>
-                  <input type="text" class="form-control" placeholder="e.g., 40.7128° N, 74.0060° W">
+                  <input type="text" class="form-control" name="mapCoordinates" placeholder="e.g., 40.7128° N, 74.0060° W">
                 </div>
-                
+
                 <div class="col-md-4">
                   <label class="form-label">Pricing</label>
-                  <input type="text" class="form-control" placeholder="e.g., $2500/day">
+                  <input type="text" class="form-control" name="pricing" placeholder="e.g., $2500/day">
                 </div>
-                
+
                 <div class="col-md-4">
                   <label class="form-label">Capacity</label>
-                  <input type="number" class="form-control" placeholder="e.g., 300">
+                  <input type="number" class="form-control" name="capacity" placeholder="e.g., 300">
                 </div>
-                
+
                 <div class="col-md-4">
                   <label class="form-label">Contact Number</label>
-                  <input type="tel" class="form-control" placeholder="e.g., +1 (555) 123-4567">
+                  <input type="tel" class="form-control" name="contactNumber" placeholder="e.g., +1 (555) 123-4567">
                 </div>
-                
+
                 <div class="col-md-12">
                   <label class="form-label">Amenities</label>
                   <div class="d-flex flex-wrap">
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenityParking">
+                      <input class="form-check-input" type="checkbox" name="amenityParking" id="amenityParking">
                       <label class="form-check-label" for="amenityParking">Parking</label>
                     </div>
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenityAC">
+                      <input class="form-check-input" type="checkbox" name="amenityAC" id="amenityAC">
                       <label class="form-check-label" for="amenityAC">Air Conditioning</label>
                     </div>
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenityStage">
+                      <input class="form-check-input" type="checkbox" name="amenityStage" id="amenityStage">
                       <label class="form-check-label" for="amenityStage">Stage</label>
                     </div>
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenityLighting">
+                      <input class="form-check-input" type="checkbox" name="amenityLighting" id="amenityLighting">
                       <label class="form-check-label" for="amenityLighting">Lighting System</label>
                     </div>
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenitySound">
+                      <input class="form-check-input" type="checkbox" name="amenitySound" id="amenitySound">
                       <label class="form-check-label" for="amenitySound">Sound System</label>
                     </div>
                     <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" id="amenityCatering">
+                      <input class="form-check-input" type="checkbox" name="amenityCatering" id="amenityCatering">
                       <label class="form-check-label" for="amenityCatering">In-house Catering</label>
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Availability Start Date</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" name="availabilityStart">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Availability End Date</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" name="availabilityEnd">
                 </div>
-                
+
                 <div class="col-md-12">
                   <label class="form-label">Upload Venue Images</label>
-                  <input type="file" class="form-control" multiple>
-                  <small class="text-muted">Upload high-quality images of your venue (max 5 images, 2MB each)</small>
+                  <input type="file" class="form-control" name="images" multiple>
                 </div>
-                
+
                 <div class="col-md-12">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="3" placeholder="Describe your venue..."></textarea>
+                  <textarea class="form-control" name="description" rows="3" placeholder="Describe your venue..."></textarea>
                 </div>
-                
+
                 <div class="col-md-12">
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="venueActive" checked>
+                    <input class="form-check-input" type="checkbox" name="active" id="venueActive" checked>
                     <label class="form-check-label" for="venueActive">Active</label>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <!-- Other Services Form (initially hidden) -->
+
+            <!-- Other Service Form -->
             <div class="dynamic-form-section" id="otherServiceForm">
               <div class="row g-3 mb-4">
                 <div class="col-md-12">
                   <label class="form-label">Company/Business Name</label>
-                  <input type="text" class="form-control" placeholder="e.g., Dream Events Photography">
+                  <input type="text" class="form-control" name="companyName" placeholder="e.g., Dream Events Photography">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Service Title</label>
-                  <input type="text" class="form-control" placeholder="e.g., Wedding Photography Package">
+                  <input type="text" class="form-control" name="serviceTitle" placeholder="e.g., Wedding Photography Package">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Pricing</label>
-                  <input type="text" class="form-control" placeholder="e.g., $1500">
+                  <input type="text" class="form-control" name="pricing" placeholder="e.g., $1500">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Contact Number</label>
-                  <input type="tel" class="form-control" placeholder="e.g., +1 (555) 123-4567">
+                  <input type="tel" class="form-control" name="contactNumber" placeholder="e.g., +1 (555) 123-4567">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Service Type</label>
-                  <input type="text" class="form-control" id="specificServiceType" placeholder="e.g., Photography, Catering, etc.">
+                  <input type="text" class="form-control" name="specificServiceType" id="specificServiceType" placeholder="e.g., Photography, Catering, etc.">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Availability Start Date</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" name="availabilityStart">
                 </div>
-                
+
                 <div class="col-md-6">
                   <label class="form-label">Availability End Date</label>
-                  <input type="date" class="form-control">
+                  <input type="date" class="form-control" name="availabilityEnd">
                 </div>
-                
+
                 <div class="col-md-12">
                   <label class="form-label">Upload Service Images</label>
-                  <input type="file" class="form-control" multiple>
-                  <small class="text-muted">Upload images showcasing your service (max 5 images, 2MB each)</small>
+                  <input type="file" class="form-control" name="images" multiple>
                 </div>
-                
+
                 <div class="col-md-12">
                   <label class="form-label">Description</label>
-                  <textarea class="form-control" rows="3" placeholder="Describe your service..."></textarea>
+                  <textarea class="form-control" name="description" rows="3" placeholder="Describe your service..."></textarea>
                 </div>
-                
+
                 <div class="col-md-12">
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="serviceActive" checked>
+                    <input class="form-check-input" type="checkbox" name="active" id="serviceActive" checked>
                     <label class="form-check-label" for="serviceActive">Active</label>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Service</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Service</button>
+
         </div>
       </div>
     </div>

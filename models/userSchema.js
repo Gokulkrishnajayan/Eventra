@@ -6,32 +6,40 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
+ email: {
+    type: String,
+    unique: true,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
 
-    password: {
-        type: String,
-        required: true
-    },
+  password: {
+    type: String,
+    required: true
+  },
 
-    phone: {
-        type: String,
-        required: true
-    },
+  phone: {
+    type: String,
+    required: true
+  },
 
-    role: {
-        type: String,
-        enum: ['admin', 'vendor', 'user'],
-        default: 'user'
-    },
+  role: {
+    type: String,
+    enum: ['admin', 'vendor', 'user'],
+    default: 'user'
+  },
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'pending'],
+    default: 'pending'
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('User', userSchema);
