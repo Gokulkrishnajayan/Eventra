@@ -110,23 +110,30 @@
     if (serviceGallerySwiper) serviceGallerySwiper.update();
   });
 
-  function updateServiceForm() {
-    const serviceType = document.getElementById('serviceTypeSelect').value;
-    const venueForm = document.getElementById('venueForm');
-    const otherServiceForm = document.getElementById('otherServiceForm');
+  // function updateServiceForm() {
+  //   const serviceType = document.getElementById('serviceTypeSelect').value;
+  //   const venueForm = document.getElementById('venueForm');
+  //   const otherServiceForm = document.getElementById('otherServiceForm');
 
-    venueForm.classList.remove('active');
-    otherServiceForm.classList.remove('active');
+  //   venueForm.classList.remove('active');
+  //   otherServiceForm.classList.remove('active');
 
-    if (serviceType === 'venue') {
-      venueForm.classList.add('active');
-      document.getElementById('specificServiceType').value = 'Venue';
-    } else {
-      otherServiceForm.classList.add('active');
-      document.getElementById('specificServiceType').value =
-        serviceType.charAt(0).toUpperCase() + serviceType.slice(1);
-    }
-  }
+  //   if (serviceType === 'venue') {
+  //     venueForm.classList.add('active');
+  //     document.getElementById('specificServiceType').value = 'Venue';
+  //   } else if (serviceType === 'other') {
+  //     otherServiceForm.classList.add('active');
+  //     document.getElementById('specificServiceTypelabel').style='display: block;';
+  //     document.getElementById('specificServiceType').style='display: block;';
+  //     document.getElementById('specificServiceType').value = '';
+  //   } else {
+  //     otherServiceForm.classList.add('active');
+  //     document.getElementById('specificServiceTypelabel').style='display: none;';
+  //     document.getElementById('specificServiceType').style='display: none;';
+  //     document.getElementById('specificServiceType').value =
+  //       serviceType.charAt(0).toUpperCase() + serviceType.slice(1);
+  //   }
+  // }
 
   function showEditModal(serviceId) {
     const editModal = new bootstrap.Modal(document.getElementById('editServiceModal'));
@@ -302,3 +309,5 @@
       }
     });
   });
+
+  

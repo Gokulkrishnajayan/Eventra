@@ -22,11 +22,36 @@ router.get('/dashboard', (req, res) => {
   res.render('vendor/dashboard');
 });
 
-// My Services
+
+// My Services - with filters
 router.get('/services', async (req, res) => {
-  const services = await Service.find(); // Filter by vendorId if needed
-  res.render('vendor/services', { services });
+  try {
+    const vendorId = req.session.user?.id;
+    if (!vendorId) return res.status(401).send('Unauthorized');
+
+    const { category, status, search } = req.query;
+    const filter = { vendorId };
+
+    if (category && category !== 'all') {
+      filter.category = category;
+    }
+
+    if (status && status !== 'all') {
+      filter.available = status === 'active';
+    }
+
+    if (search) {
+      filter.name = { $regex: search, $options: 'i' };
+    }
+
+    const services = await Service.find(filter);
+    res.render('vendor/services', { services, query: req.query });
+  } catch (err) {
+    console.error('Error loading services:', err.message);
+    res.status(500).send('Server error');
+  }
 });
+
 
 // Bookings
 router.get('/bookings', async (req, res) => {
@@ -66,60 +91,102 @@ router.get('/settings', (req, res) => {
   res.render('vendor/settings');
 });
 
+
+
 router.post('/services/add', upload.array('images', 5), async (req, res) => {
   try {
-    const {
-      serviceType,
-      venueName,
-      businessName,
-      specificServiceType,
-      pricing,
-      contactNumber,
-      location,
-      mapCoordinates,
-      capacity,
-      description,
-      availabilityStart,
-      availabilityEnd,
-      venueActive,
-      serviceActive
-    } = req.body;
+    if (!req.session.user?.id) return res.status(401).send('Vendor not authenticated');
+    const vendorId = req.session.user.id;
+    const type = req.body.serviceType;
 
-    let amenities = req.body.amenities || [];
-    if (!Array.isArray(amenities)) amenities = [amenities];
+    // Parse & clean data
+    const name = req.body.name?.trim() || 'Untitled Service';
+    const priceRaw = Array.isArray(req.body.pricing) ? req.body.pricing[0] : req.body.pricing || '';
+    const price = parseFloat(String(priceRaw).replace(/[^\d.]/g, '')) || 0;
 
-    const name = venueName || businessName || 'Untitled Service';
-    const category = serviceType === 'venue' ? 'venue' : specificServiceType;
-    const price = Number(pricing.replace(/[^\d.-]/g, '')) || 0;
+    if (!name || isNaN(price) || price <= 0) {
+      return res.status(400).send('Name and price are required.');
+    }
 
-    const newService = new Service({
+    const contactNumber = Array.isArray(req.body.contactNumber)
+      ? req.body.contactNumber[0]
+      : req.body.contactNumber || '';
+
+    const description = Array.isArray(req.body.description)
+      ? req.body.description[0]
+      : req.body.description || '';
+
+    const images = req.files?.map(file => file.filename) || [];
+
+    const getDateField = (value) => {
+      if (Array.isArray(value)) value = value[0];
+      return value && !isNaN(Date.parse(value)) ? new Date(value) : undefined;
+    };
+
+    const availabilityStart = getDateField(req.body.availabilityStart);
+    const availabilityEnd = getDateField(req.body.availabilityEnd);
+    let availability = undefined;
+    if (availabilityStart || availabilityEnd) {
+      availability = {};
+      if (availabilityStart) availability.start = availabilityStart;
+      if (availabilityEnd) availability.end = availabilityEnd;
+    }
+
+    // Base fields for all service types
+    const baseData = {
+      vendorId,
       name,
-      category,
       price,
-      description,
-      vendorId: req.session.vendorId || req.user?._id || 'TEMP_VENDOR_ID',
-      available: (venueActive || serviceActive) === 'on',
       contactNumber,
-      location,
-      mapCoordinates,
-      capacity: capacity ? parseInt(capacity) : undefined,
-      amenities,
-      availability: {
-        start: availabilityStart,
-        end: availabilityEnd
-      },
-      images: req.files.map(file => file.filename)
-    });
+      description,
+      category: type === 'other' ? req.body.specificServiceType : type,
+      images,
+      availability,
+      available: ['on', true, 'true'].includes(req.body.active),
+      status: 'pending'
+    };
 
+    // Add venue-specific fields
+    if (type === 'venue') {
+      const capacity = req.body.capacity ? parseInt(req.body.capacity) : undefined;
+
+      const amenities = Array.isArray(req.body.amenities)
+        ? req.body.amenities
+        : req.body.amenities ? [req.body.amenities] : [];
+
+      Object.assign(baseData, {
+        location: req.body.location || '',
+        mapCoordinates: req.body.mapCoordinates || '',
+        capacity: isNaN(capacity) ? undefined : capacity,
+        amenities
+      });
+    }
+
+    const newService = new Service(baseData);
     await newService.save();
+
     res.redirect('/vendor/services');
   } catch (err) {
-    console.error('Error adding service:', err);
-    res.status(500).send('Error poda saving service');
+    console.error('Error adding service:', err.message);
+    res.status(500).send('Something went wrong while saving the service.');
   }
 });
 
 
+
+
+
+router.get('/services/images/:id', async (req, res) => {
+  try {
+    const service = await Service.findById(req.params.id);
+    if (!service) return res.status(404).json({ error: 'Service not found' });
+
+    res.json({ images: service.images || [] });
+  } catch (err) {
+    console.error('Error loading service images:', err.message);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 
 module.exports = router;

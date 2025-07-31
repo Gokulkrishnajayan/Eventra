@@ -1,344 +1,317 @@
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Services Section -->
-    <section id="services" class="section-content">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="fw-bold mb-0">My Services</h5>
-        <button class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addServiceModal">
-          <i data-lucide="plus" class="lucide"></i> Add Service
-        </button>
-      </div>
-      
-      <div class="card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <div class="d-flex gap-3">
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                All Categories
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">All Categories</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Venue</a></li>
-                <li><a class="dropdown-item" href="#">Catering</a></li>
-                <li><a class="dropdown-item" href="#">Photography</a></li>
-                <li><a class="dropdown-item" href="#">Decoration</a></li>
-                <li><a class="dropdown-item" href="#">Entertainment</a></li>
-              </ul>
-            </div>
-            
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                All Status
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">All Status</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Active</a></li>
-                <li><a class="dropdown-item" href="#">Inactive</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="input-group" style="width: 250px;">
-            <input type="text" class="form-control" placeholder="Search services...">
-            <button class="btn btn-outline-secondary" type="button">
-              <i data-lucide="search" class="lucide"></i>
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Services Section -->
+  <section id="services" class="section-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h5 class="fw-bold mb-0">My Services</h5>
+      <button class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+        <i data-lucide="plus" class="lucide"></i> Add Service
+      </button>
+    </div>
+
+    <div class="card p-4">
+      <form method="GET" action="/vendor/services" class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex gap-3">
+          <div class="dropdown">
+            <input type="hidden" name="category" id="categoryInput" value="<%= query?.category || 'all' %>">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <%= query?.category && query.category !== 'all' ? query.category.charAt(0).toUpperCase() + query.category.slice(1) : 'All Categories' %>
             </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','all')">All Categories</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','venue')">Venue</a></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','catering')">Catering</a></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','photography')">Photography</a></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','decoration')">Decoration</a></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('category','entertainment')">Entertainment</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown">
+            <input type="hidden" name="status" id="statusInput" value="<%= query?.status || 'all' %>">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <%= query?.status && query.status !== 'all' ? (query.status === 'active' ? 'Active' : 'Inactive') : 'All Status' %>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('status','all')">All Status</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('status','active')">Active</a></li>
+              <li><a class="dropdown-item" href="#" onclick="selectFilter('status','inactive')">Inactive</a></li>
+            </ul>
           </div>
         </div>
-        
-        <div class="row g-4">
-          <!-- Service Card 1 -->
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card service-card h-100">
-              <div class="service-card-header">
-                <i data-lucide="camera" class="lucide text-muted"></i>
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h5 class="fw-semibold mb-1">Wedding Photography</h5>
-                    <small class="text-muted">Photography</small>
+
+        <div class="input-group" style="width: 250px;">
+          <input type="text" class="form-control" name="search" placeholder="Search services..." value="<%= query?.search || '' %>">
+          <button class="btn btn-outline-secondary" type="submit">
+            <i data-lucide="search" class="lucide"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- service -->
+      <div class="row g-4">
+        <% if (services.length === 0) { %>
+          <div class="col-12 text-center text-muted">No services added yet.</div>
+        <% } else { %>
+          <% services.forEach((service, index) => { %>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <div class="card service-card h-100">
+                <div class="service-card-header p-0 overflow-hidden" style="height: 160px; background-color: #f8f9fa;">
+                  <% if (service.images && service.images.length > 0) { %>
+                    <img src="/uploads/<%= service.images[0] %>" alt="Service Image" class="img-fluid w-100 h-100 object-fit-cover">
+                  <% } else { %>
+                    <div class="d-flex justify-content-center align-items-center h-100 text-muted">
+                      <i data-lucide="<%= service.category === 'venue' ? 'home' : 'camera' %>" class="lucide" style="width: 48px; height: 48px;"></i>
+                    </div>
+                  <% } %>
+                </div>
+
+                <div class="card-body">
+                  <!-- Name & Category -->
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="me-2 flex-grow-1" style="min-width: 0;">
+                      <h5 class="fw-semibold mb-1 text-truncate" style="max-width: 100%;"><%= service.name %></h5>
+                      <small class="text-muted text-capitalize"><%= service.category %></small>
+                    </div>
+                    <div class="d-flex gap-2 flex-shrink-0">
+                      <button class="btn btn-sm btn-icon" title="Edit" onclick="showEditModal()">
+                        <i data-lucide="edit" class="lucide"></i>
+                      </button>
+                      <button class="btn btn-sm btn-icon"
+                        onclick="loadServiceImagesFromArray(this)"
+                        data-images='<%= JSON.stringify(service.images || []) %>'>
+                        <i data-lucide="eye" class="lucide"></i>
+                      </button>
+
+                    </div>
                   </div>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-icon" title="Edit" onclick="showEditModal(1)">
-                      <i data-lucide="edit" class="lucide"></i>
-                    </button>
-                    <button class="btn btn-sm btn-icon" title="View Images" data-bs-toggle="modal" data-bs-target="#serviceGalleryModal" onclick="loadServiceImages(1)">
-                      <i data-lucide="eye" class="lucide"></i>
-                    </button>
+
+
+                  <!-- Price -->
+                  <div class="d-flex justify-content-between mb-1">
+                    <span class="text-muted small">Price:</span>
+                    <span class="fw-medium">₹<%= service.price %></span>
                   </div>
-                </div>
-                
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Price:</span>
-                  <span class="fw-medium">$1500 <small class="text-danger text-decoration-line-through">$1700</small></span>
-                </div>
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Bookings:</span>
-                  <span class="fw-medium">23</span>
-                </div>
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Available:</span>
-                  <span class="fw-medium">Aug 1-30, 2025</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="text-muted small">Status:</span>
-                  <span class="badge bg-success bg-opacity-10 text-success">Active</span>
+
+                  <!-- Location -->
+                  <% if (service.location) { %>
+                    <div class="d-flex justify-content-between mb-1">
+                      <span class="text-muted small">Location:</span>
+                      <span class="fw-medium"><%= service.location %></span>
+                    </div>
+                  <% } %>
+
+                  <!-- Capacity (only for venue) -->
+                  <% if (service.category === 'venue' && service.capacity) { %>
+                    <div class="d-flex justify-content-between mb-1">
+                      <span class="text-muted small">Capacity:</span>
+                      <span class="fw-medium"><%= service.capacity %> people</span>
+                    </div>
+                  <% } %>
+
+                  <!-- Availability -->
+                  <% if (service.availability?.start && service.availability?.end) { %>
+                    <div class="d-flex justify-content-between mb-1">
+                      <span class="text-muted small">Available:</span>
+                      <span class="fw-medium">
+                        <%= new Date(service.availability.start).toLocaleDateString() %> -
+                        <%= new Date(service.availability.end).toLocaleDateString() %>
+                      </span>
+                    </div>
+                  <% } %>
+
+                  <!-- Status -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted small">Status:</span>
+                    <% if (service.available) { %>
+                      <span class="badge bg-success bg-opacity-10 text-success">Active</span>
+                    <% } else { %>
+                      <span class="badge bg-danger bg-opacity-10 text-danger">Inactive</span>
+                    <% } %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <!-- Service Card 2 -->
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card service-card h-100">
-              <div class="service-card-header">
-                <i data-lucide="home" class="lucide text-muted"></i>
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h5 class="fw-semibold mb-1">Grand Ballroom</h5>
-                    <small class="text-muted">Venue</small>
-                  </div>
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-icon" title="Edit" onclick="showEditModal(2)">
-                      <i data-lucide="edit" class="lucide"></i>
-                    </button>
-                    <button class="btn btn-sm btn-icon" title="View Images" data-bs-toggle="modal" data-bs-target="#serviceGalleryModal" onclick="loadServiceImages(2)">
-                      <i data-lucide="eye" class="lucide"></i>
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Price:</span>
-                  <span class="fw-medium">$2500/day</span>
-                </div>
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Capacity:</span>
-                  <span class="fw-medium">300 people</span>
-                </div>
-                <div class="d-flex justify-content-between mb-1">
-                  <span class="text-muted small">Location:</span>
-                  <span class="fw-medium">Downtown</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="text-muted small">Status:</span>
-                  <span class="badge bg-success bg-opacity-10 text-success">Active</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <nav class="mt-4">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
+          <% }) %>
+        <% } %>
       </div>
-    </section>
-  </div>
+
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>
+
 
 
 
   <!-- Modals -->
-  <!-- Add Service Modal -->
-  <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="addServiceModalLabel">Add New Service</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/vendor/services/add" method="POST" enctype="multipart/form-data">
-            <div class="row g-3 mb-4">
+<!-- Add Service Modal -->
+<div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="addServiceModalLabel">Add New Service</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/vendor/services/add" method="POST" enctype="multipart/form-data" id="addServiceForm">
+          <div class="row g-3 mb-4">
+            <!-- Service Type Dropdown -->
+            <div class="col-md-12">
+              <label class="form-label">Select Service Type</label>
+              <select class="form-select" name="serviceType" id="serviceTypeSelect" onchange="updateServiceForm()">
+                <option value="" selected disabled>Select</option>
+                <option value="venue">Venue</option>
+                <option value="catering">Catering</option>
+                <option value="photography">Photography</option>
+                <option value="decoration">Decoration</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Shared Fields (shown for all types) -->
+          <div id="sharedFields" style="display: none;">
+            <div class="row g-3 mb-3">
+              <!-- Name -->
               <div class="col-md-12">
-                <label class="form-label">Service Type</label>
-                <select class="form-select" id="serviceTypeSelect" name="serviceType" onchange="updateServiceForm()">
-                  <option value="" disabled selected>Select service type</option>
-                  <option value="venue">Venue</option>
-                  <option value="catering">Catering</option>
-                  <option value="photography">Photography</option>
-                  <option value="decoration">Decoration</option>
-                  <option value="entertainment">Entertainment</option>
-                  <option value="other">Other</option>
-                </select>
+                <label class="form-label">Service Name</label>
+                <input type="text" class="form-control" name="name" placeholder="e.g., Grand Ballroom / Dream Catering">
               </div>
-            </div>
 
-            <!-- Venue Form -->
-            <div class="dynamic-form-section" id="venueForm">
-              <div class="row g-3 mb-4">
-                <div class="col-md-12">
-                  <label class="form-label">Venue Name</label>
-                  <input type="text" class="form-control" name="venueName" placeholder="e.g., Grand Ballroom">
-                </div>
+              <!-- Optional Service Type (only for 'other') -->
+              <div class="col-md-12" id="specificServiceTypeWrapper" style="display: none;">
+                <label class="form-label">Specify Service Type</label>
+                <input type="text" class="form-control" name="specificServiceType" id="specificServiceType" placeholder="e.g., Custom Service">
+              </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Location</label>
-                  <input type="text" class="form-control" name="location" placeholder="e.g., 123 Main St, City">
-                </div>
+              <!-- Pricing -->
+              <div class="col-md-6">
+                <label class="form-label">Price</label>
+                <input type="text" class="form-control" name="pricing" placeholder="e.g., $1000">
+              </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Map Coordinates (Optional)</label>
-                  <input type="text" class="form-control" name="mapCoordinates" placeholder="e.g., 40.7128° N, 74.0060° W">
-                </div>
+              <!-- Contact -->
+              <div class="col-md-6">
+                <label class="form-label">Contact Number</label>
+                <input type="tel" class="form-control" name="contactNumber" placeholder="+91 9876543210">
+              </div>
 
-                <div class="col-md-4">
-                  <label class="form-label">Pricing</label>
-                  <input type="text" class="form-control" name="pricing" placeholder="e.g., $2500/day">
-                </div>
+              <!-- Venue-specific Section (moved above availability) -->
+              <div id="venueSection" style="display: none;">
+                <div class="row g-3">
+                  <!-- Location -->
+                  <div class="col-md-6">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-control" name="location" placeholder="Venue address">
+                  </div>
 
-                <div class="col-md-4">
-                  <label class="form-label">Capacity</label>
-                  <input type="number" class="form-control" name="capacity" placeholder="e.g., 300">
-                </div>
+                  <!-- Map Coordinates -->
+                  <div class="col-md-6">
+                    <label class="form-label">Map Coordinates (Optional)</label>
+                    <input type="text" class="form-control" name="mapCoordinates" placeholder="e.g., 40.7128° N, 74.0060° W">
+                  </div>
 
-                <div class="col-md-4">
-                  <label class="form-label">Contact Number</label>
-                  <input type="tel" class="form-control" name="contactNumber" placeholder="e.g., +1 (555) 123-4567">
-                </div>
+                  <!-- Capacity -->
+                  <div class="col-md-6">
+                    <label class="form-label">Capacity</label>
+                    <input type="number" class="form-control" name="capacity" placeholder="e.g., 200">
+                  </div>
 
-                <div class="col-md-12">
-                  <label class="form-label">Amenities</label>
-                  <div class="d-flex flex-wrap">
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenityParking" id="amenityParking">
-                      <label class="form-check-label" for="amenityParking">Parking</label>
-                    </div>
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenityAC" id="amenityAC">
-                      <label class="form-check-label" for="amenityAC">Air Conditioning</label>
-                    </div>
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenityStage" id="amenityStage">
-                      <label class="form-check-label" for="amenityStage">Stage</label>
-                    </div>
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenityLighting" id="amenityLighting">
-                      <label class="form-check-label" for="amenityLighting">Lighting System</label>
-                    </div>
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenitySound" id="amenitySound">
-                      <label class="form-check-label" for="amenitySound">Sound System</label>
-                    </div>
-                    <div class="form-check me-3 mb-2">
-                      <input class="form-check-input" type="checkbox" name="amenityCatering" id="amenityCatering">
-                      <label class="form-check-label" for="amenityCatering">In-house Catering</label>
+                  <!-- Amenities -->
+                  <div class="col-md-12">
+                    <label class="form-label">Amenities</label>
+                    <div class="d-flex flex-wrap gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="Parking" id="amenityParking">
+                        <label class="form-check-label" for="amenityParking">Parking</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="AC" id="amenityAC">
+                        <label class="form-check-label" for="amenityAC">AC</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="Stage" id="amenityStage">
+                        <label class="form-check-label" for="amenityStage">Stage</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="Lighting" id="amenityLighting">
+                        <label class="form-check-label" for="amenityLighting">Lighting</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="Sound System" id="amenitySound">
+                        <label class="form-check-label" for="amenitySound">Sound</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="amenities" value="Catering" id="amenityCatering">
+                        <label class="form-check-label" for="amenityCatering">Catering</label>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Availability Start Date</label>
-                  <input type="date" class="form-control" name="availabilityStart">
-                </div>
+              <!-- Availability -->
+              <div class="col-md-6">
+                <label class="form-label">Availability Start Date</label>
+                <input type="date" class="form-control" name="availabilityStart">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Availability End Date</label>
+                <input type="date" class="form-control" name="availabilityEnd">
+              </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Availability End Date</label>
-                  <input type="date" class="form-control" name="availabilityEnd">
-                </div>
+              <!-- Images -->
+              <div class="col-md-12">
+                <label class="form-label">Upload Images</label>
+                <input type="file" class="form-control" name="images" multiple>
+              </div>
 
-                <div class="col-md-12">
-                  <label class="form-label">Upload Venue Images</label>
-                  <input type="file" class="form-control" name="images" multiple>
-                </div>
+              <!-- Description -->
+              <div class="col-md-12">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="3" placeholder="Describe your service..."></textarea>
+              </div>
 
-                <div class="col-md-12">
-                  <label class="form-label">Description</label>
-                  <textarea class="form-control" name="description" rows="3" placeholder="Describe your venue..."></textarea>
-                </div>
-
-                <div class="col-md-12">
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="active" id="venueActive" checked>
-                    <label class="form-check-label" for="venueActive">Active</label>
-                  </div>
+              <!-- Active Toggle -->
+              <div class="col-md-12">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" name="active" id="activeToggle" checked>
+                  <label class="form-check-label" for="activeToggle">Active</label>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Other Service Form -->
-            <div class="dynamic-form-section" id="otherServiceForm">
-              <div class="row g-3 mb-4">
-                <div class="col-md-12">
-                  <label class="form-label">Company/Business Name</label>
-                  <input type="text" class="form-control" name="companyName" placeholder="e.g., Dream Events Photography">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Service Title</label>
-                  <input type="text" class="form-control" name="serviceTitle" placeholder="e.g., Wedding Photography Package">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Pricing</label>
-                  <input type="text" class="form-control" name="pricing" placeholder="e.g., $1500">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Contact Number</label>
-                  <input type="tel" class="form-control" name="contactNumber" placeholder="e.g., +1 (555) 123-4567">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Service Type</label>
-                  <input type="text" class="form-control" name="specificServiceType" id="specificServiceType" placeholder="e.g., Photography, Catering, etc.">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Availability Start Date</label>
-                  <input type="date" class="form-control" name="availabilityStart">
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Availability End Date</label>
-                  <input type="date" class="form-control" name="availabilityEnd">
-                </div>
-
-                <div class="col-md-12">
-                  <label class="form-label">Upload Service Images</label>
-                  <input type="file" class="form-control" name="images" multiple>
-                </div>
-
-                <div class="col-md-12">
-                  <label class="form-label">Description</label>
-                  <textarea class="form-control" name="description" rows="3" placeholder="Describe your service..."></textarea>
-                </div>
-
-                <div class="col-md-12">
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="active" id="serviceActive" checked>
-                    <label class="form-check-label" for="serviceActive">Active</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save Service</button>
-            </div>
-          </form>
-
-        </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Service</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
+
+
+
   
   <!-- Edit Service Modal -->
   <div class="modal fade" id="editServiceModal" tabindex="-1" aria-labelledby="editServiceModalLabel" aria-hidden="true">
@@ -491,7 +464,92 @@
     </div>
   </div>
 
+</div>
+
+
+
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    lucide.createIcons();
+  });
+</script>
+
+<script>
+  function updateServiceForm() {
+    const type = document.getElementById('serviceTypeSelect').value;
+    const shared = document.getElementById('sharedFields');
+    const venue = document.getElementById('venueSection');
+    const customType = document.getElementById('specificServiceTypeWrapper');
+
+    // Reset visibility
+    shared.style.display = type ? 'block' : 'none';
+    venue.style.display = type === 'venue' ? 'block' : 'none';
+    customType.style.display = type === 'other' ? 'block' : 'none';
+  }
+
+  document.getElementById('addServiceForm').addEventListener('submit', function () {
+    // Disable hidden inputs before submitting
+    document.querySelectorAll('[style*="display: none"] input, [style*="display: none"] textarea, [style*="display: none"] select')
+      .forEach(input => input.disabled = true);
+  });
+
+  document.addEventListener('DOMContentLoaded', updateServiceForm);
+</script>
+
+<script>
+  function selectFilter(type, value) {
+    if (type === 'category') {
+      document.getElementById('categoryInput').value = value;
+    } else if (type === 'status') {
+      document.getElementById('statusInput').value = value;
+    }
+    document.querySelector('form').submit();
+  }
+</script>
+
+
+<script>
+  let swiperInstance;
+
+  function loadServiceImagesFromArray(btn) {
+    const imageList = JSON.parse(btn.getAttribute('data-images') || '[]');
+    const wrapper = document.querySelector('#serviceGalleryModal .swiper-wrapper');
+    wrapper.innerHTML = '';
+
+    if (imageList.length > 0) {
+      imageList.forEach(filename => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<img src="/uploads/${filename}" class="img-fluid rounded w-100" alt="Service Image">`;
+        wrapper.appendChild(slide);
+      });
+    } else {
+      wrapper.innerHTML = '<div class="text-muted text-center p-4">No images uploaded.</div>';
+    }
+
+    // Init or update Swiper
+    if (swiperInstance) {
+      swiperInstance.update();
+    } else {
+      swiperInstance = new Swiper('.swiper', {
+        loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    }
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('serviceGalleryModal'));
+    modal.show();
+  }
+</script>
