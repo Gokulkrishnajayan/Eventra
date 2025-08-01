@@ -17,4 +17,23 @@
     });
   });
 
+    function toggleProfileDropdown(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+
+    document.querySelectorAll('.sidebar .menu-item').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active', 'bg-primary');
+      } else {
+        link.classList.remove('active', 'bg-primary');
+      }
+    });
+  });
+
   

@@ -142,3 +142,20 @@
     });
   });
 
+
+  
+  function toggleAdminDropdown() {
+    const dropdown = document.getElementById('adminDropdown');
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  // Optional: hide dropdown on outside click
+  document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('adminDropdown');
+    const profile = document.querySelector('.admin-profile');
+    if (!profile.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+

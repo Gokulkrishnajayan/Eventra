@@ -135,10 +135,10 @@
   //   }
   // }
 
-  function showEditModal(serviceId) {
-    const editModal = new bootstrap.Modal(document.getElementById('editServiceModal'));
-    editModal.show();
-  }
+  // function showEditModal(serviceId) {
+  //   const editModal = new bootstrap.Modal(document.getElementById('editServiceModal'));
+  //   editModal.show();
+  // }
 
   // === TOAST NOTIFICATION ===
   function showToast(message, type = 'info') {
@@ -311,3 +311,197 @@
   });
 
   
+ document.addEventListener('DOMContentLoaded', function () {
+    lucide.createIcons();
+  });
+
+  let swiperInstance;
+
+  function loadServiceImagesFromArray(btn) {
+    const imageList = JSON.parse(btn.getAttribute('data-images') || '[]');
+    const wrapper = document.querySelector('#serviceGalleryModal .swiper-wrapper');
+    wrapper.innerHTML = '';
+
+    if (imageList.length > 0) {
+      imageList.forEach(filename => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<img src="/uploads/${filename}" class="img-fluid rounded w-100" alt="Service Image">`;
+        wrapper.appendChild(slide);
+      });
+    } else {
+      wrapper.innerHTML = '<div class="text-muted text-center p-4">No images uploaded.</div>';
+    }
+
+    // Init or update Swiper
+    if (swiperInstance) {
+      swiperInstance.update();
+    } else {
+      swiperInstance = new Swiper('.swiper', {
+        loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    }
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('serviceGalleryModal'));
+    modal.show();
+  }
+
+  function selectFilter(type, value) {
+    if (type === 'category') {
+      document.getElementById('categoryInput').value = value;
+    } else if (type === 'status') {
+      document.getElementById('statusInput').value = value;
+    }
+    document.querySelector('form').submit();
+  }
+
+  function updateServiceForm() {
+    const type = document.getElementById('serviceTypeSelect').value;
+    const shared = document.getElementById('sharedFields');
+    const venue = document.getElementById('venueSection');
+    const customType = document.getElementById('specificServiceTypeWrapper');
+
+    // Reset visibility
+    shared.style.display = type ? 'block' : 'none';
+    venue.style.display = type === 'venue' ? 'block' : 'none';
+    customType.style.display = type === 'other' ? 'block' : 'none';
+  }
+
+
+  document.addEventListener('DOMContentLoaded', updateServiceForm);
+
+  function openEditModal(serviceId) {
+    fetch(`/vendor/services/${serviceId}`)
+      .then(res => res.json())
+      .then(service => {
+        const form = document.getElementById('editServiceForm');
+        document.getElementById('editServiceId').value = service._id; // Set hidden input
+
+        // Fill other fields like before...
+        form.name.value = service.name || '';
+        form.pricing.value = service.price || '';
+        form.contactNumber.value = service.contactNumber || '';
+        form.description.value = service.description || '';
+        form.availabilityStart.value = service.availability?.start?.slice(0, 10) || '';
+        form.availabilityEnd.value = service.availability?.end?.slice(0, 10) || '';
+        form.active.checked = service.available;
+
+        // Service type + Venue-specific
+        const type = service.category?.toLowerCase();
+        const select = document.getElementById("editServiceTypeSelect");
+        const isOther = !['venue', 'catering', 'photography', 'decoration', 'entertainment'].includes(type);
+        select.value = isOther ? 'other' : type;
+        toggleEditServiceFields();
+        if (isOther) form.specificServiceType.value = service.category;
+
+        if (type === 'venue') {
+          form.location.value = service.location || '';
+          form.mapCoordinates.value = service.mapCoordinates || '';
+          form.capacity.value = service.capacity || '';
+          const amenities = service.amenities || [];
+          ['Parking', 'AC', 'Stage', 'Lighting', 'Sound System', 'Catering'].forEach(name => {
+            const checkbox = document.querySelector(`#editAmenity${name.replace(/\s/g, '')}`);
+            if (checkbox) checkbox.checked = amenities.includes(name);
+          });
+        }
+
+        renderExistingImages(service.images || []);
+        new bootstrap.Modal(document.getElementById('editServiceModal')).show();
+      })
+      .catch(err => console.error('Error loading service:', err));
+
+    document.getElementById('editServiceForm').addEventListener('submit', function () {
+      const select = document.getElementById('editServiceTypeSelect');
+      const hiddenInput = document.getElementById('hiddenServiceTypeInput');
+      hiddenInput.value = select.value;
+    });
+
+  }
+
+
+  function renderExistingImages(images) {
+    const container = document.getElementById('existingImagesContainer');
+    container.innerHTML = '';
+    images.forEach(img => {
+      const div = document.createElement('div');
+      div.className = 'position-relative';
+      div.innerHTML = `
+        <img src="/uploads/${img}" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+        <button type="button" class="btn-close position-absolute top-0 end-0 bg-white p-1 border rounded-circle"
+          onclick="removeImage('${img}', this)">
+        </button>`;
+      container.appendChild(div);
+    });
+  }
+
+  function removeImage(filename, btn) {
+    btn.closest('div').remove(); // visually remove
+    // optionally: store filenames to delete on form submit
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'deletedImages';
+    hidden.value = filename;
+    document.getElementById('editServiceForm').appendChild(hidden);
+  }
+
+  function toggleEditServiceFields() {
+    const type = document.getElementById("editServiceTypeSelect")?.value;
+    const venueSection = document.getElementById("editVenueFields");
+    const specificWrapper = document.getElementById("editSpecificTypeWrapper");
+
+    if (type === 'venue') {
+      venueSection.style.display = 'block';
+      specificWrapper.style.display = 'none';
+    } else if (type === 'other') {
+      venueSection.style.display = 'none';
+      specificWrapper.style.display = 'block';
+    } else {
+      venueSection.style.display = 'none';
+      specificWrapper.style.display = 'none';
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    toggleEditServiceFields();
+    document.getElementById("editServiceTypeSelect")?.addEventListener("change", toggleEditServiceFields);
+  });
+
+
+  function showDeleteConfirmation() {
+    // Hide the edit modal first
+    const editModal = bootstrap.Modal.getInstance(document.getElementById('editServiceModal'));
+    if (editModal) editModal.hide();
+
+    // Set the serviceId into hidden input
+    const serviceId = document.getElementById('editServiceId').value;
+    document.getElementById('confirmDeleteServiceId').value = serviceId;
+
+    // Show the delete confirmation modal
+    const confirmModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+    confirmModal.show();
+  }
+
+  function reopenEditModal() {
+    const editModal = new bootstrap.Modal(document.getElementById('editServiceModal'));
+    editModal.show();
+  }
+
+
+
+
+  function deleteServiceConfirmed() {
+    // TODO: Connect this to actual deletion logic via service ID
+    console.log('Service deletion confirmed. Connect this to backend later.');
+
+    // Close modals after delete
+    bootstrap.Modal.getInstance(document.getElementById('editServiceModal')).hide();
+    bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal')).hide();
+
+    // Optionally show success toast or reload the page
+  }

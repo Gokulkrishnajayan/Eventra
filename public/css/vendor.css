@@ -505,3 +505,6 @@
     .object-fit-cover {
       object-fit: cover;
     }
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.75); /* Darker than default 0.5 */
+}

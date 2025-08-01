@@ -101,8 +101,21 @@
     <script>
         // Loyalty page JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // (Same dropdown and logout functionality as previous pages)
+            // Profile dropdown toggle
+            document.getElementById('profileToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('profileDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            }); 
             
+            
+            // Notification dropdown toggle
+            document.getElementById('notificationToggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = document.getElementById('notificationDropdown');
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
             // Redeem button functionality
             document.querySelectorAll('.reward-card .btn-primary').forEach(button => {
                 button.addEventListener('click', function() {

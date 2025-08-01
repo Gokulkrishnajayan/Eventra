@@ -1098,3 +1098,34 @@ input[type="checkbox"] {
 .select-input-group input {
     flex: 1;
 }
+
+
+
+.admin-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  color: #333;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  min-width: 160px;
+  padding: 0.5rem 0;
+  z-index: 1000;
+}
+
+.admin-dropdown a {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.admin-dropdown a:hover {
+  background-color: #f0f0f0;
+}
