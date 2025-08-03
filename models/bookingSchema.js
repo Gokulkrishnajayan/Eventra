@@ -9,17 +9,11 @@ const bookingSchema = new mongoose.Schema({
 
   vendorId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Vendor',
+    ref: 'User', // or 'Vendor' if you still use that collection
     required: true
   },
 
-  venueId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Venue',
-    required: true
-  },
-
-  serviceIds: [
+  serviceId: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Service'
@@ -31,9 +25,25 @@ const bookingSchema = new mongoose.Schema({
     required: true
   },
 
+  startTime: {
+    type: String, // or Date if full datetime is needed
+    required: false
+  },
+
+  endTime: {
+    type: String, // or Date if full datetime is needed
+    required: false
+  },
+
+  specialRequest: {
+    type: String
+  },
+
+  amenities: [String],
+
   status: {
     type: String,
-    enum: ['pending', 'confirmed', 'cancelled', 'completed'],
+    enum: ['pending','payment due','confirmed', 'cancelled', 'completed'],
     default: 'pending'
   },
 
@@ -47,5 +57,6 @@ const bookingSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
 
 module.exports = mongoose.model('Booking', bookingSchema);

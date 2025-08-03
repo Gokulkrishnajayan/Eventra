@@ -59,94 +59,37 @@
 
             <!-- Services Grid -->
             <div class="service-grid">
-                <!-- Venue Card -->
-                <div class="service-card" data-id="venue1" data-type="venue">
+            <% if (services.length === 0) { %>
+                <div class="text-muted text-center w-100">No services available.</div>
+            <% } else { %>
+                <% services.forEach(service => { %>
+                <div class="service-card" data-id="<%= service._id %>" data-type="<%= service.category.toLowerCase() === 'venue' ? 'venue' : 'service' %>">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Grand Ballroom">
+                    <img src="/uploads/<%= service.images && service.images.length > 0 ? service.images[0] : '/images/placeholder.jpg' %>" alt="<%= service.name %>">
                     </div>
                     <div class="service-info">
-                        <div class="service-name">Grand Ballroom</div>
-                        <div class="service-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Downtown Manhattan, NY
-                        </div>
-                        <div class="service-description">
-                            Elegant venue perfect for weddings, corporate events, and galas. Features state-of-the-art lighting and sound systems.
-                        </div>
-                        <div class="service-details">
-                            <span class="service-capacity">200 guests</span>
-                            <span class="service-price">$2,500/day</span>
-                        </div>
-                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
+                    <div class="service-name"><%= service.name %></div>
+                    <div class="service-location">
+                        <i class="<%= service.category.toLowerCase() === 'venue' ? 'fas fa-map-marker-alt' : 'fas fa-user-tie' %>"></i>
+                        <%= service.location || 'Not specified' %>
+                    </div>
+                    <div class="service-description">
+                        <%= service.description ? service.description.substring(0, 150) + '...' : 'No description available.' %>
+                    </div>
+                    <div class="service-details">
+                        <span class="service-capacity">
+                        <%= service.category.toLowerCase() === 'venue' ? (service.capacity || 'Unknown') + ' guests' : (service.category || 'General') %>
+                        </span>
+                        <span class="service-price">$<%= service.price %><%= service.category.toLowerCase() === 'venue' ? '/day' : '/event' %></span>
+                    </div>
+                    <button class="btn btn-primary book-btn" data-id="<%= service._id %>" style="width: 100%;">Book Now</button>
                     </div>
                 </div>
-
-                <!-- Photography Service -->
-                <div class="service-card" data-id="service1" data-type="service">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Photography">
-                    </div>
-                    <div class="service-info">
-                        <div class="service-name">Professional Photography</div>
-                        <div class="service-location">
-                            <i class="fas fa-user-tie"></i>
-                            Capture Moments
-                        </div>
-                        <div class="service-description">
-                            Premium photography services for all events. Custom packages available to suit your needs.
-                        </div>
-                        <div class="service-details">
-                            <span class="service-capacity">Packages: Basic, Premium</span>
-                            <span class="service-price">$500/event</span>
-                        </div>
-                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
-                    </div>
-                </div>
-
-                <!-- Catering Service -->
-                <div class="service-card" data-id="service2" data-type="service">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1556911220-ef412a21d17c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Catering">
-                    </div>
-                    <div class="service-info">
-                        <div class="service-name">Gourmet Catering</div>
-                        <div class="service-location">
-                            <i class="fas fa-user-tie"></i>
-                            Taste Masters
-                        </div>
-                        <div class="service-description">
-                            Exquisite catering services with a variety of menu options to suit any event and dietary needs.
-                        </div>
-                        <div class="service-details">
-                            <span class="service-capacity">Cuisine: Italian, Asian</span>
-                            <span class="service-price">$35/person</span>
-                        </div>
-                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
-                    </div>
-                </div>
-
-                <!-- Decoration Service -->
-                <div class="service-card" data-id="service3" data-type="service">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Decoration">
-                    </div>
-                    <div class="service-info">
-                        <div class="service-name">Premium Stage Decoration</div>
-                        <div class="service-location">
-                            <i class="fas fa-user-tie"></i>
-                            Elegant Designs Co.
-                        </div>
-                        <div class="service-description">
-                            Transform your venue with our creative decoration services. Themes available: Modern, Classic, Rustic.
-                        </div>
-                        <div class="service-details">
-                            <span class="service-capacity">Themes: Modern, Classic</span>
-                            <span class="service-price">$800/event</span>
-                        </div>
-                        <button class="btn btn-primary book-btn" style="width: 100%;">Book Now</button>
-                    </div>
-                </div>
+                <% }) %>
+            <% } %>
             </div>
+
+
         </div>
 
         <!-- Service Detail Content -->
@@ -212,10 +155,11 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">Contact:</span>
-                        <span class="info-value">+1 (555) 123-4567</span>
+                        <span class="info-value" id="serviceContact">+1 (555) 123-4567</span>
                     </div>
+
                     
-                    <div class="amenities-section">
+                    <div class="amenities-section" id="amenities-section">
                         <h4>Amenities</h4>
                         <div class="amenities-grid" id="amenitiesList">
                             <div class="amenity-item">
@@ -431,7 +375,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="amenities-checkbox">
                     <label>Additional Services</label>
                     <div class="simple-addons">
                         <label class="addon-item">
@@ -515,6 +459,16 @@
         </div>
         <img class="modal-content" id="modalImage">
     </div>
+
+    <!-- Booking Confirmation Section -->
+    <div id="booking-confirmed" class="content-section" style="display:none;">
+  <h3>🎉 Booking Confirmed!</h3>
+  <p>Your booking request has been submitted and is pending vendor approval.</p>
+  <button onclick="showSection('service-detail')" class="btn btn-primary">Back to Services</button>
+</div>
+
+
+
 
     <!-- Booking Animation -->
     <div class="booking-animation" id="bookingAnimation">
@@ -702,41 +656,146 @@
         }
 
         function handleServiceCardClick(e) {
-            const card = e.target.closest('.service-card');
-            const serviceId = card.getAttribute('data-id');
-            const serviceData = servicesData[serviceId];
-            
-            if (serviceData) {
-                currentServiceData = serviceData;
-                populateServiceDetails(serviceData);
+        const card = e.target.closest('.service-card');
+        const serviceId = card.getAttribute('data-id');
+
+        fetch(`/user/service/${serviceId}`)
+            .then(res => res.json())
+            .then(service => {
+            if (service) {
+                currentServiceData = service;
                 showSection('service-detail');
+                populateServiceDetails(service);
+
+                setTimeout(() => {
+                document.querySelector("#booking-form").scrollIntoView({ behavior: "smooth" });
+                }, 300);
             }
+            })
+            .catch(err => {
+            console.error("Error fetching service details:", err);
+            alert("Failed to load service details.");
+            });
         }
 
-        function populateServiceDetails(serviceData) {
-            // Update service info
-            document.getElementById('serviceTitle').textContent = serviceData.name;
-            document.getElementById('serviceType').textContent = serviceData.type;
-            document.getElementById('serviceLocation').textContent = serviceData.location;
-            document.getElementById('serviceCapacity').textContent = serviceData.capacity;
-            document.getElementById('servicePrice').textContent = serviceData.price;
-            document.getElementById('serviceDescription').textContent = serviceData.description;
 
-            // Update rating
-            updateRating(serviceData.rating, serviceData.reviewCount);
+        function populateServiceDetails(service) {
+        document.getElementById('serviceTitle').textContent = service.name;
+        document.getElementById('serviceType').textContent = service.category;
+        document.getElementById('serviceLocation').textContent = service.location || 'N/A';
+        document.getElementById('serviceCapacity').textContent = service.capacity ? `${service.capacity} guests` : 'N/A';
+        document.getElementById('servicePrice').textContent = `$${service.price}${service.category.toLowerCase() === 'venue' ? '/day' : '/event'}`;
+        document.getElementById('serviceContact').textContent = service.contactNumber || 'N/A';
+        document.getElementById('serviceDescription').textContent = service.description || 'No description available.';
 
-            // Update amenities
-            updateAmenities(serviceData.amenities);
+        const amenitiesList = document.getElementById('amenities-section');
+        const amenitiescheckbox=document.getElementById('amenities-checkbox');
 
-            // Update images
-            currentImages = serviceData.images;
-            currentImageIndex = 0;
-            updateGallery();
+        // ✅ Handle amenities
+        if (service.category ==='Venue'){
+            // amenitiesList.style.display = 'block';
+            amenitiescheckbox.style.display = 'block';
 
-            // Update booking form base price
-            document.getElementById('basePrice').textContent = `${serviceData.basePrice.toFixed(2)}`;
-            calculatePrice();
+            
+            amenitiesList.innerHTML = '';
+            (service.amenities || []).forEach(amenity => {
+                amenitiesList.innerHTML += `
+                <div class="amenity-item">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <span>${amenity}</span>
+                </div>`;
+            });
+        }else{
+            amenitiesList.style.display = 'none';
+            amenitiescheckbox.style.display = 'none';
         }
+        
+
+        // ✅ Handle images — moved outside the loop
+        currentImages = (service.images || []).map(img => `/uploads/${img}`);
+        currentImageIndex = 0;
+        updateGallery();
+
+        // ✅ Base price for booking
+        currentServiceData.basePrice = service.price;
+        document.getElementById('basePrice').textContent = service.price.toFixed(2);
+        calculatePrice();
+        }
+
+
+
+        document.getElementById('requestBooking').addEventListener('click', async function () {
+        const bookingDate = document.getElementById('bookingDate').value;
+        const startHour = document.getElementById('startHour').value;
+        const startMinute = document.getElementById('startMinute').value;
+        const startAmPm = document.getElementById('startAmPm').value;
+        const endHour = document.getElementById('endHour').value;
+        const endMinute = document.getElementById('endMinute').value;
+        const endAmPm = document.getElementById('endAmPm').value;
+        const specialRequest = document.getElementById('specialRequests').value;
+
+        if (!bookingDate || !startHour || !startMinute || !startAmPm || !endHour || !endMinute || !endAmPm) {
+            return alert("Please fill in all required fields.");
+        }
+
+        // Combine time
+        const startTime = `${startHour.padStart(2, '0')}:${startMinute} ${startAmPm}`;
+        const endTime = `${endHour.padStart(2, '0')}:${endMinute} ${endAmPm}`;
+
+        // Calculate addon total
+        const addonInputs = document.querySelectorAll('.addon-item input[type="checkbox"]');
+        let addonsPrice = 0;
+        addonInputs.forEach(input => {
+            if (input.checked) {
+            addonsPrice += parseInt(input.getAttribute('data-price')) || 0;
+            }
+        });
+
+        // Calculate final total
+        const basePrice = currentServiceData.price;
+        const totalPrice = basePrice + addonsPrice;
+
+        // Get amenities only if category is venue
+        const isVenue = currentServiceData.category.toLowerCase() === 'venue';
+        const amenities = isVenue ? currentServiceData.amenities || [] : [];
+
+        const bookingData = {
+            vendorId: currentServiceData.vendorId,
+            serviceId: [currentServiceData._id],
+            date: bookingDate,
+            startTime,
+            endTime,
+            specialRequest,
+            totalPrice,
+            amenities
+        };
+
+        // Send to backend
+        try {
+            const response = await fetch('/user/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+            });
+
+            const result = await response.json();
+            if (result.success) {
+            showSection("booking-confirmed"); // or animate transition
+            } else {
+            alert("Booking failed: " + result.message);
+            }
+        } catch (err) {
+            console.error("Booking error:", err);
+            alert("Something went wrong while booking.");
+        }
+        });
+
+
+
+
+
+
+
 
         function updateRating(rating, reviewCount) {
             const ratingStars = document.getElementById('ratingStars');
@@ -825,6 +884,7 @@
 
             // Show target section
             document.getElementById(sectionId).classList.add('active');
+            document.getElementById       
         }
 
         function calculatePrice() {

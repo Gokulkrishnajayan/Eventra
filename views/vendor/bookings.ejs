@@ -1,211 +1,134 @@
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Bookings Section -->
-    <section id="bookings" class="section-content">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="fw-bold mb-0">Booking Management</h5>
-        <div class="d-flex gap-3">
-          <div class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-              All Status
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">All Status</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Pending</a></li>
-              <li><a class="dropdown-item" href="#">Confirmed</a></li>
-              <li><a class="dropdown-item" href="#">Completed</a></li>
-              <li><a class="dropdown-item" href="#">Cancelled</a></li>
-            </ul>
-          </div>
-          
-          <button class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#calendarModal">
-            <i data-lucide="calendar" class="lucide"></i> Calendar View
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Bookings Section -->
+  <section id="bookings" class="section-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h5 class="fw-bold mb-0">Booking Management</h5>
+      <div class="d-flex gap-3">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            All Status
           </button>
-        </div>
-      </div>
-      
-      <div class="card p-4">
-        <div class="table-responsive">
-          <table class="table table-enhanced">
-            <thead>
-              <tr>
-                <th>Booking ID</th>
-                <th>Customer</th>
-                <th>Service</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#EV-1254</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
-                      <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
-                    </div>
-                    <div class="fw-medium">John Doe</div>
-                  </div>
-                </td>
-                <td>Wedding Photography</td>
-                <td>2025-08-12</td>
-                <td>$1500</td>
-                <td><span class="badge badge-pending">Pending</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="booking-action-btn confirm" title="Confirm">
-                      <i data-lucide="check" class="lucide"></i>
-                    </button>
-                    <button class="booking-action-btn reject" title="Reject">
-                      <i data-lucide="x" class="lucide"></i>
-                    </button>
-                    <button class="booking-action-btn message" title="Message" data-bs-toggle="modal" data-bs-target="#messageModal">
-                      <i data-lucide="message-circle" class="lucide"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#EV-1253</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
-                      <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
-                    </div>
-                    <div class="fw-medium">Jane Smith</div>
-                  </div>
-                </td>
-                <td>Birthday Shoot</td>
-                <td>2025-08-18</td>
-                <td>$800</td>
-                <td><span class="badge badge-confirmed">Confirmed</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="booking-action-btn complete" title="Mark Complete">
-                      <i data-lucide="check-circle" class="lucide"></i>
-                    </button>
-                    <button class="booking-action-btn message" title="Message" data-bs-toggle="modal" data-bs-target="#messageModal">
-                      <i data-lucide="message-circle" class="lucide"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>#EV-1252</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
-                      <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
-                    </div>
-                    <div class="fw-medium">Alex Johnson</div>
-                  </div>
-                </td>
-                <td>Corporate Event</td>
-                <td>2025-08-22</td>
-                <td>$1200</td>
-                <td><span class="badge badge-completed">Completed</span></td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button class="booking-action-btn details" title="Details">
-                      <i data-lucide="file-text" class="lucide"></i>
-                    </button>
-                    <button class="booking-action-btn message" title="Message" data-bs-toggle="modal" data-bs-target="#messageModal">
-                      <i data-lucide="message-circle" class="lucide"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">All Status</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Pending</a></li>
+            <li><a class="dropdown-item" href="#">Confirmed</a></li>
+            <li><a class="dropdown-item" href="#">Completed</a></li>
+            <li><a class="dropdown-item" href="#">Cancelled</a></li>
+          </ul>
         </div>
         
-        <nav class="mt-4">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </section>
-  </div>
-
-  <!-- Calendar Modal -->
-  <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="calendarModalLabel">Bookings Calendar</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div id="calendar" class="calendar"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-        </div>
+        <button class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#calendarModal">
+          <i data-lucide="calendar" class="lucide"></i> Calendar View
+        </button>
       </div>
     </div>
-  </div>
+    
+    <div class="card p-4">
+      <div class="table-responsive">
+        <table class="table table-enhanced">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% bookings.forEach(booking => { %>
+              <tr>
+                <td>#EV-<%= booking._id.toString().slice(-4).toUpperCase() %></td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                      <i data-lucide="user" class="lucide text-white" style="width: 16px; height: 16px;"></i>
+                    </div>
+                    <div class="fw-medium"><%= booking.userId?.name || 'Unknown' %></div>
+                  </div>
+                </td>
+                <td><%= booking.serviceId?.[0]?.name || 'N/A' %></td>
+                <td><%= booking.date ? booking.date.toISOString().split('T')[0] : '' %></td>
+                <td>$<%= booking.totalPrice %></td>
+                <td>
+                  <span class="badge badge-<%= booking.status.replace(/\s/g, '-').toLowerCase() %>">
+                    <%= booking.status.charAt(0).toUpperCase() + booking.status.slice(1) %>
+                  </span>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <% if (booking.status === 'pending') { %>
+                      <button class="booking-action-btn confirm-btn" data-booking-id="<%= booking._id %>" title="Confirm">
+                        <i data-lucide="check" class="lucide"></i>
+                      </button>
 
-  <!-- Message Modal -->
-  <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="messageModalLabel">Message Customer</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex align-items-center mb-4">
-            <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
-              <i data-lucide="user" class="lucide text-white" style="width: 18px; height: 18px;"></i>
-            </div>
-            <div>
-              <h6 class="mb-0">John Doe</h6>
-              <small class="text-muted">Wedding Photography - #EV-1254</small>
-            </div>
-          </div>
-          
-          <div class="chat-container mb-3" style="height: 300px;">
-            <div class="message message-received">
-              <p>Hi there! I'm interested in booking your wedding photography service for August 12th. Could you tell me more about your packages?</p>
-              <small class="text-muted d-block text-end">10:30 AM</small>
-            </div>
-            
-            <div class="message message-sent">
-              <p>Hello John! Thanks for reaching out. We offer several packages starting at $1500 for 8 hours of coverage. What specifically would you like to know?</p>
-              <small class="text-muted d-block text-end">10:35 AM</small>
-            </div>
-            
-            <div class="message message-received">
-              <p>That sounds great! Do you include engagement photos in any of your packages? Also, how many photos do we get?</p>
-              <small class="text-muted d-block text-end">10:37 AM</small>
-            </div>
-          </div>
-          
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type your message...">
-            <button class="btn btn-primary" type="button">
-              <i data-lucide="send" class="lucide"></i>
-            </button>
-          </div>
-        </div>
+                      <button class="booking-action-btn reject-btn" data-booking-id="<%= booking._id %>" title="Reject">
+                        <i data-lucide="x" class="lucide"></i>
+                      </button>
+                    <% } else if (booking.status === 'payment due') { %>
+                      <button class="btn btn-sm btn-outline-success" disabled>Awaiting Payment</button>
+                    <% } else if (booking.status === 'confirmed') { %>
+                      <button class="booking-action-btn complete-btn" data-booking-id="<%= booking._id %>" title="Mark Complete">
+                        <i data-lucide="check-circle" class="lucide"></i>
+                      </button>
+                    <% } else if (booking.status === 'completed') { %>
+                      <span class="text-success">Completed</span>
+                    <% } else if (booking.status === 'cancelled') { %>
+                      <span class="text-danger">Cancelled</span>
+                    <% } %>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+  </section>
+</div>
+
+
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Confirm booking → update status to 'payment due'
+  document.querySelectorAll('.confirm-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const bookingId = btn.getAttribute('data-booking-id');
+      const res = await fetch(`/vendor/booking/confirm/${bookingId}`, { method: 'POST' });
+      const data = await res.json();
+      if (data.success) window.location.reload();
+    });
+  });
+
+  // Mark booking as completed
+  document.querySelectorAll('.complete-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const bookingId = btn.getAttribute('data-booking-id');
+      const res = await fetch(`/vendor/booking/complete/${bookingId}`, { method: 'POST' });
+      const data = await res.json();
+      if (data.success) window.location.reload();
+    });
+  });
+
+  // Reject booking
+  document.querySelectorAll('.reject-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const bookingId = btn.getAttribute('data-booking-id');
+      if (!confirm("Are you sure you want to reject this booking?")) return;
+      const res = await fetch(`/vendor/booking/reject/${bookingId}`, { method: 'POST' });
+      const data = await res.json();
+      if (data.success) window.location.reload();
+    });
+  });
+});
+</script>

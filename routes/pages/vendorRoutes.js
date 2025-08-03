@@ -69,11 +69,22 @@ router.get('/services', async (req, res) => {
 });
 
 
-// Bookings
 router.get('/bookings', async (req, res) => {
-  const bookings = await Booking.find(); // Filter by vendorId if needed
-  res.render('vendor/bookings', { bookings });
+  try {
+    const vendorId = req.session.user?.id;
+    if (!vendorId) return res.status(401).send('Unauthorized');
+
+    const bookings = await Booking.find({ vendorId })
+      .populate('userId')        // ✅ Get customer name
+      .populate('serviceId');    // ✅ Get service name
+
+    res.render('vendor/bookings', { bookings });
+  } catch (err) {
+    console.error('Error loading bookings:', err);
+    res.status(500).send('Failed to load bookings.');
+  }
 });
+
 
 // Availability
 router.get('/availability', (req, res) => {
@@ -262,18 +273,19 @@ router.post('/services/update', upload.array('images', 5), async (req, res) => {
     };
 
     // Venue-specific extension
-    if (type === 'venue') {
+    if (type === 'Venue') {
       const capacityRaw = Array.isArray(req.body.capacity) ? req.body.capacity[0] : req.body.capacity;
       const capacity = parseInt(capacityRaw);
 
       const rawAmenities = req.body.amenities;
+      console.log(rawAmenities);
       const amenities = Array.isArray(rawAmenities)
       ? rawAmenities
       : rawAmenities
       ? [rawAmenities]
       : [];
       
-      console.log(req.body);
+      // console.log(req.body);
       Object.assign(updates, {
         location: req.body.location || '',
         mapCoordinates: req.body.mapCoordinates || '',
@@ -350,6 +362,41 @@ router.post('/services/delete', async (req, res) => {
   } catch (err) {
     console.error('Error deleting service:', err.message);
     res.status(500).send('Failed to delete service.');
+  }
+});
+
+
+
+// Confirm booking
+router.post('/booking/confirm/:id', async (req, res) => {
+  try {
+    await Booking.findByIdAndUpdate(req.params.id, { status: 'payment due' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Confirm error:', err);
+    res.status(500).json({ success: false });
+  }
+});
+
+// Mark as completed
+router.post('/booking/complete/:id', async (req, res) => {
+  try {
+    await Booking.findByIdAndUpdate(req.params.id, { status: 'completed' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Complete error:', err);
+    res.status(500).json({ success: false });
+  }
+});
+
+// Reject booking
+router.post('/booking/reject/:id', async (req, res) => {
+  try {
+    await Booking.findByIdAndUpdate(req.params.id, { status: 'cancelled' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Reject error:', err);
+    res.status(500).json({ success: false });
   }
 });
 
