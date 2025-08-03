@@ -2,6 +2,56 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/userSchema');
 
+
+// Show signup form
+router.get('/signup', (req, res) => {
+  res.render('auth/signup', { layout: false }); // disable layout if needed
+});
+
+
+// Handle signup POST
+router.post('/signup', async (req, res) => {
+  const { name, email, password, phone, role } = req.body;
+
+  try {
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).send('⚠️ Email already registered.');
+
+    const newUser = new User({
+      name,
+      email,
+      password, // 🔒 In production, hash this!
+      phone,
+      role,
+      status: 'active' // or 'pending' if you want email verification
+    });
+
+    await newUser.save();
+
+    // Auto-login after signup
+    req.session.user = {
+      id: newUser._id,
+      role: newUser.role,
+      name: newUser.name
+    };
+
+    // Redirect based on role
+    if (role === 'vendor') return res.redirect('/vendor/dashboard');
+    if (role === 'customer') return res.redirect('/user/dashboard');
+
+    res.redirect('/');
+  } catch (err) {
+    console.error('Signup error:', err);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+
+
+
 // Show login form
 router.get('/login', (req, res) => {
   res.render('auth/login', { layout: false }); // 👈 disables default layout
@@ -33,6 +83,8 @@ router.post('/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+
 
 // Logout
 router.get('/logout', (req, res) => {

@@ -35,7 +35,8 @@ router.get('/services', async (req, res) => {
 
 // My Bookings
 router.get('/bookings', async (req, res) => {
-  const bookings = await Booking.find()
+  const userId = req.session.user?.id;
+  const bookings = await Booking.find({ userId })
   .populate('userId')
   .populate('vendorId')
   .populate('serviceId');

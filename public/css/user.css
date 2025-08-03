@@ -1551,6 +1551,11 @@
             background: #fee2e2;
             color: #b91c1c;
         }
+        .status.cancelled {
+          background-color: #f8d7da;
+          color: #842029;  
+        }
+        
 
         .table-actions {
             display: flex;

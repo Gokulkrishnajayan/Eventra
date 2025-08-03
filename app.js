@@ -48,6 +48,13 @@ app.set('layout', 'layouts/adminLayout'); // Default layout
 // ========================================
 app.use('/', require('./routes/authRoutes'));
 
+// Public landing page
+// 🌐 Landing page at /
+app.get('/', (req, res) => {
+  res.render('auth/index', { layout: false }); // 👈 points to views/auth/index.ejs
+});
+
+
 // ========================================
 // ✨ Layout-Specific Routes (Role Protected)
 // ========================================
